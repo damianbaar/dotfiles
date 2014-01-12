@@ -52,6 +52,10 @@ nnoremap <space>g :Unite menu:git -start-insert<cr>
 nnoremap <space>re :TernRename<cr>
 nnoremap <space>de :TernDef<cr>
 
+" goyo
+
+nnoremap <space>df :Goyo<cr>
+
 autocmd FileType unite call s:unite_settings()
 
 function! s:unite_settings()
@@ -76,7 +80,6 @@ vmap <leader>= :TCommentBlock<CR>
 
 
 Bundle 'gmarik/vundle'
-Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bling/vim-airline'
@@ -106,6 +109,9 @@ Bundle "bonsaiben/bootstrap-snippets"
 Bundle "mkitt/tabline.vim"
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "h1mesuke/unite-outline"
+Bundle "elzr/vim-json"
+Bundle "tristen/vim-sparkup"
+Bundle "junegunn/goyo.vim"
 
 :nmap <Leader>sr :source $MYVIMRC <CR>
 
@@ -269,3 +275,4 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
