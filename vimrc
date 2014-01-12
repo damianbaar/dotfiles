@@ -45,7 +45,7 @@ nnoremap <space>s :Unite -quick-match buffer<cr>
 let g:unite_source_history_yank_enable = 1
 nnoremap <space>y :Unite history/yank<cr>
 nnoremap <space>o :Unite outline<cr>
-nnoremap <space>g :Unite menu:git<cr>
+nnoremap <space>g :Unite menu:git -start-insert<cr>
 
 "tern
 
@@ -53,9 +53,6 @@ nnoremap <space>re :TernRename<cr>
 nnoremap <space>de :TernDef<cr>
 
 autocmd FileType unite call s:unite_settings()
-
-call unite#custom#source('file,file/new,buffer,file_rec',
-\ 'matchers', 'matcher_fuzzy')
 
 function! s:unite_settings()
   let b:SuperTabDisabled=1
