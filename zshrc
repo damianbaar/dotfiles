@@ -54,6 +54,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 alias vim='mvim'
+alias vi="vim"
 alias projects='cd ~/Documents/Workspaces/InteliJ\ Idea/HTML:JS:Node/'
 # export MANPATH="/usr/local/man:$MANPATH"
 
