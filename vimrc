@@ -20,6 +20,10 @@ set nowrap
 
 let g:EasyMotion_leader_key = '<Leader><Leader>'
 
+if has('gui_running')
+  set guifont=Inconsolata-dz\ For\ Powerline:h11
+endif
+
 set nocompatible              " be iMproved
 filetype off                  " required!
 
@@ -91,6 +95,7 @@ Bundle 'Shougo/vimshell.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
+Bundle 'othree/html5.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/neocomplete.vim'
