@@ -57,8 +57,14 @@ alias vim='mvim'
 alias vi="vim"
 alias projects='cd ~/Documents/Workspaces/InteliJ\ Idea/HTML:JS:Node/'
 alias gs="git status"
-# export MANPATH="/usr/local/man:$MANPATH"
+alias undo-commit="git reset --hard HEAD^"
+alias ammend-commit="git commit --amend -C HEAD"
+alias glog="git log --pretty=oneline" 
 
+export GIT_EDITOR=vim
+export VISUAL=vim
+export EDITOR=vim
+# export MANPATH="/usr/local/man:$MANPATH"
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'

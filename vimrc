@@ -17,6 +17,7 @@ let g:airline_theme="molokai"
 set splitbelow
 set splitright
 set nowrap
+set backupdir=~/tmp
 
 let g:EasyMotion_leader_key = '<Leader><Leader>'
 
@@ -60,6 +61,7 @@ nnoremap <space>de :TernDef<cr>
 nnoremap <space>df :Goyo<cr>
 
 nnoremap <space>bd :bd<CR>
+nnoremap <space>w :w<CR>
 autocmd FileType unite call s:unite_settings()
 
 function! s:unite_settings()
@@ -82,6 +84,7 @@ nmap <leader>= :TCommentBlock<CR>
 vmap <leader>c :TComment<CR>
 vmap <leader>= :TCommentBlock<CR>
 
+:let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared Notes']
 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
@@ -119,7 +122,9 @@ Bundle "h1mesuke/unite-outline"
 Bundle "elzr/vim-json"
 Bundle "tristen/vim-sparkup"
 Bundle "junegunn/goyo.vim"
+Bundle "xolox/vim-notes"
 
+" :let g:notes_suffix = '.txt'
 :nmap <Leader>sr :source $MYVIMRC <CR>
 
 let g:loaded_netrw        = 1 " Disable netrw
