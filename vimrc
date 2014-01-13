@@ -57,9 +57,9 @@ nnoremap <space>re :TernRename<cr>
 nnoremap <space>de :TernDef<cr>
 
 " goyo
-
 nnoremap <space>df :Goyo<cr>
 
+nnoremap <space>bd :bd<CR>
 autocmd FileType unite call s:unite_settings()
 
 function! s:unite_settings()
@@ -88,10 +88,12 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bling/vim-airline'
 Bundle 'Shougo/unite.vim'
+Bundle 'kshenoy/vim-signature'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'xolox/vim-session'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/vimshell.vim'
+Bundle "myusuf3/numbers.vim"
 Bundle 'xolox/vim-misc'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
@@ -124,6 +126,8 @@ let g:loaded_netrw        = 1 " Disable netrw
 let g:loaded_netrwPlugin  = 1 " Disable netrw
 
 autocmd VimEnter * IndentGuidesEnable 
+autocmd VimEnter * NumbersToggle 
+autocmd VimEnter * SignatureToggle 
 
 if argc() == 1 && argv(0) == '.'
   autocmd VimEnter * Unite file 
@@ -180,9 +184,29 @@ filetype plugin indent on
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = ''
+let g:airline_right_sep = '«'
+let g:airline_right_sep = ''
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+let g:airline_theme='powerlineish'
 set laststatus=2
 let g:airline_powerline_fonts = 1
-set ambiwidth=double
+"set ambiwidth=double
  
 let g:neocomplete#enable_at_startup = 1
 

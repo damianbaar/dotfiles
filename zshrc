@@ -56,6 +56,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 alias vim='mvim'
 alias vi="vim"
 alias projects='cd ~/Documents/Workspaces/InteliJ\ Idea/HTML:JS:Node/'
+alias gs="git status"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
