@@ -38,42 +38,108 @@ let g:syntastic_javascript_checkers = ['jslint',"jshint"]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Unite
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:unite_enable_start_insert = 0
-let g:unite_split_rule = "botright"
-let g:unite_force_overwrite_statusline = 0
-let g:unite_winheight = 20
-
-nnoremap <space>m :<C-u>Unite file_mru<CR>
-nnoremap <space>p :<C-u>Unite file_rec/async<cr>
-nnoremap <space>/ :Unite grep:.<cr>
-nnoremap <space>s :Unite -quick-match buffer<cr>
 let g:unite_source_history_yank_enable = 1
-nnoremap <space>y :Unite history/yank<cr>
-nnoremap <space>o :Unite outline<cr>
-nnoremap <space>g :Unite menu:git -start-insert<cr>
 
+nnoremap    [unite]   <Nop>
+nmap    f [unite]
+
+nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir
+      \ -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite
+      \ -buffer-name=register register<CR>
+nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
+nnoremap <silent> [unite]f
+      \ :<C-u>Unite -buffer-name=resume resume<CR>
+nnoremap <silent> [unite]d
+      \ :<C-u>Unite -buffer-name=files -default-action=lcd directory_mru<CR>
+nnoremap <silent> [unite]ma
+      \ :<C-u>Unite mapping<CR>
+nnoremap <silent> [unite]me
+      \ :<C-u>Unite output:message<CR>
+nnoremap  [unite]f  :<C-u>Unite source<CR>
+
+nnoremap [unite]o :Unite outline -start-insert<cr>
+nnoremap [unite]y :Unite history/yank<cr>
+nnoremap [unite]g :Unite menu:git -start-insert<cr>
+
+nnoremap <silent> [unite]s
+      \ :<C-u>Unite -buffer-name=files -no-split
+      \ jump_point file_point buffer_tab
+      \ file file/new file_mru<CR>
+      " \ file_rec:! file file/new file_mru<CR>
+
+" Start insert.
+let g:unite_enable_start_insert = 1
+"let g:unite_enable_short_source_names = 1
+
+" To track long mru history.
+"let g:unite_source_file_mru_long_limit = 3000
+"let g:unite_source_directory_mru_long_limit = 3000
+
+" Like ctrlp.vim settings.
+let g:unite_winheight = 20
+let g:unite_split_rule = 'botright'
+
+" Prompt choices.
+let g:unite_prompt = '❫ '
+let g:unite_prompt = '» '
+
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+  nmap <buffer> <ESC>      <Plug>(unite_exit)
+  imap <buffer> jj      <Plug>(unite_insert_leave)
+  "imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+
+  imap <buffer><expr> j unite#smart_map('j', '')
+  imap <buffer> <TAB>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+  imap <buffer> '     <Plug>(unite_quick_match_default_action)
+  nmap <buffer> '     <Plug>(unite_quick_match_default_action)
+  imap <buffer><expr> x
+        \ unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
+  nmap <buffer> x     <Plug>(unite_quick_match_choose_action)
+        \ unite#smart_map('l', unite#do_action('default'))
+
+  let unite = unite#get_current_unite()
+  if unite.profile_name ==# 'search'
+    nnoremap <silent><buffer><expr> r     unite#do_action('replace')
+  else
+    nnoremap <silent><buffer><expr> r     unite#do_action('rename')
+  endif
+
+  nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
+  nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
+        \ empty(unite#mappings#get_current_filters()) ?
+        \ ['sorter_reverse'] : [])
+
+  " Runs "split" action by <C-s>.
+  imap <silent><buffer><expr> <C-s>     unite#do_action('split')
+
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+  call unite#set_profile('files', 'smartcase', 1)
+  call unite#custom#source('line,outline','matchers','matcher_fuzzy')
+
+endfunction"}}}
+
+let g:unite_source_file_mru_limit = 200
+let g:unite_cursor_line_highlight = 'TabLineSel'
+let g:unite_abbr_highlight = 'TabLine'
+
+let g:unite_source_rec_async_command= 'ag --ignore node_modules -i --color --nogroup --hidden -u'
 "tern
-
-nnoremap <space>re :TernRename<cr>
-nnoremap <space>de :TernDef<cr>
+nnoremap <leader>re :TernRename<cr>
+nnoremap <leader>de :TernDef<cr>
 
 " goyo
-nnoremap <space>df :Goyo<cr>
+nnoremap <leader>df :Goyo<cr>
 
-nnoremap <space>bd :bd<CR>
-nnoremap <space>w :w<CR>
-autocmd FileType unite call s:unite_settings()
-
-function! s:unite_settings()
-  let b:SuperTabDisabled=1
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  imap <silent><buffer><expr> <C-x> unite#do_action('split')
-  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
-
-  nmap <buffer> <ESC> <Plug>(unite_exit)
-endfunction
+" custom 
+" add some space after line
+nnoremap <leader><Enter> o<Esc>k
+nnoremap <leader><space> O<Esc>j
+nnoremap <leader>ww :bd<CR>
 
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'unite']
@@ -84,7 +150,7 @@ nmap <leader>= :TCommentBlock<CR>
 vmap <leader>c :TComment<CR>
 vmap <leader>= :TCommentBlock<CR>
 
-:let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared Notes']
+:let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared\ Notes']
 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
@@ -99,6 +165,7 @@ Bundle 'Shougo/vimshell.vim'
 Bundle "myusuf3/numbers.vim"
 Bundle 'xolox/vim-misc'
 Bundle 'jelera/vim-javascript-syntax'
+Bundle 'mileszs/ack.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
 Bundle 'Raimondi/delimitMate'
@@ -140,39 +207,39 @@ endif
 
 let g:unite_source_menu_menus = {}
 let g:unite_source_menu_menus.git = {
-    \ 'description' : '            gestionar repositorios git
-        \                            ⌘ [espacio]g',
-    \}
+      \ 'description' : '            gestionar repositorios git
+      \                            ⌘ [espacio]g',
+      \}
 let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig                                                        ⌘ ,gt',
-        \'normal ,gt'],
-    \['▷ git status       (Fugitive)                                ⌘ ,gs',
-        \'Gstatus'],
-    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
-        \'Gdiff'],
-    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
-        \'Gcommit'],
-    \['▷ git log          (Fugitive)                                ⌘ ,gl',
-        \'exe "silent Glog | Unite quickfix"'],
-    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
-        \'Gblame'],
-    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
-        \'Gwrite'],
-    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
-        \'Gread'],
-    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
-        \'Gremove'],
-    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
-        \'exe "Gmove " input("destino: ")'],
-    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
-        \'Git! push'],
-    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
-        \'Git! pull'],
-    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
-        \'exe "Git! " input("comando git: ")'],
-    \['▷ git cd           (Fugitive)',
-        \'Gcd'],
-    \]
+      \['▷ tig                                                        ⌘ ,gt',
+      \'normal ,gt'],
+      \['▷ git status       (Fugitive)                                ⌘ ,gs',
+      \'Gstatus'],
+      \['▷ git diff         (Fugitive)                                ⌘ ,gd',
+      \'Gdiff'],
+      \['▷ git commit       (Fugitive)                                ⌘ ,gc',
+      \'Gcommit'],
+      \['▷ git log          (Fugitive)                                ⌘ ,gl',
+      \'exe "silent Glog | Unite quickfix"'],
+      \['▷ git blame        (Fugitive)                                ⌘ ,gb',
+      \'Gblame'],
+      \['▷ git stage        (Fugitive)                                ⌘ ,gw',
+      \'Gwrite'],
+      \['▷ git checkout     (Fugitive)                                ⌘ ,go',
+      \'Gread'],
+      \['▷ git rm           (Fugitive)                                ⌘ ,gr',
+      \'Gremove'],
+      \['▷ git mv           (Fugitive)                                ⌘ ,gm',
+      \'exe "Gmove " input("destino: ")'],
+      \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
+      \'Git! push'],
+      \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
+      \'Git! pull'],
+      \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
+      \'exe "Git! " input("comando git: ")'],
+      \['▷ git cd           (Fugitive)',
+      \'Gcd'],
+      \]
 nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
 
 let g:session_autosave = 'no'
@@ -180,7 +247,7 @@ let g:session_autoload = 'no'
 set hidden
 set confirm
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules/     " MacOSX/Linux
 set incsearch ignorecase hlsearch
 set whichwrap+=h,l
 
@@ -212,7 +279,7 @@ let g:airline_theme='powerlineish'
 set laststatus=2
 let g:airline_powerline_fonts = 1
 "set ambiwidth=double
- 
+
 let g:neocomplete#enable_at_startup = 1
 
 " Plugin key-mappings.
@@ -221,11 +288,11 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
@@ -249,18 +316,18 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+  let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 

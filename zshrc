@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
+PATH=/usr/local/share/npm/bin:$PATH
 DOTFILES=$HOME/Dropbox/dotfiles
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -60,6 +61,8 @@ alias gs="git status"
 alias undo-commit="git reset --hard HEAD^"
 alias ammend-commit="git commit --amend -C HEAD"
 alias glog="git log --pretty=oneline" 
+alias hash-last-commit="git log --format=%H | head -1"
+alias hash-first-commit="git log --format=%H | tail -1"
 
 export GIT_EDITOR=vim
 export VISUAL=vim
