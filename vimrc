@@ -18,6 +18,15 @@ set splitbelow
 set splitright
 set nowrap
 set backupdir=~/tmp
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬,trail:·
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
 
 let g:EasyMotion_leader_key = '<Leader><Leader>'
 
@@ -41,17 +50,17 @@ let g:syntastic_javascript_checkers = ['jslint',"jshint"]
 let g:unite_source_history_yank_enable = 1
 
 nnoremap    [unite]   <Nop>
-nmap    f [unite]
+nmap    <leader>f [unite]
 
 nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir
       \ -buffer-name=files buffer file_mru bookmark file<CR>
-nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]d  :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite
       \ -buffer-name=register register<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]f
       \ :<C-u>Unite -buffer-name=resume resume<CR>
-nnoremap <silent> [unite]d
+nnoremap <silent> [unite]b
       \ :<C-u>Unite -buffer-name=files -default-action=lcd directory_mru<CR>
 nnoremap <silent> [unite]ma
       \ :<C-u>Unite mapping<CR>
@@ -137,9 +146,9 @@ nnoremap <leader>df :Goyo<cr>
 
 " custom 
 " add some space after line
-nnoremap <leader><Enter> o<Esc>k
+nnoremap <leader><Enter> A<Enter><Esc>O
 nnoremap <leader><space> O<Esc>j
-nnoremap <leader>ww :bd<CR>
+nnoremap <C-w>q :bd<CR>
 
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'unite']
@@ -160,17 +169,12 @@ Bundle 'Shougo/unite.vim'
 Bundle 'kshenoy/vim-signature'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'xolox/vim-session'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/vimshell.vim'
 Bundle "myusuf3/numbers.vim"
 Bundle 'xolox/vim-misc'
 Bundle 'jelera/vim-javascript-syntax'
-Bundle 'mileszs/ack.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
-Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
-Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 Bundle 'tomtom/tcomment_vim'
@@ -179,10 +183,8 @@ Bundle 'godlygeek/tabular'
 Bundle 'moll/vim-node'
 Bundle 'tpope/vim-surround'
 Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
-Bundle "bonsaiben/bootstrap-snippets"
 Bundle "mkitt/tabline.vim"
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "h1mesuke/unite-outline"
@@ -190,6 +192,7 @@ Bundle "elzr/vim-json"
 Bundle "tristen/vim-sparkup"
 Bundle "junegunn/goyo.vim"
 Bundle "xolox/vim-notes"
+Bundle "Shougo/vimfiler.vim"
 
 " :let g:notes_suffix = '.txt'
 :nmap <Leader>sr :source $MYVIMRC <CR>
@@ -199,11 +202,7 @@ let g:loaded_netrwPlugin  = 1 " Disable netrw
 
 autocmd VimEnter * IndentGuidesEnable 
 autocmd VimEnter * NumbersToggle 
-autocmd VimEnter * SignatureToggle 
-
-if argc() == 1 && argv(0) == '.'
-  autocmd VimEnter * Unite file 
-endif
+let g:vimfiler_as_default_explorer = 1
 
 let g:unite_source_menu_menus = {}
 let g:unite_source_menu_menus.git = {
@@ -280,8 +279,6 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 "set ambiwidth=double
 
-let g:neocomplete#enable_at_startup = 1
-
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -305,75 +302,4 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-
-
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-      \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
-      \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
