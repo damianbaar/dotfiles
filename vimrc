@@ -1,5 +1,4 @@
 colorscheme molokai
-set shell=/bin/bash
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
 set laststatus=2
@@ -28,8 +27,6 @@ set listchars=tab:▸\ ,eol:¬,trail:·
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
-let g:EasyMotion_leader_key = '<Leader><Leader>'
-
 if has('gui_running')
   set guifont=Inconsolata-dz\ For\ Powerline:h11
 endif
@@ -55,17 +52,9 @@ nmap    <leader>f [unite]
 nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir
       \ -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]d  :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]r  :<C-u>Unite
-      \ -buffer-name=register register<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
-nnoremap <silent> [unite]f
-      \ :<C-u>Unite -buffer-name=resume resume<CR>
 nnoremap <silent> [unite]b
       \ :<C-u>Unite -buffer-name=files -default-action=lcd directory_mru<CR>
-nnoremap <silent> [unite]ma
-      \ :<C-u>Unite mapping<CR>
-nnoremap <silent> [unite]me
-      \ :<C-u>Unite output:message<CR>
 nnoremap  [unite]f  :<C-u>Unite source<CR>
 
 nnoremap [unite]o :Unite outline -start-insert<cr>
@@ -75,9 +64,7 @@ nnoremap [unite]g :Unite menu:git -start-insert<cr>
 nnoremap <silent> [unite]s
       \ :<C-u>Unite -buffer-name=files -no-split
       \ jump_point file_point buffer_tab
-      \ file file/new file_mru<CR>
-      " \ file_rec:! file file/new file_mru<CR>
-
+      \ file_rec:! file file/new file_mru<CR>
 " Start insert.
 let g:unite_enable_start_insert = 1
 "let g:unite_enable_short_source_names = 1
@@ -136,7 +123,7 @@ let g:unite_source_file_mru_limit = 200
 let g:unite_cursor_line_highlight = 'TabLineSel'
 let g:unite_abbr_highlight = 'TabLine'
 
-let g:unite_source_rec_async_command= 'ag --ignore node_modules -i --color --nogroup --hidden -u'
+" let g:unite_source_rec_async_command= 'ag --ignore node_modules -i --color --nogroup --hidden -u'
 "tern
 nnoremap <leader>re :TernRename<cr>
 nnoremap <leader>de :TernDef<cr>
@@ -145,9 +132,6 @@ nnoremap <leader>de :TernDef<cr>
 nnoremap <leader>df :Goyo<cr>
 
 " custom 
-" add some space after line
-nnoremap <leader><Enter> A<Enter><Esc>O
-nnoremap <leader><space> O<Esc>j
 nnoremap <C-w>q :bd<CR>
 
 let g:indent_guides_auto_colors = 1
@@ -161,9 +145,10 @@ vmap <leader>= :TCommentBlock<CR>
 
 :let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared\ Notes']
 
+
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'justinmk/vim-sneak'
 Bundle 'bling/vim-airline'
 Bundle 'Shougo/unite.vim'
 Bundle 'kshenoy/vim-signature'
@@ -178,13 +163,13 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'marijnh/tern_for_vim'
+" Bundle 'marijnh/tern_for_vim'
 Bundle 'godlygeek/tabular'
 Bundle 'moll/vim-node'
 Bundle 'tpope/vim-surround'
 Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
+" Bundle "garbas/vim-snipmate"
+" Bundle "honza/vim-snippets"
 Bundle "mkitt/tabline.vim"
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "h1mesuke/unite-outline"
@@ -192,17 +177,32 @@ Bundle "elzr/vim-json"
 Bundle "tristen/vim-sparkup"
 Bundle "junegunn/goyo.vim"
 Bundle "xolox/vim-notes"
-Bundle "Shougo/vimfiler.vim"
+Bundle "mustache/vim-mustache-handlebars"
+Bundle "svermeulen/vim-extended-ft"
+Bundle "gregsexton/gitv"
+Bundle "mhinz/vim-startify"
+Bundle "Raimondi/delimitMate"
+Bundle "vim-scripts/matchit.zip"
+
+if xolox#misc#os#is_mac()
+  for f in split(glob('~/.vim/plugins/osx/*.vim'), '\n')
+    exe 'source' f
+  endfor
+endif
+
+if xolox#misc#os#is_win()
+endif
 
 " :let g:notes_suffix = '.txt'
 :nmap <Leader>sr :source $MYVIMRC <CR>
 
 let g:loaded_netrw        = 1 " Disable netrw
 let g:loaded_netrwPlugin  = 1 " Disable netrw
-
+let g:sneak#streak = 1
+hi SneakPluginTarget guifg=black guibg=red ctermfg=black ctermbg=red
+hi SneakPluginScope  guifg=black guibg=yellow ctermfg=black ctermbg=yellow
 autocmd VimEnter * IndentGuidesEnable 
 autocmd VimEnter * NumbersToggle 
-let g:vimfiler_as_default_explorer = 1
 
 let g:unite_source_menu_menus = {}
 let g:unite_source_menu_menus.git = {
@@ -241,8 +241,6 @@ let g:unite_source_menu_menus.git.command_candidates = [
       \]
 nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
 
-let g:session_autosave = 'no'
-let g:session_autoload = 'no'
 set hidden
 set confirm
 
@@ -260,6 +258,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
+set autowriteall
 " unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = ''
@@ -292,14 +291,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
       \: "\<TAB>"
 
 " For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-
+" if has('conceal')
+"   set conceallevel=2 concealcursor=i
+" endif
