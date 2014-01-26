@@ -131,12 +131,17 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
 nmap <Leader>rr :source $MYVIMRC <CR>
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
-nmap <silent> <leader>o :Tagbar<CR>
+nmap <silent> <leader>o :TagbarToggle<CR>
 
 nnoremap <silent> <leader>b  :FufBuffer<CR>
 nnoremap <silent> <leader>f  :FufFile<CR>
@@ -169,14 +174,14 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " " " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " " "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "
-autocmd FileType javascript nnoremap <buffer> <leader>tt :TernType<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>td :TernDef<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>ty :TernType<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tde :TernDef<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>td :TernDoc<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tr :TernRefs<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tR :TernRename<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tdp :TernDefPreview<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tt :TernDefPreview<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tds :TernDefSplit<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tdt :TernDefTab<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tdd :TernDoc<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tdb :TernDocBrowse<CR>
 
 function! GetBufferList()
@@ -306,4 +311,22 @@ let g:notes_suffix = '.txt'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme="molokai"
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+let g:airline_theme='powerlineish'
+let g:airline_powerline_fonts = 1
+
