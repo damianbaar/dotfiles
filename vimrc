@@ -80,6 +80,7 @@ Bundle "elzr/vim-json"
 Bundle "tristen/vim-sparkup"
 Bundle "junegunn/goyo.vim"
 Bundle "amix/vim-zenroom2"
+Bundle "vimwiki/vimwiki"
 Bundle "xolox/vim-notes"
 Bundle "mustache/vim-mustache-handlebars"
 Bundle "gregsexton/gitv"
@@ -92,6 +93,9 @@ Bundle "L9"
 Bundle "FuzzyFinder"
 Bundle "nelstrom/vim-visual-star-search"
 Bundle "Shougo/neocomplcache.vim"
+Bundle "lilydjwg/colorizer"
+Bundle "groenewege/vim-less"
+Bundle "majutsushi/tagbar"
 
 if xolox#misc#os#is_mac()
   set macmeta 
@@ -127,11 +131,6 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-nmap <silent> <leader>u :GundoToggle<CR>
-
-nmap <silent> <leader>i :IndentGuidesToggle<CR>
-let g:indent_guides_enable_on_vim_startup=0
-
 function! GetBufferList()
   redir =>buflist
   silent! ls
@@ -161,6 +160,9 @@ endfunction
 
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
+nmap <silent> <leader>u :GundoToggle<CR>
+nmap <silent> <leader>i :IndentGuidesToggle<CR>
+nmap <silent> <leader>o :Tagbar<CR>
 
 let g:sneak#streak = 1
 let g:sneak#map_netrw = 1
@@ -175,7 +177,6 @@ nmap <enter> <Plug>SneakNext
 xmap <enter> <Plug>VSneakNext
 nmap <bs>    <Plug>SneakPrevious
 xmap <bs>    <Plug>VSneakPrevious
-
 
 augroup SneakPluginColors
 autocmd!
@@ -219,63 +220,11 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 " smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-nnoremap <silent> <leader>b  :FufBuffer<CR>
-nnoremap <silent> <leader>f  :FufFile<CR>
-nnoremap <silent> <leader>fl  :FufLine<CR>
-let s:slash = '[/\\]'
-let s:startname = '(^|'.s:slash.')'
-let s:endname = '($|'.s:slash.')'
-let s:extension = '\.bak|\.dll|\.exe|\.o|\.pyc|\.pyo|\.swp|\.swo'
-let s:dirname = 'node_modules|build|deploy|dist|vms|\.bzr|\.git|\.hg|\.svn|.+\.egg-info'
-let g:fuf_file_exclude = '\v'.'('.s:startname.'('.s:dirname.')'.s:endname.')|(('.s:extension.')$)'
-let g:fuf_dir_exclude = '\v'.s:startname.'('.s:dirname.')'.s:endname
-
-let g:notes_directories = ['~/Dropbox/Shared\ Notes', '~/Documents/Notes']
-let g:notes_suffix = '.txt'
-
-let g:indent_guides_auto_colors = 1
-let g:indent_guides_exclude_filetypes = ['help', 'netrw','startify']
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers = ["jshint"]
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_enable_signs = 1
-let g:syntastic_javascript_jslint_conf = " --white --plusplus --nomen --newcap --evil"
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme="molokai"
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = '»'
-let g:airline_left_sep = ''
-let g:airline_right_sep = '«'
-let g:airline_right_sep = ''
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-let g:airline_theme='powerlineish'
-let g:airline_powerline_fonts = 1
-
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+if has('conceal')
+    set conceallevel=2 concealcursor=i
+  endif
 
 let tern#is_show_argument_hints_enabled = 1
 let g:tern_show_arguments_hints="on_move"
@@ -284,28 +233,14 @@ let g:tern_map_keys=1
 let g:session_autosave = 'yes' 
 let g:session_autoload = 'no' 
 
+let g:indent_guides_enable_on_vim_startup=0
+
 au FileType html let b:delimitMate_autoclose = 0
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
 let g:EasyGrepWindow=1
-
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-
-autocmd FileType javascript nnoremap <buffer> <leader>tt :TernType<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>td :TernDef<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tr :TernRefs<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tR :TernRename<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tpd :TernDefPreview<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tsd :TernDefSplit<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>ttd :TernDefTab<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tdd :TernDoc<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tdb :TernDocBrowse<CR>
-
 
 " change html element 
 function! s:ChangeElement()
@@ -337,6 +272,7 @@ let g:neocomplcache_min_syntax_length = 2
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-let g:gitgutter_sign_added = '✚'
-let g:gitgutter_sign_modified = '➜'
-let g:gitgutter_sign_removed = '✘'
+let g:gitgutter_enabled = 0
+" let g:gitgutter_sign_added = '✚'
+" let g:gitgutter_sign_modified = '➜'
+" let g:gitgutter_sign_removed = '✘'
