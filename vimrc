@@ -29,9 +29,6 @@ set whichwrap+=h,l
 highlight SpecialKey guifg=#4a4a59
 highlight NonText guifg=#4a4a59
 
-map <leader>c "+y
-map <leader>v "+p
-
 autocmd InsertLeave * set iminsert=0
 
 set guioptions-=m  "remove menu bar
@@ -121,6 +118,9 @@ filetype plugin indent on
 imap jj <Esc>
 let mapleader=","
 
+map <leader>c "+y
+map <leader>v "+p
+
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -130,6 +130,54 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+nmap <Leader>rr :source $MYVIMRC <CR>
+nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
+nmap <silent> <leader>u :GundoToggle<CR>
+nmap <silent> <leader>i :IndentGuidesToggle<CR>
+nmap <silent> <leader>o :Tagbar<CR>
+
+nnoremap <silent> <leader>b  :FufBuffer<CR>
+nnoremap <silent> <leader>f  :FufFile<CR>
+nnoremap <silent> <leader>fl  :FufLine<CR>
+nnoremap <leader>df :Goyo<cr>
+
+nmap f       <Plug>SneakForward
+xmap f       <Plug>VSneakForward
+nmap F       <Plug>SneakBackward
+xmap F       <Plug>VSneakBackward
+
+nmap <enter> <Plug>SneakNext
+xmap <enter> <Plug>VSneakNext
+nmap <bs>    <Plug>SneakPrevious
+xmap <bs>    <Plug>VSneakPrevious
+
+nnoremap cse :call <SID>ChangeElement()<cr>
+nnoremap wq :bd<CR>
+imap <C-c> <CR><Esc>O
+
+nnoremap // :TComment<CR>
+vnoremap // :TComment<CR>
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" " "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" " " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" " "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"
+autocmd FileType javascript nnoremap <buffer> <leader>tt :TernType<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>td :TernDef<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tr :TernRefs<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tR :TernRename<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tdp :TernDefPreview<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tds :TernDefSplit<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tdt :TernDefTab<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tdd :TernDoc<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tdb :TernDocBrowse<CR>
 
 function! GetBufferList()
   redir =>buflist
@@ -158,25 +206,9 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
-nmap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
-nmap <silent> <leader>u :GundoToggle<CR>
-nmap <silent> <leader>i :IndentGuidesToggle<CR>
-nmap <silent> <leader>o :Tagbar<CR>
-
 let g:sneak#streak = 1
 let g:sneak#map_netrw = 1
 let g:sneak#use_ic_scs = 1
-
-nmap f       <Plug>SneakForward
-xmap f       <Plug>VSneakForward
-nmap F       <Plug>SneakBackward
-xmap F       <Plug>VSneakBackward
-
-nmap <enter> <Plug>SneakNext
-xmap <enter> <Plug>VSneakNext
-nmap <bs>    <Plug>SneakPrevious
-xmap <bs>    <Plug>VSneakPrevious
 
 augroup SneakPluginColors
 autocmd!
@@ -186,7 +218,6 @@ autocmd!
     autocmd ColorScheme * hi SneakStreakMask guifg=black guibg=#A6E22E
 augroup END
 
-nnoremap <leader>df :Goyo<cr>
 let g:goyo_width = 100
 
 function! g:goyo_before()
@@ -205,26 +236,20 @@ endfunction
 
 let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
 
-nnoremap wq :bd<CR>
-imap <C-c> <CR><Esc>O
-
-nnoremap // :TComment<CR>
-vnoremap // :TComment<CR>
-
-nmap <Leader>rr :source $MYVIMRC <CR>
-
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
 if has('conceal')
-    set conceallevel=2 concealcursor=i
-  endif
+  set conceallevel=2 concealcursor=i
+endif
+
+let s:slash = '[/\\]'
+let s:startname = '(^|'.s:slash.')'
+let s:endname = '($|'.s:slash.')'
+let s:extension = '\.bak|\.dll|\.exe|\.o|\.pyc|\.pyo|\.swp|\.swo'
+let s:dirname = 'node_modules|build|deploy|dist|vms|\.bzr|\.git|\.hg|\.svn|.+\.egg-info'
+let g:fuf_file_exclude = '\v'.'('.s:startname.'('.s:dirname.')'.s:endname.')|(('.s:extension.')$)'
+let g:fuf_dir_exclude = '\v'.s:startname.'('.s:dirname.')'.s:endname
 
 let tern#is_show_argument_hints_enabled = 1
 let g:tern_show_arguments_hints="on_move"
@@ -264,8 +289,6 @@ function! s:ChangeElement()
   exe "normal cst<" . tag . attributes . ">"
 endfunction
 
-nnoremap cse :call <SID>ChangeElement()<cr>
-
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 2
@@ -276,3 +299,11 @@ let g:gitgutter_enabled = 0
 " let g:gitgutter_sign_added = '✚'
 " let g:gitgutter_sign_modified = '➜'
 " let g:gitgutter_sign_removed = '✘'
+
+let g:notes_directories = ['~/Dropbox/Shared\ Notes', '~/Documents/Notes']
+let g:notes_suffix = '.txt'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme="molokai"
