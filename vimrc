@@ -1,41 +1,3 @@
-colorscheme molokai
-syntax on
-set encoding=utf-8
-set fillchars+=stl:\ ,stlnc:\
-set laststatus=2
-set t_Co=256
-set background=dark
-set nu
-set antialias
-set splitbelow
-set splitright
-set nowrap
-set backupdir=~/tmp
-set list
-set number
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab 
-set listchars=tab:·\ ,eol:¶,trail:·,extends:»,precedes:« 
-set autowriteall
-set hidden
-set confirm
-set laststatus=2
-set cursorline
-set completeopt-=preview
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules/     " MacOSX/Linux
-set incsearch ignorecase hlsearch
-set smartcase
-set whichwrap+=h,l
-
-highlight SpecialKey guifg=#4a4a59
-highlight NonText guifg=#4a4a59
-
-autocmd InsertLeave * set iminsert=0
-
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-
 set nocompatible
 filetype off
 
@@ -308,6 +270,18 @@ let g:gitgutter_enabled = 0
 let g:notes_directories = ['~/Dropbox/Shared\ Notes', '~/Documents/Notes']
 let g:notes_suffix = '.txt'
 
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_exclude_filetypes = ['help', 'netrw','startify']
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_javascript_checkers = ["jshint"]
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_enable_signs = 1
+let g:syntastic_javascript_jslint_conf = " --white --plusplus --nomen --newcap --evil"
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -330,3 +304,56 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts = 1
 
+let g:tagbar_type_javascript = {
+    \ 'ctagstype' : 'JavaScript',
+    \ 'kinds'     : [
+        \ 'o:objects',
+        \ 'f:functions',
+        \ 'a:arrays',
+        \ 's:strings'
+    \ ]
+\ }
+
+colorscheme molokai
+syntax on
+set encoding=utf-8
+set fillchars+=stl:\ ,stlnc:\
+set laststatus=2
+set t_Co=256
+set background=dark
+set nu
+set antialias
+set splitbelow
+set splitright
+set nowrap
+set backupdir=~/tmp
+set list
+set number
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab 
+set listchars=tab:·\ ,eol:¶,trail:·,extends:»,precedes:« 
+set autowriteall
+set hidden
+set confirm
+set laststatus=2
+set cursorline
+set completeopt-=preview
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules/     " MacOSX/Linux
+set incsearch ignorecase hlsearch
+set smartcase
+set whichwrap+=h,l
+
+highlight SpecialKey guifg=#4a4a59
+highlight NonText guifg=#4a4a59
+
+autocmd InsertLeave * set iminsert=0
+
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+set foldmethod=marker
+set foldmarker={,}
+
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
