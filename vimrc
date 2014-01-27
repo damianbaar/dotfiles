@@ -56,12 +56,24 @@ Bundle "lilydjwg/colorizer"
 Bundle "groenewege/vim-less"
 Bundle "majutsushi/tagbar"
 
+if has ('x') && has ('gui')
+    set clipboard=unnamedplus
+elseif has ('gui')
+    set clipboard=unnamed
+endif
+
+if has("gui_running")
+  if has("gui_macvim")
+    set guifont=Inconsolata-dz\ For\ Powerline:h12
+  elseif has("gui_win32")
+    set guifont=Consolas:h10:cANSI
+  else
+    set guifont=Terminus\ 12
+  endif
+endif
+
 if xolox#misc#os#is_mac()
-  set macmeta 
-  set guifont=Inconsolata-dz\ For\ Powerline:h12
-  " for f in split(glob('~/vimfiles/plugins/*.osx.vim'), '\n')
-  "   exe 'source' f
-  " endfor
+  set macmeta
 endif
 
 if xolox#misc#os#is_win()
