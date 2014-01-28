@@ -22,7 +22,6 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
@@ -54,7 +53,6 @@ Bundle "nelstrom/vim-visual-star-search"
 Bundle "Shougo/neocomplcache.vim"
 Bundle "lilydjwg/colorizer"
 Bundle "groenewege/vim-less"
-Bundle "majutsushi/tagbar"
 
 if has ('x') && has ('gui')
     set clipboard=unnamedplus
@@ -115,7 +113,6 @@ nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
-nmap <silent> <leader>o :TagbarToggle<CR>
 
 nnoremap <silent> <leader>b  :FufBuffer<CR>
 nnoremap <silent> <leader>f  :FufFile<CR>
@@ -316,16 +313,6 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts = 1
 
-let g:tagbar_type_javascript = {
-    \ 'ctagstype' : 'JavaScript',
-    \ 'kinds'     : [
-        \ 'o:objects',
-        \ 'f:functions',
-        \ 'a:arrays',
-        \ 's:strings'
-    \ ]
-\ }
-
 colorscheme molokai
 syntax on
 set encoding=utf-8
@@ -366,6 +353,7 @@ set guioptions-=L  "remove left-hand scroll bar
 
 set foldmethod=marker
 set foldmarker={,}
+set foldnestmax=1
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
