@@ -92,6 +92,7 @@ let mapleader=","
 
 map <leader>c "+y
 map <leader>v "+p
+nnoremap <Space> za
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
