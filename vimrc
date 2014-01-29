@@ -341,6 +341,10 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules/     " MacOSX/Linux
 set incsearch ignorecase hlsearch
 set smartcase
 set whichwrap+=h,l
+set visualbell
+set noerrorbells
+set nobackup
+set noswapfile
 
 highlight SpecialKey guifg=#4a4a59
 highlight NonText guifg=#4a4a59
@@ -352,9 +356,18 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
+nnoremap j gj
+nnoremap k gk
+
 set foldmethod=marker
 set foldmarker={,}
 set foldnestmax=1
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
+
+nnoremap / /\v
+vnoremap / /\v
+
+au FocusLost * :wa
+
