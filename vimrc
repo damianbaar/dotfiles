@@ -122,10 +122,10 @@ nnoremap <silent> <leader>f  :FufFile<CR>
 nnoremap <silent> <leader>fl  :FufLine<CR>
 nnoremap <leader>df :Goyo<cr>
 
-nmap f       <Plug>SneakForward
-xmap f       <Plug>VSneakForward
-nmap F       <Plug>SneakBackward
-xmap F       <Plug>VSneakBackward
+nmap s      <Plug>SneakForward
+xmap s      <Plug>VSneakForward
+nmap S       <Plug>SneakBackward
+xmap S       <Plug>VSneakBackward
 
 nmap <enter> <Plug>SneakNext
 xmap <enter> <Plug>VSneakNext
