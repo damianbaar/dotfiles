@@ -11,7 +11,6 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'justinmk/vim-sneak'
 Bundle 'bling/vim-airline'
 Bundle "sjl/gundo.vim"
-Bundle "vim-scripts/EasyGrep"
 Bundle 'kshenoy/vim-signature'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -56,6 +55,8 @@ Bundle "groenewege/vim-less"
 Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
 Bundle "mtth/scratch.vim"
+Bundle "tpope/vim-abolish"
+Bundle "yegappan/grep"
 
 if has ('x') && has ('gui')
     set clipboard=unnamedplus
@@ -243,8 +244,6 @@ let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
-let g:EasyGrepWindow=1
-
 " change html element 
 function! s:ChangeElement()
   execute "normal! vat\<esc>"
@@ -360,8 +359,15 @@ set guioptions-=L  "remove left-hand scroll bar
 set foldmethod=marker
 set foldmarker={,}
 set foldnestmax=1
+set foldlevel=99
+set foldlevelstart=99
 
 let g:scratch_top = 0
+
 let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
+
+let g:Grep_Default_Options = '-i --binary-files=without-match'
+let g:Grep_Skip_Files = 'tags *.bak'
+let g:Grep_Skip_Dirs = '.git node_modules'
