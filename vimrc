@@ -53,6 +53,9 @@ Bundle "nelstrom/vim-visual-star-search"
 Bundle "Shougo/neocomplcache.vim"
 Bundle "lilydjwg/colorizer"
 Bundle "groenewege/vim-less"
+Bundle "mattn/webapi-vim"
+Bundle "mattn/gist-vim"
+Bundle "mtth/scratch.vim"
 
 if has ('x') && has ('gui')
     set clipboard=unnamedplus
@@ -75,13 +78,6 @@ if xolox#misc#os#is_mac()
 endif
 
 if xolox#misc#os#is_win()
-  " Bundle "kien/ctrlp.vim"
-  " let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules)$'
-  " let g:ctrlp_show_hidden = 1
-  " let g:ctrlp_switch_buffer = 'Et'
-  " let g:ctrlp_working_path_mode = 'ra'
-  " map <leader>b   : CtrlPBuffer<CR>
-  " map <leader>f   : CtrlPCurFile<CR>
 endif
 
 filetype plugin indent on 
@@ -89,6 +85,12 @@ filetype plugin indent on
 "KEYS
 imap jj <Esc>
 let mapleader=","
+
+nnoremap j gj
+nnoremap k gk
+
+nnoremap / /\v
+vnoremap / /\v
 
 map <leader>c "+y
 map <leader>v "+p
@@ -141,11 +143,6 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" " "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-" " " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" " "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"
 autocmd FileType javascript nnoremap <buffer> <leader>ty :TernType<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tde :TernDef<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>td :TernDoc<CR>
@@ -182,6 +179,10 @@ function! ToggleList(bufname, pfx)
     wincmd p
   endif
 endfunction
+
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
+au FocusLost * :wa
 
 let g:sneak#streak = 1
 let g:sneak#map_netrw = 1
@@ -352,22 +353,15 @@ highlight NonText guifg=#4a4a59
 autocmd InsertLeave * set iminsert=0
 
 set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
+set guioptions-=T  "remove
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
-
-nnoremap j gj
-nnoremap k gk
 
 set foldmethod=marker
 set foldmarker={,}
 set foldnestmax=1
 
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
-
-nnoremap / /\v
-vnoremap / /\v
-
-au FocusLost * :wa
-
+let g:scratch_top = 0
+let g:gist_open_browser_after_post = 1
+let g:gist_show_privates = 1
+let g:gist_post_private = 1

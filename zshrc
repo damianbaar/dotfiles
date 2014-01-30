@@ -83,3 +83,4 @@ export EDITOR=vim
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source $HOME/.zsh-fuzzy-match/fuzzy-match.zsh
