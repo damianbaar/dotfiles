@@ -20,16 +20,16 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
 Bundle 'scrooloose/syntastic'
-Bundle 'Shougo/neosnippet'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
+Bundle 'Shougo/neosnippet'
 Bundle "garbas/vim-snipmate"
+Bundle "m1foley/snipmate-snippets"
 Bundle 'tomtom/tcomment_vim'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'godlygeek/tabular'
 Bundle 'moll/vim-node'
 Bundle 'tpope/vim-surround'
-Bundle "honza/vim-snippets"
 Bundle "mkitt/tabline.vim"
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "h1mesuke/unite-outline"
@@ -120,7 +120,11 @@ nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
 nnoremap <silent> <leader>b  :FufBuffer<CR>
 nnoremap <silent> <leader>f  :FufFile<CR>
+nnoremap <silent> <leader>q  :FufQuickfix<CR>
+nnoremap <silent> <leader>l  :FufChangeList<CR>
 nnoremap <silent> <leader>fl  :FufLine<CR>
+nnoremap <silent> <leader>fm  :FufMruFile<CR>
+nnoremap <silent> <leader>fc  :FufMruCmd<CR>
 nnoremap <leader>df :Goyo<cr>
 
 nmap s      <Plug>SneakForward
@@ -241,7 +245,7 @@ let g:indent_guides_enable_on_vim_startup=0
 
 au FileType html let b:delimitMate_autoclose = 0
 let delimitMate_expand_cr = 2
-let delimitMate_expand_space = 1
+let delimitMate_expand_space = 0
 let delimitMate_jump_expansion = 1
 
 " change html element 
@@ -268,7 +272,7 @@ endfunction
 
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 2
+let g:neocomplcache_min_syntax_length = 1
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -313,6 +317,30 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts = 1
+
+let g:scratch_top = 0
+
+let g:gist_open_browser_after_post = 1
+let g:gist_show_privates = 1
+let g:gist_post_private = 1
+
+let g:Grep_Default_Options = '-i --binary-files=without-match'
+let g:Grep_Skip_Files = 'tags *.bak'
+let g:Grep_Skip_Dirs = '.git node_modules'
+let Grep_OpenQuickfixWindow = 0 
+
+let javascript_enable_domhtmlcss = 1
+let b:javascript_fold = 1
+let g:javascript_conceal = 1
+
+let g:fuf_modesDisable = []
+
+let g:startify_session_detection = 1
+let g:startify_change_to_vcs_root = 1
+let g:startify_restore_position = 1
+let g:startify_session_persistence = 1
+let g:startify_enable_special = 0
+let g:startify_custom_indices = ['f', 'g', 'h']
 
 colorscheme molokai
 syntax on
@@ -362,12 +390,3 @@ set foldnestmax=1
 set foldlevel=99
 set foldlevelstart=99
 
-let g:scratch_top = 0
-
-let g:gist_open_browser_after_post = 1
-let g:gist_show_privates = 1
-let g:gist_post_private = 1
-
-let g:Grep_Default_Options = '-i --binary-files=without-match'
-let g:Grep_Skip_Files = 'tags *.bak'
-let g:Grep_Skip_Dirs = '.git node_modules'

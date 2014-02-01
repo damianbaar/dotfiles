@@ -57,9 +57,9 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 alias vim='mvim'
 alias vi="vim"
 alias projects='cd ~/Documents/Workspaces/InteliJ\ Idea/HTML:JS:Node/'
+alias dots="cd ~/Dropbox/dotfiles"
 alias gs="git status"
 alias undo-commit="git reset --hard HEAD^"
-alias ammend-commit="git commit --amend -C HEAD"
 alias glog="git log --pretty=oneline" 
 alias hash-last-commit="git log --format=%H | head -1"
 alias hash-first-commit="git log --format=%H | tail -1"
