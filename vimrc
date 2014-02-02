@@ -126,9 +126,6 @@ nnoremap <silent> <leader>fm  :FufMruFile<CR>
 nnoremap <silent> <leader>fc  :FufMruCmd<CR>
 nnoremap <leader>df :Goyo<cr>
 
-autocmd VimEnter * nmap s <Plug>(easymotion-s2)
-autocmd VimEnter * nmap t <Plug>(easymotion-t2)
-
 nnoremap cse :call <SID>ChangeElement()<cr>
 nnoremap <leader>qq :bd<CR>
 imap <C-c> <CR><Esc>O
@@ -192,13 +189,13 @@ map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-map <space><Space>  <Plug>(easymotion-sn)
+map <Space><Space>  <Plug>(easymotion-sn)
 omap <Space><Space> <Plug>(easymotion-tn)
 map  <CR> <Plug>(easymotion-next)
 map  <BS> <Plug>(easymotion-prev)
 
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+map <Space>j <Plug>(easymotion-j)
+map <Space>k <Plug>(easymotion-k)
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
