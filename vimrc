@@ -192,13 +192,24 @@ map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map  // <Plug>(easymotion-sn)
+omap // <Plug>(easymotion-tn)
 map  <CR> <Plug>(easymotion-next)
 map  <BS> <Plug>(easymotion-prev)
 
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
 "Plugins configuration
 let g:goyo_width = 100
@@ -280,19 +291,24 @@ if !exists('g:airline_symbols')
 endif
 
 let g:airline#extensions#tabline#enabled = 1
+
+let g:airline_enable_branch     = 1
 let g:airline#extensions#tabline#left_sep = '⮀'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 1
+let g:airline_enable_branch    = 1
+let g:airline_enable_syntastic = 1
+let g:airline_powerline_fonts  = 1
 
-let g:airline_left_sep          = '⮀'
-let g:airline_left_alt_sep      = '⮁'
-let g:airline_right_sep         = '⮂'
-let g:airline_right_alt_sep     = '⮃'
-let g:airline_branch_prefix     = '⭠'
-let g:airline_readonly_symbol   = '⭤'
-let g:airline_linecolumn_prefix = '⭡'
+let g:airline_left_sep                     = '⮀'
+let g:airline_left_alt_sep                 = '⮁'
+let g:airline_right_sep                    = '⮂'
+let g:airline_right_alt_sep                = '⮃'
+let g:airline_branch_prefix                = '⭠'
+let g:airline_linecolumn_prefix            = '⭡'
+let g:airline_paste_symbol                 = '∥'
+let g:airline#extensions#whitespace#symbol = 'Ξ'
+let g:airline_readonly_symbol              = '⭤'
 
 let g:airline_enable_branch=1
 let g:airline_detect_modified=1
