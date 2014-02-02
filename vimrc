@@ -9,9 +9,9 @@ Bundle 'tomasr/molokai'
 Bundle 'Pychimp/vim-luna'
 Bundle 'morhetz/gruvbox'
 Bundle 'tpope/vim-fugitive'
-Bundle 'mhinz/vim-signify'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'edkolev/promptline.vim'
-Bundle 'justinmk/vim-sneak'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bling/vim-airline'
 Bundle "sjl/gundo.vim"
 Bundle 'kshenoy/vim-signature'
@@ -95,9 +95,6 @@ let mapleader=","
 nnoremap j gj
 nnoremap k gk
 
-nnoremap / /\v
-vnoremap / /\v
-
 map <leader>c "+y
 map <leader>v "+p
 nnoremap <Space><Space> za
@@ -130,25 +127,11 @@ nnoremap <silent> <leader>fm  :FufMruFile<CR>
 nnoremap <silent> <leader>fc  :FufMruCmd<CR>
 nnoremap <leader>df :Goyo<cr>
 
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-
-nmap <space> <Plug>SneakForward
-xmap <space> <Plug>VSneakForward
-nmap <space>b <Plug>SneakBackward
-xmap <space>b <Plug>VSneakBackward
-
-nmap <enter> <Plug>SneakNext
-xmap <enter> <Plug>VSneakNext
-nmap <bs>    <Plug>SneakPrevious
-xmap <bs>    <Plug>VSneakPrevious
+autocmd VimEnter * nmap s <Plug>(easymotion-s2)
+autocmd VimEnter * nmap t <Plug>(easymotion-t2)
 
 nnoremap cse :call <SID>ChangeElement()<cr>
-nnoremap wq :bd<CR>
+nnoremap <leader>qq :bd<CR>
 imap <C-c> <CR><Esc>O
 
 nnoremap // :TComment<CR>
@@ -169,6 +152,12 @@ nnoremap <Leader>gb :Gblame<CR>
 xnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gm :Gmove<Space>
 nnoremap <Leader>g/ :Ggrep<Space>
+
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+
+nmap <leader>gt :call GitGutterToggle()<CR>
+nmap <leader>gh :call GitGutterLineHighlightsToggle()<CR>
 
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
@@ -196,23 +185,23 @@ function! s:ChangeElement()
   exe "normal cst<" . tag . attributes . ">"
 endfunction
 
-autocmd FileType javascript nnoremap <buffer> <leader>tt :TernDefPreview<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>ty :TernType<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>td :TernDoc<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tr :TernRefs<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tR :TernRename<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tds :TernDefSplit<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tdt :TernDefTab<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tdb :TernDocBrowse<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>tp :TernDefPreview<CR>
 
+map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
+imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
+vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  <CR> <Plug>(easymotion-next)
+map  <BS> <Plug>(easymotion-prev)
+
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 "Plugins configuration
-let g:sneak#streak = 1
-let g:sneak#map_netrw = 1
-let g:sneak#use_ic_scs = 1
-let g:sneak#f_reset = 1
-let g:sneak#t_reset = 1
-
 let g:goyo_width = 100
 
 function! g:goyo_before()
@@ -333,15 +322,16 @@ let g:startify_change_to_vcs_root = 1
 let g:startify_restore_position = 1
 let g:startify_custom_indices = ['f', 'g', 'h']
 
-let g:signify_disable_by_default = 0
-let g:signify_sign_overwrite = 1
-let g:signify_disable_by_default = 10
-
 let g:yankstack_map_keys = 0
 
 let g:EasyGrepOpenWindowOnMatch=0
 
 autocmd FileType html let b:delimitMate_autoclose = 0
+
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+let g:EasyMotion_use_smartsign_us = 1 
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_upper = 1
 
 "Vim flags
 syntax on
@@ -383,6 +373,7 @@ set foldnestmax=3
 set showcmd
 set wildmenu
 set wildmode=full
+set shell=/bin/bash
 
 "Autocmd
 autocmd InsertLeave * set iminsert=0
@@ -401,8 +392,3 @@ colorscheme gruvbox
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
 highlight SpecialKey guifg=#4a4a59
 highlight NonText guifg=#4a4a59
-
-highlight link SneakPluginTarget PmenuSel
-highlight link SneakPluginScope  Comment
-highlight link SneakStreakMask  PmenuSel
-highlight link SneakStreakTarget  ErrorMsg
