@@ -97,7 +97,7 @@ nnoremap k gk
 
 map <leader>c "+y
 map <leader>v "+p
-nnoremap <Space><Space> za
+nnoremap <Space> za
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
