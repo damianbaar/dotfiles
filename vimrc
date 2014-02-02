@@ -64,23 +64,23 @@ Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/vimshell.vim'
 
 if has ('x') && has ('gui')
-    set clipboard=unnamedplus
+  set clipboard=unnamedplus
 elseif has ('gui')
-    set clipboard=unnamed
+  set clipboard=unnamed
 endif
 
 if has("gui_running")
-  if has("gui_macvim")
-     set guifont=Inconsolata:h14
-  elseif has("gui_win32")
-    set guifont=Consolas:h10:cANSI
-  else
-    set guifont=Terminus\ 12
-  endif
+if has("gui_macvim")
+   set guifont=Inconsolata:h14
+elseif has("gui_win32")
+  set guifont=Consolas:h10:cANSI
+else
+  set guifont=Terminus\ 12
+endif
 endif
 
 if xolox#misc#os#is_mac()
-  set macmeta
+set macmeta
 endif
 
 if xolox#misc#os#is_win()
@@ -165,23 +165,23 @@ autocmd VimEnter * map <silent> ,vv <Plug>EgMapGrepCurrentWord_V call:FufQuickfi
 
 " change html element 
 function! s:ChangeElement()
-  execute "normal! vat\<esc>"
-  call setpos('.', getpos("'<"))
-  let restore = @"
-  normal! yi>
-  let attributes = substitute(@", '^[^ ]*', '', '')
-  let @" = restore
-  let dounmapb = 0
-  if !maparg(">","c")
-    let dounmapb = 1
-    exe "cn"."oremap > <CR>"
-  endif
-  let tag = input('<', '')
-  if dounmapb
-    silent! cunmap >
-  endif
-  let tag = substitute(tag, '>*$', '', '')
-  exe "normal cst<" . tag . attributes . ">"
+execute "normal! vat\<esc>"
+call setpos('.', getpos("'<"))
+let restore = @"
+normal! yi>
+let attributes = substitute(@", '^[^ ]*', '', '')
+let @" = restore
+let dounmapb = 0
+if !maparg(">","c")
+  let dounmapb = 1
+  exe "cn"."oremap > <CR>"
+endif
+let tag = input('<', '')
+if dounmapb
+  silent! cunmap >
+endif
+let tag = substitute(tag, '>*$', '', '')
+exe "normal cst<" . tag . attributes . ">"
 endfunction
 
 autocmd FileType javascript nnoremap <buffer> <leader>tr :TernRefs<CR>
@@ -192,8 +192,8 @@ map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-map  // <Plug>(easymotion-sn)
-omap // <Plug>(easymotion-tn)
+map <space><Space>  <Plug>(easymotion-sn)
+omap <Space><Space> <Plug>(easymotion-tn)
 map  <CR> <Plug>(easymotion-next)
 map  <BS> <Plug>(easymotion-prev)
 
@@ -215,17 +215,17 @@ vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 let g:goyo_width = 100
 
 function! g:goyo_before()
-  if has('gui_running')
-    set fullscreen
-    set linespace=5
-  endif
+if has('gui_running')
+  set fullscreen
+  set linespace=5
+endif
 endfunction
 
 function! g:goyo_after()
-  if has('gui_running')
-    set nofullscreen
-    set linespace=0
-  endif
+if has('gui_running')
+  set nofullscreen
+  set linespace=0
+endif
 endfunction
 
 autocmd VimEnter * let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
@@ -234,7 +234,7 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+set conceallevel=2 concealcursor=i
 endif
 
 let s:slash = '[/\\]'
@@ -263,10 +263,10 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 1
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+  \ 'default' : '',
+  \ 'vimshell' : $HOME.'/.vimshell_hist',
+  \ 'scheme' : $HOME.'/.gosh_completions'
+      \ }
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 let g:notes_directories = ['~/Dropbox/Shared\ Notes', '~/Documents/Notes']
@@ -287,7 +287,7 @@ let g:syntastic_error_symbol='E>'
 let g:syntastic_style_error_symbol='S>'
 
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+let g:airline_symbols = {}
 endif
 
 let g:airline#extensions#tabline#enabled = 1
@@ -352,6 +352,37 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:EasyMotion_use_smartsign_us = 1 
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_upper = 1
+
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+
+if has('win32') || has('win64')
+  let g:vimshell_prompt = $USERNAME."% "
+else
+  let g:vimshell_prompt = $USER."% "
+endif
+
+" Initialize execute file list.
+let g:vimshell_execute_file_list = {}
+call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
+let g:vimshell_execute_file_list['rb'] = 'ruby'
+let g:vimshell_execute_file_list['pl'] = 'perl'
+let g:vimshell_execute_file_list['py'] = 'python'
+call vimshell#set_execute_file('html,xhtml', 'gexe chrome')
+
+autocmd FileType vimshell
+\ call vimshell#altercmd#define('g', 'git')
+\| call vimshell#altercmd#define('i', 'iexe')
+\| call vimshell#altercmd#define('l', 'll')
+\| call vimshell#altercmd#define('ll', 'ls -l')
+\| call vimshell#hook#add('chpwd', 'my_chpwd', 'g:my_chpwd')
+
+function! g:my_chpwd(args, context)
+  call vimshell#execute('ls')
+endfunction
+
+autocmd FileType int-* call s:interactive_settings()
+function! s:interactive_settings()
+endfunction
 
 "Vim flags
 syntax on
