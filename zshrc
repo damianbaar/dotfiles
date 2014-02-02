@@ -55,7 +55,8 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 alias vim='mvim'
-alias vi="vim"
+alias vimt='mvim --remote-tab-silent'
+alias vi="vim --remote-tab-silent"
 alias projects='cd ~/Documents/Workspaces/InteliJ\ Idea/HTML:JS:Node/'
 alias dots="cd ~/Dropbox/dotfiles"
 alias gs="git status"

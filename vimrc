@@ -60,6 +60,8 @@ Bundle "tpope/vim-abolish"
 Bundle "vim-scripts/EasyGrep"
 Bundle "yegappan/grep"
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/vimshell.vim'
 
 if has ('x') && has ('gui')
     set clipboard=unnamedplus
@@ -394,3 +396,5 @@ colorscheme gruvbox
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
 highlight SpecialKey guifg=#4a4a59
 highlight NonText guifg=#4a4a59
+
+
