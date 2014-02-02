@@ -6,8 +6,11 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'tomasr/molokai'
+Bundle 'Pychimp/vim-luna'
+Bundle 'morhetz/gruvbox'
 Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
+Bundle 'mhinz/vim-signify'
+Bundle 'edkolev/promptline.vim'
 Bundle 'justinmk/vim-sneak'
 Bundle 'bling/vim-airline'
 Bundle "sjl/gundo.vim"
@@ -56,7 +59,9 @@ Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
 Bundle "mtth/scratch.vim"
 Bundle "tpope/vim-abolish"
+Bundle "vim-scripts/EasyGrep"
 Bundle "yegappan/grep"
+Bundle 'kien/rainbow_parentheses.vim'
 
 if has ('x') && has ('gui')
     set clipboard=unnamedplus
@@ -66,7 +71,7 @@ endif
 
 if has("gui_running")
   if has("gui_macvim")
-    set guifont=Inconsolata-dz\ For\ Powerline:h12
+     set guifont=Inconsolata:h14
   elseif has("gui_win32")
     set guifont=Consolas:h10:cANSI
   else
@@ -95,7 +100,7 @@ vnoremap / /\v
 
 map <leader>c "+y
 map <leader>v "+p
-nnoremap <Space> za
+nnoremap <Space><Space> za
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -113,8 +118,6 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 nmap <Leader>rr :source $MYVIMRC <CR>
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
-nmap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
@@ -127,10 +130,17 @@ nnoremap <silent> <leader>fm  :FufMruFile<CR>
 nnoremap <silent> <leader>fc  :FufMruCmd<CR>
 nnoremap <leader>df :Goyo<cr>
 
-nmap s      <Plug>SneakForward
-xmap s      <Plug>VSneakForward
-nmap S       <Plug>SneakBackward
-xmap S       <Plug>VSneakBackward
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+
+nmap <space> <Plug>SneakForward
+xmap <space> <Plug>VSneakForward
+nmap <space>b <Plug>SneakBackward
+xmap <space>b <Plug>VSneakBackward
 
 nmap <enter> <Plug>SneakNext
 xmap <enter> <Plug>VSneakNext
@@ -148,58 +158,60 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
+nnoremap <Leader>gg :Git<Space>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gl :Glog<CR>
+nnoremap <Leader>gb :Gblame<CR>
+xnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gm :Gmove<Space>
+nnoremap <Leader>g/ :Ggrep<Space>
+
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+autocmd VimEnter * map <silent> ,vv <Plug>EgMapGrepCurrentWord_V call:FufQuickfix<CR>
+
+" change html element 
+function! s:ChangeElement()
+  execute "normal! vat\<esc>"
+  call setpos('.', getpos("'<"))
+  let restore = @"
+  normal! yi>
+  let attributes = substitute(@", '^[^ ]*', '', '')
+  let @" = restore
+  let dounmapb = 0
+  if !maparg(">","c")
+    let dounmapb = 1
+    exe "cn"."oremap > <CR>"
+  endif
+  let tag = input('<', '')
+  if dounmapb
+    silent! cunmap >
+  endif
+  let tag = substitute(tag, '>*$', '', '')
+  exe "normal cst<" . tag . attributes . ">"
+endfunction
+
+autocmd FileType javascript nnoremap <buffer> <leader>tt :TernDefPreview<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>ty :TernType<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tde :TernDef<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>td :TernDoc<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tr :TernRefs<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tR :TernRename<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tt :TernDefPreview<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tds :TernDefSplit<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tdt :TernDefTab<CR>
 autocmd FileType javascript nnoremap <buffer> <leader>tdb :TernDocBrowse<CR>
 
-function! GetBufferList()
-  redir =>buflist
-  silent! ls
-  redir END
-  return buflist
-endfunction
 
-function! ToggleList(bufname, pfx)
-  let buflist = GetBufferList()
-  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-    if bufwinnr(bufnum) != -1
-      exec(a:pfx.'close')
-      return
-    endif
-  endfor
-  if a:pfx == 'l' && len(getloclist(0)) == 0
-      echohl ErrorMsg
-      echo "Location List is Empty."
-      return
-  endif
-  let winnr = winnr()
-  exec(a:pfx.'open')
-  if winnr() != winnr
-    wincmd p
-  endif
-endfunction
-
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
-au FocusLost * :wa
-
+"Plugins configuration
 let g:sneak#streak = 1
 let g:sneak#map_netrw = 1
 let g:sneak#use_ic_scs = 1
-
-augroup SneakPluginColors
-autocmd!
-    autocmd ColorScheme * hi SneakPluginTarget guifg=black guibg=#F92672
-    autocmd ColorScheme * hi SneakPluginScope guifg=black guibg=#A6E22E 
-    autocmd ColorScheme * hi SneakStreakTarget guifg=black guibg=#F92672
-    autocmd ColorScheme * hi SneakStreakMask guifg=black guibg=#A6E22E
-augroup END
+let g:sneak#f_reset = 1
+let g:sneak#t_reset = 1
 
 let g:goyo_width = 100
 
@@ -217,7 +229,7 @@ function! g:goyo_after()
   endif
 endfunction
 
-let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
+autocmd VimEnter * let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
@@ -243,43 +255,15 @@ let g:session_autoload = 'no'
 
 let g:indent_guides_enable_on_vim_startup=0
 
-au FileType html let b:delimitMate_autoclose = 0
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 0
 let delimitMate_jump_expansion = 1
-
-" change html element 
-function! s:ChangeElement()
-  execute "normal! vat\<esc>"
-  call setpos('.', getpos("'<"))
-  let restore = @"
-  normal! yi>
-  let attributes = substitute(@", '^[^ ]*', '', '')
-  let @" = restore
-  let dounmapb = 0
-  if !maparg(">","c")
-    let dounmapb = 1
-    " Hide from AsNeeded
-    exe "cn"."oremap > <CR>"
-  endif
-  let tag = input('<', '')
-  if dounmapb
-    silent! cunmap >
-  endif
-  let tag = substitute(tag, '>*$', '', '')
-  exe "normal cst<" . tag . attributes . ">"
-endfunction
 
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 1
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-let g:gitgutter_enabled = 0
-" let g:gitgutter_sign_added = '✚'
-" let g:gitgutter_sign_modified = '➜'
-" let g:gitgutter_sign_removed = '✘'
 
 let g:notes_directories = ['~/Dropbox/Shared\ Notes', '~/Documents/Notes']
 let g:notes_suffix = '.txt'
@@ -289,34 +273,43 @@ let g:indent_guides_exclude_filetypes = ['help', 'netrw','startify']
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
-let g:syntastic_always_populate_loc_list=1
+let g:syntastic_always_populate_loc_list=0
 let g:syntastic_javascript_checkers = ["jshint"]
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_enable_signs = 1
 let g:syntastic_javascript_jslint_conf = " --white --plusplus --nomen --newcap --evil"
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:syntastic_warning_symbol='W>'
+let g:syntastic_style_warning_symbol='s>'
+let g:syntastic_error_symbol='E>'
+let g:syntastic_style_error_symbol='S>'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = '⮀'
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
-let g:airline_theme='powerlineish'
-let g:airline_powerline_fonts = 1
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 1
+
+let g:airline_left_sep          = '⮀'
+let g:airline_left_alt_sep      = '⮁'
+let g:airline_right_sep         = '⮂'
+let g:airline_right_alt_sep     = '⮃'
+let g:airline_branch_prefix     = '⭠'
+let g:airline_readonly_symbol   = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
+
+let g:airline_enable_branch=1
+let g:airline_detect_modified=1
+let g:airline_detect_paste=1
+let g:airline_inactive_collapse=1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#ctrlp#show_adjacent_modes = 1
+let g:airline#extensions#whitespace#enabled = 1
 
 let g:scratch_top = 0
 
@@ -338,15 +331,22 @@ let g:fuf_modesDisable = []
 let g:startify_session_detection = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_restore_position = 1
-let g:startify_session_persistence = 1
-let g:startify_enable_special = 0
 let g:startify_custom_indices = ['f', 'g', 'h']
 
-colorscheme molokai
+let g:signify_disable_by_default = 0
+let g:signify_sign_overwrite = 1
+let g:signify_disable_by_default = 10
+
+let g:yankstack_map_keys = 0
+
+let g:EasyGrepOpenWindowOnMatch=0
+
+autocmd FileType html let b:delimitMate_autoclose = 0
+
+"Vim flags
 syntax on
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
-set laststatus=2
 set t_Co=256
 set background=dark
 set nu
@@ -354,7 +354,6 @@ set antialias
 set splitbelow
 set splitright
 set nowrap
-set backupdir=~/tmp
 set list
 set number
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab 
@@ -373,20 +372,37 @@ set visualbell
 set noerrorbells
 set nobackup
 set noswapfile
-
-highlight SpecialKey guifg=#4a4a59
-highlight NonText guifg=#4a4a59
-
-autocmd InsertLeave * set iminsert=0
-
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-
+set nowritebackup
+set guioptions= 
 set foldmethod=marker
 set foldmarker={,}
 set foldnestmax=1
 set foldlevel=99
 set foldlevelstart=99
+set foldnestmax=3
+set showcmd
+set wildmenu
+set wildmode=full
 
+"Autocmd
+autocmd InsertLeave * set iminsert=0
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
+autocmd FocusLost * :wa
+
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
+
+"Colors
+colorscheme gruvbox 
+
+highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
+highlight SpecialKey guifg=#4a4a59
+highlight NonText guifg=#4a4a59
+
+highlight link SneakPluginTarget PmenuSel
+highlight link SneakPluginScope  Comment
+highlight link SneakStreakMask  PmenuSel
+highlight link SneakStreakTarget  ErrorMsg
