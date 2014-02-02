@@ -17,7 +17,6 @@ Bundle "sjl/gundo.vim"
 Bundle 'kshenoy/vim-signature'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'xolox/vim-session'
 Bundle 'xolox/vim-misc'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
@@ -35,7 +34,6 @@ Bundle 'moll/vim-node'
 Bundle 'tpope/vim-surround'
 Bundle "mkitt/tabline.vim"
 Bundle "nathanaelkane/vim-indent-guides"
-Bundle "h1mesuke/unite-outline"
 Bundle "elzr/vim-json"
 Bundle "tristen/vim-sparkup"
 Bundle "junegunn/goyo.vim"
@@ -119,10 +117,9 @@ nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
 nnoremap <silent> <leader>b  :FufBuffer<CR>
-nnoremap <silent> <leader>f  :FufFile<CR>
+nnoremap <silent> <leader>f  :FufFileWithCurrentBufferDir<CR>
 nnoremap <silent> <leader>q  :FufQuickfix<CR>
-nnoremap <silent> <leader>l  :FufChangeList<CR>
-nnoremap <silent> <leader>fl  :FufLine<CR>
+nnoremap <silent> <leader>l  :FufLine<CR>
 nnoremap <silent> <leader>fm  :FufMruFile<CR>
 nnoremap <silent> <leader>fc  :FufMruCmd<CR>
 nnoremap <leader>df :Goyo<cr>
@@ -252,6 +249,11 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 1
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 let g:notes_directories = ['~/Dropbox/Shared\ Notes', '~/Documents/Notes']
