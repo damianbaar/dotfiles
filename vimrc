@@ -81,7 +81,8 @@ if has("gui_running")
 endif
 
 if xolox#misc#os#is_mac()
-set macmeta
+  set macmeta
+  set shell=/bin/bash
 endif
 
 if xolox#misc#os#is_win()
@@ -398,7 +399,6 @@ set foldnestmax=3
 set showcmd
 set wildmenu
 set wildmode=full
-set shell=/bin/bash
 
 "Autocmd
 autocmd InsertLeave * set iminsert=0
