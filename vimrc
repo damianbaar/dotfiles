@@ -60,8 +60,9 @@ Bundle "tpope/vim-abolish"
 Bundle "vim-scripts/EasyGrep"
 Bundle "yegappan/grep"
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/vimshell.vim'
+" Bundle 'Shougo/vimproc.vim'
+" Bundle 'Shougo/vimshell.vim'
+Bundle 'Conque-Shell'
 
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
@@ -349,37 +350,6 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:EasyMotion_use_smartsign_us = 1 
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_upper = 1
-
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-
-if has('win32') || has('win64')
-  let g:vimshell_prompt = $USERNAME."% "
-else
-  let g:vimshell_prompt = $USER."% "
-endif
-
-" Initialize execute file list.
-let g:vimshell_execute_file_list = {}
-call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
-let g:vimshell_execute_file_list['rb'] = 'ruby'
-let g:vimshell_execute_file_list['pl'] = 'perl'
-let g:vimshell_execute_file_list['py'] = 'python'
-call vimshell#set_execute_file('html,xhtml', 'gexe chrome')
-
-autocmd FileType vimshell
-\ call vimshell#altercmd#define('g', 'git')
-\| call vimshell#altercmd#define('i', 'iexe')
-\| call vimshell#altercmd#define('l', 'll')
-\| call vimshell#altercmd#define('ll', 'ls -l')
-\| call vimshell#hook#add('chpwd', 'my_chpwd', 'g:my_chpwd')
-
-function! g:my_chpwd(args, context)
-  call vimshell#execute('ls')
-endfunction
-
-autocmd FileType int-* call s:interactive_settings()
-function! s:interactive_settings()
-endfunction
 
 "Vim flags
 syntax on
