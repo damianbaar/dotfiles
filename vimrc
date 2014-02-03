@@ -60,9 +60,9 @@ Bundle "tpope/vim-abolish"
 Bundle "vim-scripts/EasyGrep"
 Bundle "yegappan/grep"
 Bundle 'kien/rainbow_parentheses.vim'
-" Bundle 'Shougo/vimproc.vim'
-" Bundle 'Shougo/vimshell.vim'
-Bundle 'Conque-Shell'
+Bundle 'scrooloose/nerdtree'
+
+filetype plugin indent on
 
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
@@ -71,13 +71,13 @@ elseif has ('gui')
 endif
 
 if has("gui_running")
-if has("gui_macvim")
-   set guifont=Inconsolata:h14
-elseif has("gui_win32")
-  set guifont=Consolas:h10:cANSI
-else
-  set guifont=Terminus\ 12
-endif
+  if has("gui_macvim")
+     set guifont=Inconsolata:h14
+  elseif has("gui_win32")
+    set guifont=Consolas:h10:cANSI
+  else
+    set guifont=Terminus\ 12
+  endif
 endif
 
 if xolox#misc#os#is_mac()
@@ -85,9 +85,8 @@ set macmeta
 endif
 
 if xolox#misc#os#is_win()
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
-
-filetype plugin indent on 
 
 "KEYS
 imap jj <Esc>
@@ -125,11 +124,12 @@ nnoremap <silent> <leader>q  :FufQuickfix<CR>
 nnoremap <silent> <leader>l  :FufLine<CR>
 nnoremap <silent> <leader>fm  :FufMruFile<CR>
 nnoremap <silent> <leader>fc  :FufMruCmd<CR>
+nmap <silent><leader>fr :FufRenewCache<CR>
+
 nnoremap <leader>df :Goyo<cr>
 
 nnoremap cse :call <SID>ChangeElement()<cr>
-nnoremap <leader>qq :bd<CR>
-imap <C-c> <CR><Esc>O
+map <leader>bd :bdelete<cr>
 
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
@@ -208,6 +208,10 @@ nmap <Leader>a, :Tabularize /,<CR>
 vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+
+nmap ,m :NERDTreeToggle<CR>
+nmap ,n :NERDTreeFind<CR>
+
 
 "Plugins configuration
 let g:goyo_width = 100
@@ -350,6 +354,9 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:EasyMotion_use_smartsign_us = 1 
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_upper = 1
+
+let NERDTreeQuitOnOpen=1
+let s:NERD_tree_version = '4.1.0'
 
 "Vim flags
 syntax on
