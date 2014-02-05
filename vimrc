@@ -62,6 +62,7 @@ Bundle "yegappan/grep"
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'clausreinke/scoped_tags'
+Bundle 'vimoutliner/vimoutliner'
 
 filetype plugin indent on
 
@@ -289,8 +290,6 @@ let g:airline_symbols = {}
 endif
 
 let g:airline#extensions#tabline#enabled = 1
-
-let g:airline_enable_branch     = 1
 let g:airline#extensions#tabline#left_sep = '⮀'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
@@ -304,18 +303,20 @@ let g:airline_right_sep                    = '⮂'
 let g:airline_right_alt_sep                = '⮃'
 let g:airline_branch_prefix                = '⭠'
 let g:airline_linecolumn_prefix            = '⭡'
-let g:airline_paste_symbol                 = '∥'
 let g:airline#extensions#whitespace#symbol = 'Ξ'
 let g:airline_readonly_symbol              = '⭤'
+let g:airline_symbols.linenr               = '␊'
+let g:airline_symbols.linenr               = '␤'
+let g:airline_symbols.linenr               = '¶'
+let g:airline_symbols.paste                = 'ρ'
+let g:airline_symbols.paste                = 'Þ'
 
-let g:airline_enable_branch=1
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
 let g:airline_inactive_collapse=1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#ctrlp#show_adjacent_modes = 1
 let g:airline#extensions#whitespace#enabled = 1
 
 let g:scratch_top = 0
@@ -396,6 +397,7 @@ set wildmenu
 set wildmode=full
 set cursorline cursorcolumn
 set backspace=indent,eol,start
+set novb
 
 "Autocmd
 autocmd InsertLeave * set iminsert=0
