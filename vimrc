@@ -61,6 +61,7 @@ Bundle "vim-scripts/EasyGrep"
 Bundle "yegappan/grep"
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'clausreinke/scoped_tags'
 
 filetype plugin indent on
 
@@ -72,21 +73,15 @@ endif
 
 if has("gui_running")
   if has("gui_macvim")
-     set guifont=Inconsolata:h14
+    set guifont=Inconsolata:h14
+    set macmeta
+    set shell=/bin/bash
   elseif has("gui_win32")
     set guifont=Consolas:h10:cANSI
+    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
   else
     set guifont=Terminus\ 12
   endif
-endif
-
-if xolox#misc#os#is_mac()
-  set macmeta
-  set shell=/bin/bash
-endif
-
-if xolox#misc#os#is_win()
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
 
 "KEYS
@@ -98,7 +93,7 @@ nnoremap k gk
 
 map <leader>c "+y
 map <leader>v "+p
-nnoremap <Space> za
+nnoremap <Space><Space> za
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -191,8 +186,8 @@ map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-map <Space><Space>  <Plug>(easymotion-sn)
-omap <Space><Space> <Plug>(easymotion-tn)
+map  <Space>  <Plug>(easymotion-sn)
+omap <Space> <Plug>(easymotion-tn)
 map  <CR> <Plug>(easymotion-next)
 map  <BS> <Plug>(easymotion-prev)
 
@@ -399,6 +394,8 @@ set foldnestmax=3
 set showcmd
 set wildmenu
 set wildmode=full
+set cursorline cursorcolumn
+set backspace=indent,eol,start
 
 "Autocmd
 autocmd InsertLeave * set iminsert=0

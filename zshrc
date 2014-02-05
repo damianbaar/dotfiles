@@ -2,6 +2,7 @@
 ZSH=$HOME/.oh-my-zsh
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 PATH=/usr/local/share/npm/bin:$PATH
+PATH=/usr/local/lib/node_modules/:$PATH
 DOTFILES=$HOME/Dropbox/dotfiles
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
