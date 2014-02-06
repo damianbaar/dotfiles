@@ -47,8 +47,9 @@ Bundle "Raimondi/delimitMate"
 Bundle "vim-scripts/matchit.zip"
 Bundle "tpope/vim-unimpaired"
 Bundle "tpope/vim-repeat"
-Bundle "L9"
-Bundle "FuzzyFinder"
+" Bundle "L9"
+" Bundle "FuzzyFinder"
+Bundle "kien/ctrlp.vim"
 Bundle "nelstrom/vim-visual-star-search"
 Bundle "Shougo/neocomplcache.vim"
 Bundle "lilydjwg/colorizer"
@@ -61,7 +62,7 @@ Bundle "vim-scripts/EasyGrep"
 Bundle "yegappan/grep"
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'clausreinke/scoped_tags'
+" Bundle 'clausreinke/scoped_tags'
 Bundle 'vimoutliner/vimoutliner'
 
 filetype plugin indent on
@@ -76,10 +77,14 @@ if has("gui_running")
   if has("gui_macvim")
     set guifont=Inconsolata:h14
     set macmeta
-    set shell=/bin/bash
+    " set shell=/bin/bash
+    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
   elseif has("gui_win32")
     set guifont=Consolas:h10:cANSI
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+    set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*
+    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
   else
     set guifont=Terminus\ 12
   endif
@@ -106,6 +111,9 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+map <C-right> <ESC>:bn<CR>
+map <C-left> <ESC>:bp<CR>
+
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
@@ -115,13 +123,15 @@ nmap <Leader>rr :source $MYVIMRC <CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
-nnoremap <silent> <leader>b  :FufBuffer<CR>
-nnoremap <silent> <leader>f  :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent> <leader>q  :FufQuickfix<CR>
-nnoremap <silent> <leader>l  :FufLine<CR>
-nnoremap <silent> <leader>fm  :FufMruFile<CR>
-nnoremap <silent> <leader>fc  :FufMruCmd<CR>
-nmap <silent><leader>fr :FufRenewCache<CR>
+" nnoremap <silent> <leader>f  :FufFileWithCurrentBufferDir<CR>
+" nnoremap <silent> <leader>fc  :FufMruCmd<CR>
+" nmap <silent><leader>fr :FufRenewCache<CR>
+
+nnoremap <silent> <leader>f  : CtrlPCurFile<CR>
+nnoremap <silent> <leader>b  : CtrlPBuffer<CR>
+nnoremap <silent> <leader>l  : CtrlPLine<CR>
+nnoremap <silent> <leader>q  : CtrlPQuickfix<CR>
+nnoremap <silent> <leader>fm : CtrlPMRUFiles<CR>
 
 nnoremap <leader>df :Goyo<cr>
 
@@ -353,7 +363,10 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_upper = 1
 
 let NERDTreeQuitOnOpen=1
-let s:NERD_tree_version = '4.1.0'
+
+let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_use_caching = 1
 
 "Vim flags
 syntax on
@@ -376,7 +389,7 @@ set confirm
 set laststatus=2
 set cursorline
 set completeopt-=preview
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules/     " MacOSX/Linux
+set wildignore+=node_modules/     
 set incsearch ignorecase hlsearch
 set smartcase
 set whichwrap+=h,l
@@ -416,5 +429,4 @@ colorscheme gruvbox
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
 highlight SpecialKey guifg=#4a4a59
 highlight NonText guifg=#4a4a59
-
 
