@@ -39,7 +39,6 @@ Bundle "tristen/vim-sparkup"
 Bundle "junegunn/goyo.vim"
 Bundle "amix/vim-zenroom2"
 Bundle "vimwiki/vimwiki"
-Bundle "xolox/vim-notes"
 Bundle "mustache/vim-mustache-handlebars"
 Bundle "gregsexton/gitv"
 Bundle "mhinz/vim-startify"
@@ -47,8 +46,6 @@ Bundle "Raimondi/delimitMate"
 Bundle "vim-scripts/matchit.zip"
 Bundle "tpope/vim-unimpaired"
 Bundle "tpope/vim-repeat"
-" Bundle "L9"
-" Bundle "FuzzyFinder"
 Bundle "kien/ctrlp.vim"
 Bundle "nelstrom/vim-visual-star-search"
 Bundle "Shougo/neocomplcache.vim"
@@ -58,13 +55,16 @@ Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
 Bundle "mtth/scratch.vim"
 Bundle "tpope/vim-abolish"
-Bundle "vim-scripts/EasyGrep"
 Bundle "yegappan/grep"
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
-" Bundle 'clausreinke/scoped_tags'
-Bundle 'vimoutliner/vimoutliner'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'jgdavey/tslime.vim'
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'tpope/vim-fireplace'
+Bundle 'guns/vim-clojure-static'
+Bundle 'guns/vim-clojure-highlight'
+Bundle 'tpope/vim-classpath'
 
 filetype plugin indent on
 
@@ -93,30 +93,30 @@ nnoremap j gj
 nnoremap k gk
 
 " map each number to its shift-key character
-inoremap 1 !
-inoremap 2 @
-inoremap 3 #
-inoremap 4 $
-inoremap 5 %
-inoremap 6 ^
-inoremap 7 &
-inoremap 8 *
-inoremap 9 (
-inoremap 0 )
-inoremap - _
+" inoremap 1 !
+" inoremap 2 @
+" inoremap 3 #
+" inoremap 4 $
+" inoremap 5 %
+" inoremap 6 ^
+" inoremap 7 &
+" inoremap 8 *
+" inoremap 9 (
+" inoremap 0 )
+" inoremap - _
 
 " and then the opposite
-inoremap ! 1
-inoremap @ 2
-inoremap # 3
-inoremap $ 4
-inoremap % 5
-inoremap ^ 6
-inoremap & 7
-inoremap * 8
-inoremap ( 9
-inoremap ) 0
-inoremap _ -
+" inoremap ! 1
+" inoremap @ 2
+" inoremap # 3
+" inoremap $ 4
+" inoremap % 5
+" inoremap ^ 6
+" inoremap & 7
+" inoremap * 8
+" inoremap ( 9
+" inoremap ) 0
+" inoremap _ -
 
 map <leader>c "+y
 map <leader>v "+p
@@ -143,6 +143,10 @@ nmap <C-l> <C-w>l
 nmap <Leader>rr :source $MYVIMRC <CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
+
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
 nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>
 nnoremap <silent> <leader>fb  : CtrlPBuffer<CR>
@@ -233,9 +237,9 @@ vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-nmap ,m :NERDTreeToggle<CR>
-nmap ,n :NERDTreeFind<CR>
-
+map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
+map <silent> <LocalLeader>nr :NERDTree<CR>
+map <silent> <LocalLeader>nf :NERDTreeFind<CR>
 
 "Plugins configuration
 let g:goyo_width = 100
@@ -279,6 +283,7 @@ let delimitMate_jump_expansion = 1
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 1
+let g:neocomplcache_force_overwrite_completefunc = 1
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_dictionary_filetype_lists = {
   \ 'default' : '',
@@ -364,8 +369,6 @@ let g:yankstack_map_keys = 0
 
 let g:EasyGrepOpenWindowOnMatch=0
 
-autocmd FileType html let b:delimitMate_autoclose = 0
-
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:EasyMotion_use_smartsign_us = 1 
 let g:EasyMotion_smartcase = 1
@@ -380,12 +383,24 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|.git)$'
 
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
+
+let vimclojure#WantNailgun = 0
+let vimclojure#HighlightBuiltins = 1
+let vimclojure#ParenRainbow = 1
+
+" Vimux
+map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
+map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
+map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
+map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
+map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
+vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
+nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
 "Vim flags
 syntax on
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
 set t_Co=256
-" set background=dark
 set nu
 set antialias
 set splitbelow
@@ -423,6 +438,8 @@ set cursorline cursorcolumn
 set backspace=indent,eol,start
 set novb
 set nohlsearch
+set exrc            " enable per-directory .vimrc files
+set secure          " disable unsafe commands in local .vimrc files
 
 "Autocmd
 autocmd InsertLeave * set iminsert=0
@@ -435,10 +452,12 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 
+autocmd FileType html let b:delimitMate_autoclose = 0
+autocmd BufNewFile,BufRead *.cljs set filetype=clojure
+
 "Colors
 colorscheme gruvbox 
 
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
 highlight SpecialKey guifg=#4a4a59
 highlight NonText guifg=#4a4a59
-
