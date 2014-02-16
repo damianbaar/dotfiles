@@ -1,8 +1,9 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH=/usr/local/share/npm/bin:$PATH
+CLOJURESCRIPT_HOME=/usr/local/lib/clojurescript/
+PATH=$CLOJURESCRIPT_HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 PATH=/usr/local/lib/node_modules/:$PATH
+PATH=/usr/local/lib/clojurescript/bin:$PATH
 DOTFILES=$HOME/Dropbox/dotfiles
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -54,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 alias vim='mvim'
 alias vimt='mvim --remote-tab-silent'
 alias vi="vim --remote-tab-silent"
@@ -84,5 +85,5 @@ export EDITOR=vim
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-source $HOME/.zsh-fuzzy-match/fuzzy-match.zsh
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# source $HOME/.zsh-fuzzy-match/fuzzy-match.zsh

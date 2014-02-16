@@ -63,6 +63,8 @@ Bundle 'tpope/vim-fireplace'
 Bundle 'guns/vim-clojure-static'
 Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
+Bundle 'sjl/clam.vim'
+Bundle 'mklabs/vim-node-eval'
 
 filetype plugin indent on
 
@@ -185,7 +187,7 @@ nmap <leader>gh :call GitGutterLineHighlightsToggle()<CR>
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
-autocmd VimEnter * map <silent> ,vv <Plug>EgMapGrepCurrentWord_V call:FufQuickfix<CR>
+noremap <Leadder>ne :NodeEval
 
 " change html element 
 function! s:ChangeElement()
@@ -235,9 +237,9 @@ vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
-map <silent> <LocalLeader>nr :NERDTree<CR>
-map <silent> <LocalLeader>nf :NERDTreeFind<CR>
+map <silent> <Leader>nt :NERDTreeToggle<CR>
+map <silent> <Leader>nr :NERDTree<CR>
+map <silent> <Leader>nf :NERDTreeFind<CR>
 
 "Plugins configuration
 let g:goyo_width = 100
@@ -382,7 +384,7 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|.git)$'
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
-let vimclojure#WantNailgun = 0
+let vimclojure#WantNailgun = 1
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
 
