@@ -59,11 +59,9 @@ Bundle "yegappan/grep"
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'jgdavey/tslime.vim'
-Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-fireplace'
 Bundle 'guns/vim-clojure-static'
-Bundle 'guns/vim-clojure-highlight'
+Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
 
 filetype plugin indent on
