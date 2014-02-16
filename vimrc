@@ -64,6 +64,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
 " Bundle 'clausreinke/scoped_tags'
 Bundle 'vimoutliner/vimoutliner'
+Bundle 'terryma/vim-multiple-cursors'
 
 filetype plugin indent on
 
@@ -77,14 +78,8 @@ if has("gui_running")
   if has("gui_macvim")
     set guifont=Inconsolata:h14
     set macmeta
-    " set shell=/bin/bash
-    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
   elseif has("gui_win32")
     set guifont=Consolas:h10:cANSI
-    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-    set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*
-    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
   else
     set guifont=Terminus\ 12
   endif
@@ -96,6 +91,32 @@ let mapleader=","
 
 nnoremap j gj
 nnoremap k gk
+
+" map each number to its shift-key character
+inoremap 1 !
+inoremap 2 @
+inoremap 3 #
+inoremap 4 $
+inoremap 5 %
+inoremap 6 ^
+inoremap 7 &
+inoremap 8 *
+inoremap 9 (
+inoremap 0 )
+inoremap - _
+
+" and then the opposite
+inoremap ! 1
+inoremap @ 2
+inoremap # 3
+inoremap $ 4
+inoremap % 5
+inoremap ^ 6
+inoremap & 7
+inoremap * 8
+inoremap ( 9
+inoremap ) 0
+inoremap _ -
 
 map <leader>c "+y
 map <leader>v "+p
@@ -123,14 +144,10 @@ nmap <Leader>rr :source $MYVIMRC <CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
-" nnoremap <silent> <leader>f  :FufFileWithCurrentBufferDir<CR>
-" nnoremap <silent> <leader>fc  :FufMruCmd<CR>
-" nmap <silent><leader>fr :FufRenewCache<CR>
-
-nnoremap <silent> <leader>f  : CtrlPCurFile<CR>
-nnoremap <silent> <leader>b  : CtrlPBuffer<CR>
-nnoremap <silent> <leader>l  : CtrlPLine<CR>
-nnoremap <silent> <leader>q  : CtrlPQuickfix<CR>
+nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>
+nnoremap <silent> <leader>fb  : CtrlPBuffer<CR>
+nnoremap <silent> <leader>fl  : CtrlPLine<CR>
+nnoremap <silent> <leader>fq  : CtrlPQuickfix<CR>
 nnoremap <silent> <leader>fm : CtrlPMRUFiles<CR>
 
 nnoremap <leader>df :Goyo<cr>
@@ -197,8 +214,8 @@ map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-map  <Space>  <Plug>(easymotion-sn)
-omap <Space> <Plug>(easymotion-tn)
+map  <Space>  <Plug>(easymotion-s2)
+omap <Space> <Plug>(easymotion-t2)
 map  <CR> <Plug>(easymotion-next)
 map  <BS> <Plug>(easymotion-prev)
 
@@ -245,14 +262,6 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 if has('conceal')
 set conceallevel=2 concealcursor=i
 endif
-
-let s:slash = '[/\\]'
-let s:startname = '(^|'.s:slash.')'
-let s:endname = '($|'.s:slash.')'
-let s:extension = '\.bak|\.dll|\.exe|\.o|\.pyc|\.pyo|\.swp|\.swo'
-let s:dirname = 'node_modules|build|deploy|dist|vms|\.bzr|\.git|\.hg|\.svn|.+\.egg-info'
-let g:fuf_file_exclude = '\v'.'('.s:startname.'('.s:dirname.')'.s:endname.')|(('.s:extension.')$)'
-let g:fuf_dir_exclude = '\v'.s:startname.'('.s:dirname.')'.s:endname
 
 let tern#is_show_argument_hints_enabled = 1
 let g:tern_show_arguments_hints="on_move"
@@ -367,13 +376,16 @@ let NERDTreeQuitOnOpen=1
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_use_caching = 1
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|.git)$'
 
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
 "Vim flags
 syntax on
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
 set t_Co=256
-set background=dark
+" set background=dark
 set nu
 set antialias
 set splitbelow
@@ -389,7 +401,6 @@ set confirm
 set laststatus=2
 set cursorline
 set completeopt-=preview
-set wildignore+=node_modules/     
 set incsearch ignorecase hlsearch
 set smartcase
 set whichwrap+=h,l
@@ -411,6 +422,7 @@ set wildmode=full
 set cursorline cursorcolumn
 set backspace=indent,eol,start
 set novb
+set nohlsearch
 
 "Autocmd
 autocmd InsertLeave * set iminsert=0
