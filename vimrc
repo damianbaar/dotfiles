@@ -64,9 +64,13 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
 Bundle 'sjl/clam.vim'
-Bundle 'mklabs/vim-node-eval'
+Bundle 'majutsushi/tagbar'
 
 filetype plugin indent on
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
@@ -80,6 +84,14 @@ if has("gui_running")
     set macmeta
   elseif has("gui_win32")
     set guifont=Consolas:h10:cANSI
+    set shell=c:/ubs/dev/tools/git/bin/sh.exe\ --rcfile\ ~/.bash_profile
+    set shellcmdflag=-c
+    set shellxquote=\"
+
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.whitespace = 'Ξ'
   else
     set guifont=Terminus\ 12
   endif
@@ -241,6 +253,9 @@ map <silent> <Leader>nt :NERDTreeToggle<CR>
 map <silent> <Leader>nr :NERDTree<CR>
 map <silent> <Leader>nf :NERDTreeFind<CR>
 
+map <silent> <Leader>oo :TagbarToggle<CR>
+
+
 "Plugins configuration
 let g:goyo_width = 100
 
@@ -309,31 +324,20 @@ let g:syntastic_style_warning_symbol='s>'
 let g:syntastic_error_symbol='E>'
 let g:syntastic_style_error_symbol='S>'
 
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-endif
-
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = '⮀'
+let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+let g:airline_left_sep = ''
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_sep = ''
 
 let g:airline_enable_branch    = 1
 let g:airline_enable_syntastic = 1
-let g:airline_powerline_fonts  = 1
-
-let g:airline_left_sep                     = '⮀'
-let g:airline_left_alt_sep                 = '⮁'
-let g:airline_right_sep                    = '⮂'
-let g:airline_right_alt_sep                = '⮃'
-let g:airline_branch_prefix                = '⭠'
-let g:airline_linecolumn_prefix            = '⭡'
-let g:airline#extensions#whitespace#symbol = 'Ξ'
-let g:airline_readonly_symbol              = '⭤'
-let g:airline_symbols.linenr               = '␊'
-let g:airline_symbols.linenr               = '␤'
-let g:airline_symbols.linenr               = '¶'
-let g:airline_symbols.paste                = 'ρ'
-let g:airline_symbols.paste                = 'Þ'
+let g:airline_powerline_fonts  = 0
+let g:airline_section_b="%f"
+let g:airline_section_y="%Y"
 
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
@@ -383,19 +387,23 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|.git)$'
 
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
+let g:gitgutter_enabled = 0
 
 let vimclojure#WantNailgun = 1
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
 
-" Vimux
-map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
-map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
-map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
-map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
-map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
-vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
-nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
+let g:tagbar_type_javascript = {
+      \ 'ctagsbin' : 'javascript-ctags',
+      \ 'ctagstype' : 'javascript',
+      \ 'sro' : '.',
+      \ 'kinds' : [
+        \ 'f:functions:1'
+      \ ],
+      \'kind2scope ' : {  'f' : 'function' },
+      \'scope2kind' : {  'function' : 'f' }
+    \}
+
 "Vim flags
 syntax on
 set encoding=utf-8
