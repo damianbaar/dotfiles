@@ -64,13 +64,9 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
 Bundle 'sjl/clam.vim'
-Bundle 'majutsushi/tagbar'
+Bundle 'xolox/vim-easytags'
 
 filetype plugin indent on
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
 
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
@@ -84,13 +80,6 @@ if has("gui_running")
     set macmeta
   elseif has("gui_win32")
     set guifont=Consolas:h10:cANSI
-    " set shellcmdflag=-c
-    " set shellxquote=\"
-
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.paste = 'Þ'
-    let g:airline_symbols.whitespace = 'Ξ'
   else
     set guifont=Terminus\ 12
   endif
@@ -164,7 +153,7 @@ nnoremap <silent> <leader>fb  : CtrlPBuffer<CR>
 nnoremap <silent> <leader>fl  : CtrlPLine<CR>
 nnoremap <silent> <leader>fq  : CtrlPQuickfix<CR>
 nnoremap <silent> <leader>fm : CtrlPMRUFiles<CR>
-nnoremap <silent> <leader>ft : CtrlPTag<CR>
+nnoremap <silent> <leader>. : CtrlPTag<CR>
 
 nnoremap <leader>df :Goyo<cr>
 
@@ -325,6 +314,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_left_sep = ''
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -390,17 +387,16 @@ let vimclojure#WantNailgun = 1
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
 
-let g:tagbar_type_javascript = {
-      \ 'ctagsbin' : 'javascript-ctags',
-      \ 'ctagstype' : 'javascript',
-      \ 'ctagsargs' : '-t tags *.js',
-      \ 'sro' : '.',
-      \ 'kinds' : [
-        \ 'f:functions:1'
-      \ ],
-      \'kind2scope ' : {  'f' : 'function' },
-      \'scope2kind' : {  'function' : 'f' }
-    \}
+let g:easytags_dynamic_files = 1
+
+let g:easytags_languages = {
+\   'javascript': {
+\     'cmd': 'javascript-ctags',
+\       'args': [],
+\       'fileoutput_opt': '-f',
+\       'stdout_opt': '-f-'
+\   }
+\}
 
 "Vim flags
 syntax on
@@ -446,6 +442,7 @@ set novb
 set nohlsearch
 set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
+autocmd BufEnter * set tags=tags
 
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
