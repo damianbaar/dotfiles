@@ -84,9 +84,8 @@ if has("gui_running")
     set macmeta
   elseif has("gui_win32")
     set guifont=Consolas:h10:cANSI
-    set shell=c:/ubs/dev/tools/git/bin/sh.exe\ --rcfile\ ~/.bash_profile
-    set shellcmdflag=-c
-    set shellxquote=\"
+    " set shellcmdflag=-c
+    " set shellxquote=\"
 
     let g:airline_symbols.linenr = '¶'
     let g:airline_symbols.paste = 'ρ'
@@ -165,6 +164,7 @@ nnoremap <silent> <leader>fb  : CtrlPBuffer<CR>
 nnoremap <silent> <leader>fl  : CtrlPLine<CR>
 nnoremap <silent> <leader>fq  : CtrlPQuickfix<CR>
 nnoremap <silent> <leader>fm : CtrlPMRUFiles<CR>
+nnoremap <silent> <leader>ft : CtrlPTag<CR>
 
 nnoremap <leader>df :Goyo<cr>
 
@@ -253,9 +253,6 @@ map <silent> <Leader>nt :NERDTreeToggle<CR>
 map <silent> <Leader>nr :NERDTree<CR>
 map <silent> <Leader>nf :NERDTreeFind<CR>
 
-map <silent> <Leader>oo :TagbarToggle<CR>
-
-
 "Plugins configuration
 let g:goyo_width = 100
 
@@ -336,8 +333,8 @@ let g:airline_right_sep = ''
 let g:airline_enable_branch    = 1
 let g:airline_enable_syntastic = 1
 let g:airline_powerline_fonts  = 0
-let g:airline_section_b="%f"
-let g:airline_section_y="%Y"
+" let g:airline_section_b="%f"
+" let g:airline_section_y="%Y"
 
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
@@ -396,6 +393,7 @@ let vimclojure#ParenRainbow = 1
 let g:tagbar_type_javascript = {
       \ 'ctagsbin' : 'javascript-ctags',
       \ 'ctagstype' : 'javascript',
+      \ 'ctagsargs' : '-t tags *.js',
       \ 'sro' : '.',
       \ 'kinds' : [
         \ 'f:functions:1'
@@ -448,12 +446,6 @@ set novb
 set nohlsearch
 set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
-
-"Autocmd
-autocmd InsertLeave * set iminsert=0
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
-autocmd FocusLost * :wa
 
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
