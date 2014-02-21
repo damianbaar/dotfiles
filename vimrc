@@ -5,8 +5,6 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'tomasr/molokai'
-Bundle 'Pychimp/vim-luna'
 Bundle 'morhetz/gruvbox'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
@@ -17,7 +15,6 @@ Bundle "sjl/gundo.vim"
 Bundle 'kshenoy/vim-signature'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'xolox/vim-misc'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
@@ -33,12 +30,12 @@ Bundle 'godlygeek/tabular'
 Bundle 'moll/vim-node'
 Bundle 'tpope/vim-surround'
 Bundle "mkitt/tabline.vim"
-Bundle "nathanaelkane/vim-indent-guides"
+Bundle "Yggdroot/indentLine"
+Bundle "vim-scripts/text-object-left-and-right"
 Bundle "elzr/vim-json"
 Bundle "tristen/vim-sparkup"
 Bundle "junegunn/goyo.vim"
 Bundle "amix/vim-zenroom2"
-Bundle "vimwiki/vimwiki"
 Bundle "mustache/vim-mustache-handlebars"
 Bundle "gregsexton/gitv"
 Bundle "mhinz/vim-startify"
@@ -65,6 +62,7 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
 Bundle 'sjl/clam.vim'
 Bundle 'xolox/vim-easytags'
+Bundle 'xolox/vim-misc'
 
 filetype plugin indent on
 

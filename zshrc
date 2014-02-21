@@ -1,10 +1,11 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 CLOJURESCRIPT_HOME=/usr/local/lib/clojurescript/
+DOTFILES=$HOME/Dropbox/dotfiles
+
 PATH=$CLOJURESCRIPT_HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 PATH=/usr/local/lib/node_modules/:$PATH
 PATH=/usr/local/lib/clojurescript/bin:$PATH
-DOTFILES=$HOME/Dropbox/dotfiles
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -50,6 +51,11 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
+plugins=(vi-mode)
+
+bindkey -v
+bindkey -M viins ‘jj’ vi-cmd-mode
+bindkey ‘^R’ history-incremental-search-backward
 
 source $ZSH/oh-my-zsh.sh
 
@@ -64,8 +70,8 @@ alias dots="cd ~/Dropbox/dotfiles"
 alias gs="git status"
 alias undo-commit="git reset --hard HEAD^"
 alias glog="git log --pretty=oneline" 
-alias hash-last-commit="git log --format=%H | head -1"
-alias hash-first-commit="git log --format=%H | tail -1"
+alias get-hash-last-commit="git log --format=%H | head -1"
+alias get-hash-first-commit="git log --format=%H | tail -1"
 
 export GIT_EDITOR=vim
 export VISUAL=vim
@@ -83,7 +89,5 @@ export EDITOR=vim
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+#
 
-
-# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-# source $HOME/.zsh-fuzzy-match/fuzzy-match.zsh
