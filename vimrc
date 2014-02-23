@@ -61,8 +61,8 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
 Bundle 'sjl/clam.vim'
-Bundle 'bkad/CamelCaseMotion'
 Bundle 'vim-scripts/bufkill.vim'
+" Bundle 'endel/flashdevelop.vim'
 
 filetype plugin indent on
 
@@ -119,7 +119,6 @@ nnoremap k gk
 
 map <leader>c "+y
 map <leader>v "+p
-nnoremap <Space><Space> za
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -145,7 +144,6 @@ nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
 nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>
 nnoremap <tab> :CtrlPBuffer<CR>
-" nnoremap <silent> <leader>fb  : CtrlPBuffer<CR>
 nnoremap <silent> <leader>fl  : CtrlPLine<CR>
 nnoremap <silent> <leader>fq  : CtrlPQuickfix<CR>
 nnoremap <silent> <leader>fm : CtrlPMRUFiles<CR>
@@ -216,13 +214,10 @@ map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-map  <Space>  <Plug>(easymotion-s2)
-omap <Space> <Plug>(easymotion-t2)
-map  <CR> <Plug>(easymotion-next)
-map  <BS> <Plug>(easymotion-prev)
-
-map <Space>j <Plug>(easymotion-j)
-map <Space>k <Plug>(easymotion-k)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+nmap s <Plug>(easymotion-s)
+omap t <Plug>(easymotion-bd-tl)
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
@@ -307,7 +302,7 @@ let g:syntastic_warning_symbol='▸'
 let g:syntastic_style_error_symbol='▸'
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_sep = '⮀'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 if !exists('g:airline_symbols')
@@ -318,16 +313,21 @@ let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_left_sep = ''
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_sep = ''
+let g:airline_left_sep   = '⮀'
+let g:airline_left_sep   = '⮀'
+let g:airline_right_sep    = '⮂'
+let g:airline_right_sep    = '⮂'
+let g:airline_left_sep          = '⮀'
+let g:airline_left_alt_sep      = '⮁'
+let g:airline_right_sep         = '⮂'
+let g:airline_right_alt_sep     = '⮃'
+let g:airline_branch_prefix     = '⭠'
+let g:airline_readonly_symbol   = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
 
 let g:airline_enable_branch    = 1
 let g:airline_enable_syntastic = 1
 let g:airline_powerline_fonts  = 0
-" let g:airline_section_b="%f"
-" let g:airline_section_y="%Y"
 
 let g:airline_detect_modified=1
 let g:airline_detect_paste=1
@@ -486,10 +486,10 @@ autocmd BufNewFile,BufRead *.as set ft=actionscript
 autocmd BufNewFile,BufRead *.as set smartindent
 autocmd BufNewFile,BufRead *.as set autoindent
 autocmd BufNewFile,BufRead *.mxml set ft=mxml
-
-autocmd FileType html let b:delimitMate_autoclose = 0
 autocmd BufNewFile,BufRead *.cljs set filetype=clojure
 
+au BufNewFile,BufRead *.mxml set filetype=mxml
+au BufNewFile,BufRead *.as set filetype=actionscript
 "Colors
 colorscheme gruvbox 
 
