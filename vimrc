@@ -475,7 +475,7 @@ set secure          " disable unsafe commands in local .vimrc files
 set autowrite                   
 set autoread
 
-autocmd BufEnter * set tags=tags
+autocmd BufEnter * set tags=./tags
 
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
