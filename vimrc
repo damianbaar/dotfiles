@@ -61,8 +61,8 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
 Bundle 'sjl/clam.vim'
-Bundle 'xolox/vim-easytags'
-Bundle 'xolox/vim-misc'
+Bundle 'bkad/CamelCaseMotion'
+Bundle 'vim-scripts/bufkill.vim'
 
 filetype plugin indent on
 
@@ -73,11 +73,12 @@ elseif has ('gui')
 endif
 
 if has("gui_running")
+  set guifont=Anonymous\ Pro\ Minus:h14
   if has("gui_macvim")
-    set guifont=Inconsolata:h14
+    " set guifont=Inconsolata:h14
     set macmeta
   elseif has("gui_win32")
-    set guifont=Consolas:h10:cANSI
+    " set guifont=Consolas:h10:cANSI
   else
     set guifont=Terminus\ 12
   endif
@@ -142,17 +143,15 @@ nmap <Leader>rr :source $MYVIMRC <CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
-vmap <C-c><C-c> <Plug>SendSelectionToTmux
-nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-nmap <C-c>r <Plug>SetTmuxVars
-
 nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>
-nnoremap <silent> <leader>fb  : CtrlPBuffer<CR>
+nnoremap <tab> :CtrlPBuffer<CR>
+" nnoremap <silent> <leader>fb  : CtrlPBuffer<CR>
 nnoremap <silent> <leader>fl  : CtrlPLine<CR>
 nnoremap <silent> <leader>fq  : CtrlPQuickfix<CR>
 nnoremap <silent> <leader>fm : CtrlPMRUFiles<CR>
+nnoremap <silent> <leader>fc : CtrlPChange<CR>
 nnoremap <silent> <leader>. : CtrlPTag<CR>
-
+  
 nnoremap <leader>df :Goyo<cr>
 
 nnoremap cse :call <SID>ChangeElement()<cr>
@@ -303,10 +302,9 @@ let g:syntastic_always_populate_loc_list=0
 let g:syntastic_javascript_checkers = ["jshint"]
 let g:syntastic_enable_signs = 1
 let g:syntastic_javascript_jslint_conf = " --white --plusplus --nomen --newcap --evil"
-let g:syntastic_warning_symbol='W>'
-let g:syntastic_style_warning_symbol='s>'
-let g:syntastic_error_symbol='E>'
-let g:syntastic_style_error_symbol='S>'
+let g:syntastic_error_symbol='▸'
+let g:syntastic_warning_symbol='▸'
+let g:syntastic_style_error_symbol='▸'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -372,10 +370,55 @@ let g:EasyMotion_use_upper = 1
 
 let NERDTreeQuitOnOpen=1
 
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard'] " Use git but also show untracked files
+let g:ctrlp_buftag_ctags_bin = '/usr/local/bin/ctags'
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_use_caching = 1
+
+let g:ctrlp_status_func = {
+      \   'main': 'CtrlPMainStatusLine',
+      \   'prog': 'CtrlPProgStatusLine'
+      \ }
+
+function! CtrlPMainStatusLine(...)
+  let item = '%#Character# '.a:5.' %*'
+  let marked = a:7 == ' <->' ? '' : a:7
+  let dir = ' %=%<%#LineNr# '.getcwd().' %*'
+  return item.marked.dir
+endfunction
+
+function! CtrlPProgStatusLine(...)
+  let len = '%#Function# '.a:1.' %*'
+  let dir = ' %=%<%#LineNr# '.getcwd().' %*'
+  return len.dir
+endfunction
+
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|.git)$'
+let g:ctrlp_prompt_mappings = { 
+      \ 'PrtSelectMove("j")':   ['<c-j>', '['],
+      \ 'PrtSelectMove("k")':   ['<c-k>', ']'],
+      \ }
+
+let g:ctrlp_buftag_types = {
+      \ 'javascript' : {
+      \ 'bin': 'javascript-ctags',
+      \ 'args': '-f -',
+      \ },
+      \ 'clojure': '--language-force=clojure',
+      \ 'css' : {
+          \ 'bin': '/usr/local/bin/ctags',
+          \ 'args': '-f -',
+          \ },
+        \ 'mxml' : {
+          \ 'bin': '/usr/local/bin/ctags',
+          \ 'args': '-f -',
+          \ },
+        \ 'actionscript' : {
+          \ 'bin': '/usr/local/bin/ctags',
+          \ 'args': '-f -',
+          \ },
+      \ }
 
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
@@ -384,17 +427,6 @@ let g:gitgutter_enabled = 0
 let vimclojure#WantNailgun = 1
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
-
-let g:easytags_dynamic_files = 1
-
-let g:easytags_languages = {
-\   'javascript': {
-\     'cmd': 'javascript-ctags',
-\       'args': [],
-\       'fileoutput_opt': '-f',
-\       'stdout_opt': '-f-'
-\   }
-\}
 
 "Vim flags
 syntax on
@@ -440,12 +472,20 @@ set novb
 set nohlsearch
 set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
+set autowrite                   
+set autoread
+
 autocmd BufEnter * set tags=tags
 
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
+
+autocmd BufNewFile,BufRead *.as set ft=actionscript
+autocmd BufNewFile,BufRead *.as set smartindent
+autocmd BufNewFile,BufRead *.as set autoindent
+autocmd BufNewFile,BufRead *.mxml set ft=mxml
 
 autocmd FileType html let b:delimitMate_autoclose = 0
 autocmd BufNewFile,BufRead *.cljs set filetype=clojure
