@@ -51,10 +51,10 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
-plugins=(vi-mode)
+# plugins=(vi-mode)
 
-bindkey -v
-bindkey -M viins ‘jj’ vi-cmd-mode
+# bindkey -v
+# bindkey -M viins ‘jj’ vi-cmd-mode
 bindkey ‘^R’ history-incremental-search-backward
 
 source $ZSH/oh-my-zsh.sh
