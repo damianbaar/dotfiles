@@ -16,9 +16,9 @@ Bundle 'kshenoy/vim-signature'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
 Bundle 'scrooloose/syntastic'
+Bundle 'pangloss/vim-javascript'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'Shougo/neosnippet'
@@ -52,7 +52,8 @@ Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
 Bundle "mtth/scratch.vim"
 Bundle "tpope/vim-abolish"
-Bundle "yegappan/grep"
+" Bundle "yegappan/grep"
+Bundle "dkprice/vim-easygrep"
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'terryma/vim-multiple-cursors'
@@ -62,6 +63,10 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
 Bundle 'sjl/clam.vim'
 Bundle 'vim-scripts/bufkill.vim'
+" Bundle 'xolox/vim-easytags'
+Bundle 'xolox/vim-misc'
+Bundle 'regedarek/ZoomWin'
+Bundle 'neochrome/todo.vim'
 " Bundle 'endel/flashdevelop.vim'
 
 filetype plugin indent on
@@ -73,12 +78,11 @@ elseif has ('gui')
 endif
 
 if has("gui_running")
-  set guifont=Anonymous\ Pro\ Minus:h14
   if has("gui_macvim")
-    " set guifont=Inconsolata:h14
+    set guifont=Anonymous\ Pro\ Minus:h14
     set macmeta
   elseif has("gui_win32")
-    " set guifont=Consolas:h10:cANSI
+    set guifont=Consolas:h10:cANSI
   else
     set guifont=Terminus\ 12
   endif
@@ -142,13 +146,14 @@ nmap <Leader>rr :source $MYVIMRC <CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
+nnoremap <space><space> :ClearCtrlPCache<cr>\|:CtrlP<cr>
 nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>
 nnoremap <tab> :CtrlPBuffer<CR>
-nnoremap <silent> <leader>fl  : CtrlPLine<CR>
-nnoremap <silent> <leader>fq  : CtrlPQuickfix<CR>
-nnoremap <silent> <leader>fm : CtrlPMRUFiles<CR>
-nnoremap <silent> <leader>fc : CtrlPChange<CR>
-nnoremap <silent> <leader>. : CtrlPTag<CR>
+nnoremap <silent> <leader>ll  : CtrlPLine<CR>
+nnoremap <silent> <leader>qq  : CtrlPQuickfix<CR>
+nnoremap <silent> <leader>mm : CtrlPMRUFiles<CR>
+nnoremap <silent> <leader>cc : CtrlPChange<CR>
+nnoremap <silent> <leader>tt : CtrlPTag<CR>
   
 nnoremap <leader>df :Goyo<cr>
 
@@ -183,7 +188,7 @@ nmap <leader>gh :call GitGutterLineHighlightsToggle()<CR>
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
-noremap <Leadder>ne :NodeEval
+nmap - $
 
 " change html element 
 function! s:ChangeElement()
@@ -206,18 +211,15 @@ let tag = substitute(tag, '>*$', '', '')
 exe "normal cst<" . tag . attributes . ">"
 endfunction
 
-autocmd FileType javascript nnoremap <buffer> <leader>tr :TernRefs<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tR :TernRename<CR>
-autocmd FileType javascript nnoremap <buffer> <leader>tp :TernDefPreview<CR>
+autocmd FileType javascript nnoremap <buffer> <leader>rr :TernRename<CR>
 
 map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-nmap s <Plug>(easymotion-s)
-omap t <Plug>(easymotion-bd-tl)
+" map  <Leader>.Plug>(easymotion-s)
+nmap <Leader>f <Plug>(easymotion-f)
+" omap <Leader>. <Plug>(easymotiona-bd-tl)
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
@@ -230,9 +232,7 @@ vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-map <silent> <Leader>nt :NERDTreeToggle<CR>
-map <silent> <Leader>nr :NERDTree<CR>
-map <silent> <Leader>nf :NERDTreeFind<CR>
+map <silent> <Space>] :NERDTreeToggle<CR>
 
 "Plugins configuration
 let g:goyo_width = 100
@@ -256,16 +256,12 @@ autocmd VimEnter * let g:goyo_callbacks = [function('g:goyo_before'), function('
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-if has('conceal')
-set conceallevel=2 concealcursor=i
-endif
-
 let tern#is_show_argument_hints_enabled = 1
 let g:tern_show_arguments_hints="on_move"
 let g:tern_map_keys=1
 
 let g:session_autosave = 'yes' 
-let g:session_autoload = 'no' 
+let g:session_autoload = 'yes' 
 
 let g:indent_guides_enable_on_vim_startup=0
 
@@ -343,14 +339,13 @@ let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
 
-let g:Grep_Default_Options = '-i --binary-files=without-match'
-let g:Grep_Skip_Files = 'tags *.bak'
-let g:Grep_Skip_Dirs = '.git node_modules'
-let Grep_OpenQuickfixWindow = 0 
+" let g:Grep_Default_Options = '-i --binary-files=without-match'
+" let g:Grep_Skip_Files = 'tags *.bak'
+" let g:Grep_Skip_Dirs = '.git node_modules'
+" let Grep_OpenQuickfixWindow = 1
 
 let javascript_enable_domhtmlcss = 1
 let b:javascript_fold = 1
-let g:javascript_conceal = 1
 
 let g:fuf_modesDisable = []
 
@@ -371,10 +366,9 @@ let g:EasyMotion_use_upper = 1
 let NERDTreeQuitOnOpen=1
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard'] " Use git but also show untracked files
-let g:ctrlp_buftag_ctags_bin = '/usr/local/bin/ctags'
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_use_caching = 1
+let g:ctrlp_use_caching = 0
 
 let g:ctrlp_status_func = {
       \   'main': 'CtrlPMainStatusLine',
@@ -394,31 +388,27 @@ function! CtrlPProgStatusLine(...)
   return len.dir
 endfunction
 
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|.git)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](bower_components|node_modules|.git)$',
+  \ 'file': '\v\.(exe|so|tags)$'
+  \ }
+
 let g:ctrlp_prompt_mappings = { 
       \ 'PrtSelectMove("j")':   ['<c-j>', '['],
       \ 'PrtSelectMove("k")':   ['<c-k>', ']'],
       \ }
 
-let g:ctrlp_buftag_types = {
-      \ 'javascript' : {
-      \ 'bin': 'javascript-ctags',
-      \ 'args': '-f -',
-      \ },
-      \ 'clojure': '--language-force=clojure',
-      \ 'css' : {
-          \ 'bin': '/usr/local/bin/ctags',
-          \ 'args': '-f -',
-          \ },
-        \ 'mxml' : {
-          \ 'bin': '/usr/local/bin/ctags',
-          \ 'args': '-f -',
-          \ },
-        \ 'actionscript' : {
-          \ 'bin': '/usr/local/bin/ctags',
-          \ 'args': '-f -',
-          \ },
-      \ }
+let g:easytags_dynamic_files = 1
+" let g:easytags_cmd = '/usr/local/bin/ctags'
+let g:easytags_languages = {
+\   'javascript': {
+\     'cmd': 'javascript-ctags',
+\       'args': [],
+\       'fileoutput_opt': '-f',
+\       'stdout_opt': '-f-',
+\       'recurse_flag': '-R'
+\   }
+\}
 
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
@@ -428,9 +418,23 @@ let vimclojure#WantNailgun = 1
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
 
+" todo.vim default highlight groups, feel free to override as wanted
+hi link TodoTitle Title
+hi link TodoTitleMark Normal
+hi link TodoItem Special
+hi link TodoItemAdditionalText Comment
+hi link TodoItemCheckBox Identifier
+hi link TodoItemDone Ignore
+hi link TodoComment Comment " explicit comments must be enabled for this
+
+" define like this to enable explicit comments
+" comments then start with //
+let g:TodoExplicitCommentsEnabled = 1
+
 "Vim flags
 syntax on
 set encoding=utf-8
+set fileencoding=utf8
 set fillchars+=stl:\ ,stlnc:\
 set t_Co=256
 set nu
@@ -446,7 +450,6 @@ set autowriteall
 set hidden
 set confirm
 set laststatus=2
-set cursorline
 set completeopt-=preview
 set incsearch ignorecase hlsearch
 set smartcase
@@ -466,33 +469,29 @@ set foldnestmax=3
 set showcmd
 set wildmenu
 set wildmode=full
-set cursorline cursorcolumn
 set backspace=indent,eol,start
+set cursorline
 set novb
 set nohlsearch
 set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
-set autowrite                   
+set autowrite
 set autoread
 
-autocmd BufEnter * set tags=./tags
+" autocmd BufEnter *.js UpdateTags
+" autocmd BufEnter *.js setl tags=tags
+" au FileType javascript let g:javascript_conceal=1
+" au FileType javascript setl concealcursor="" conceallevel=2 
 
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 
-autocmd BufNewFile,BufRead *.as set ft=actionscript
-autocmd BufNewFile,BufRead *.as set smartindent
-autocmd BufNewFile,BufRead *.as set autoindent
-autocmd BufNewFile,BufRead *.mxml set ft=mxml
-autocmd BufNewFile,BufRead *.cljs set filetype=clojure
+autocmd BufNewFile,BufRead todo set ft=todo
 
-au BufNewFile,BufRead *.mxml set filetype=mxml
-au BufNewFile,BufRead *.as set filetype=actionscript
 "Colors
 colorscheme gruvbox 
+set bg=dark 
 
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
-highlight SpecialKey guifg=#4a4a59
-highlight NonText guifg=#4a4a59
