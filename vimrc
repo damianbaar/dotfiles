@@ -52,7 +52,6 @@ Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
 Bundle "mtth/scratch.vim"
 Bundle "tpope/vim-abolish"
-" Bundle "yegappan/grep"
 Bundle "dkprice/vim-easygrep"
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
@@ -63,11 +62,9 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'tpope/vim-classpath'
 Bundle 'sjl/clam.vim'
 Bundle 'vim-scripts/bufkill.vim'
-" Bundle 'xolox/vim-easytags'
 Bundle 'xolox/vim-misc'
 Bundle 'regedarek/ZoomWin'
 Bundle 'neochrome/todo.vim'
-" Bundle 'endel/flashdevelop.vim'
 
 filetype plugin indent on
 
@@ -190,6 +187,8 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 nmap - $
 
+nmap <c-tab> :SLoad<cr>
+
 " change html element 
 function! s:ChangeElement()
 execute "normal! vat\<esc>"
@@ -220,6 +219,8 @@ vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 " map  <Leader>.Plug>(easymotion-s)
 nmap <Leader>f <Plug>(easymotion-f)
 " omap <Leader>. <Plug>(easymotiona-bd-tl)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
@@ -353,6 +354,14 @@ let g:startify_session_detection = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_restore_position = 1
 let g:startify_custom_indices = ['f', 'g', 'h']
+let g:startify_list_order = ['files', 'dir', 'bookmarks', 'sessions']
+let g:startify_session_detection = 1
+let g:startify_session_autoload = 0
+let g:startify_session_persistence = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_change_to_vcs_root = 1
+
+let NERDTreeHijackNetrw = 1
 
 let g:yankstack_map_keys = 0
 

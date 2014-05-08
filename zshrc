@@ -65,7 +65,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 alias vim='mvim'
 alias vimt='mvim --remote-tab-silent'
 alias vi="vim --remote-tab-silent"
