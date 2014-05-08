@@ -64,7 +64,7 @@ Bundle 'sjl/clam.vim'
 Bundle 'vim-scripts/bufkill.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'regedarek/ZoomWin'
-Bundle 'neochrome/todo.vim'
+Bundle 'vim-scripts/repmo.vim'
 
 filetype plugin indent on
 
@@ -128,10 +128,10 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 map <leader>c "+y
 map <leader>v "+p
 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
 
 inoremap <up> <nop>
 inoremap <down> <nop>
@@ -163,9 +163,6 @@ nnoremap <leader>df :Goyo<cr>
 
 nnoremap cse :call <SID>ChangeElement()<cr>
 map <leader>bd :bdelete<cr>
-
-nnoremap // :TComment<CR>
-vnoremap // :TComment<CR>
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -223,11 +220,7 @@ map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-" map  <Leader>.Plug>(easymotion-s)
 nmap <Leader>f <Plug>(easymotion-f)
-" omap <Leader>. <Plug>(easymotiona-bd-tl)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
@@ -240,7 +233,7 @@ vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-map <silent> <Space>] :NERDTreeToggle<CR>
+map <silent> ]] :NERDTreeToggle<CR>
 
 "Plugins configuration
 let g:goyo_width = 100
@@ -493,6 +486,7 @@ set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
 set autowrite
 set autoread
+set relativenumber
 
 " autocmd BufEnter *.js UpdateTags
 " autocmd BufEnter *.js setl tags=tags
