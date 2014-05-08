@@ -68,6 +68,9 @@ Bundle 'vim-scripts/repmo.vim'
 
 filetype plugin indent on
 
+let g:repmo_key = ";"
+let g:repmo_revkey = "<bar>"
+
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
 elseif has ('gui')
@@ -354,7 +357,7 @@ let g:startify_session_detection = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_restore_position = 1
 let g:startify_custom_indices = ['f', 'g', 'h']
-let g:startify_list_order = ['files', 'dir', 'bookmarks', 'sessions']
+let g:startify_list_order = ['sessions', 'files', 'dir', 'bookmarks']
 let g:startify_session_detection = 1
 let g:startify_session_autoload = 0
 let g:startify_session_persistence = 1
@@ -487,6 +490,7 @@ set secure          " disable unsafe commands in local .vimrc files
 set autowrite
 set autoread
 set relativenumber
+
 
 " autocmd BufEnter *.js UpdateTags
 " autocmd BufEnter *.js setl tags=tags
