@@ -5,7 +5,11 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'morhetz/gruvbox'
+" Bundle 'morhetz/gruvbox'
+" Bundle 'zeis/vim-kolor'
+Bundle 'w0ng/vim-hybrid'
+Bundle 'tomasr/molokai'
+Bundle 'goatslacker/mango.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'edkolev/promptline.vim'
@@ -31,11 +35,8 @@ Bundle 'moll/vim-node'
 Bundle 'tpope/vim-surround'
 Bundle "mkitt/tabline.vim"
 Bundle "Yggdroot/indentLine"
-Bundle "vim-scripts/text-object-left-and-right"
 Bundle "elzr/vim-json"
 Bundle "tristen/vim-sparkup"
-Bundle "junegunn/goyo.vim"
-Bundle "amix/vim-zenroom2"
 Bundle "mustache/vim-mustache-handlebars"
 Bundle "gregsexton/gitv"
 Bundle "mhinz/vim-startify"
@@ -53,7 +54,6 @@ Bundle "mattn/gist-vim"
 Bundle "mtth/scratch.vim"
 Bundle "tpope/vim-abolish"
 Bundle "dkprice/vim-easygrep"
-Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-fireplace'
@@ -65,11 +65,17 @@ Bundle 'vim-scripts/bufkill.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'regedarek/ZoomWin'
 Bundle 'vim-scripts/repmo.vim'
+Bundle 'dockyard/vim-easydir'
+Bundle 'mhinz/vim-toplevel'
+Bundle 'xolox/vim-session'
 
 filetype plugin indent on
 
 let g:repmo_key = ";"
 let g:repmo_revkey = "<bar>"
+
+set bg=dark 
+colorscheme molokai
 
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
@@ -94,32 +100,8 @@ let mapleader=","
 
 nnoremap j gj
 nnoremap k gk
+nnoremap <leader><leader> <C-^>
 
-" map each number to its shift-key character
-" inoremap 1 !
-" inoremap 2 @
-" inoremap 3 #
-" inoremap 4 $
-" inoremap 5 %
-" inoremap 6 ^
-" inoremap 7 &
-" inoremap 8 *
-" inoremap 9 (
-" inoremap 0 )
-" inoremap - _
-
-" and then the opposite
-" inoremap ! 1
-" inoremap @ 2
-" inoremap # 3
-" inoremap $ 4
-" inoremap % 5
-" inoremap ^ 6
-" inoremap & 7
-" inoremap * 8
-" inoremap ( 9
-" inoremap ) 0
-" inoremap _ -
 "
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -131,10 +113,13 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 map <leader>c "+y
 map <leader>v "+p
 
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
+nnoremap <a-i> 40<c-w><
+nnoremap <a-o> 40<c-w>>
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
 
 inoremap <up> <nop>
 inoremap <down> <nop>
@@ -151,9 +136,8 @@ nmap <C-l> <C-w>l
 
 nmap <Leader>rr :source $MYVIMRC <CR>
 nmap <silent> <leader>u :GundoToggle<CR>
-nmap <silent> <leader>i :IndentGuidesToggle<CR>
 
-nnoremap <space><space> :ClearCtrlPCache<cr>\|:CtrlP<cr>
+nnoremap <c-p> :ClearCtrlPCache<cr>\|:CtrlP<cr>
 nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>
 nnoremap <tab> :CtrlPBuffer<CR>
 nnoremap <silent> <leader>ll  : CtrlPLine<CR>
@@ -162,8 +146,6 @@ nnoremap <silent> <leader>mm : CtrlPMRUFiles<CR>
 nnoremap <silent> <leader>cc : CtrlPChange<CR>
 nnoremap <silent> <leader>tt : CtrlPTag<CR>
   
-nnoremap <leader>df :Goyo<cr>
-
 nnoremap cse :call <SID>ChangeElement()<cr>
 map <leader>bd :bdelete<cr>
 
@@ -194,7 +176,7 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 nmap - $
 
-nmap <c-tab> :SLoad<cr>
+nmap <c-tab> :OpenSession<cr>
 
 " change html element 
 function! s:ChangeElement()
@@ -217,13 +199,12 @@ let tag = substitute(tag, '>*$', '', '')
 exe "normal cst<" . tag . attributes . ">"
 endfunction
 
-autocmd FileType javascript nnoremap <buffer> <leader>rr :TernRename<CR>
-
 map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
 nmap <Leader>f <Plug>(easymotion-f)
+vmap <Leader>f <Plug>(easymotion-f)
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
@@ -236,38 +217,41 @@ vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-map <silent> ]] :NERDTreeToggle<CR>
+map <silent><c-f> :NERDTreeToggle<CR>
 
 "Plugins configuration
 let g:goyo_width = 100
 
-function! g:goyo_before()
-if has('gui_running')
-  set fullscreen
-  set linespace=5
-endif
-endfunction
-
-function! g:goyo_after()
-if has('gui_running')
-  set nofullscreen
-  set linespace=0
-endif
-endfunction
-
-autocmd VimEnter * let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
+" function! g:goyo_before()
+" if has('gui_running')
+"   set fullscreen
+"   set linespace=5
+" endif
+" endfunction
+"
+" function! g:goyo_after()
+" if has('gui_running')
+"   set nofullscreen
+"   set linespace=0
+" endif
+" endfunction
+"
+" autocmd VimEnter * let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+let g:EasyGrepFilesToExclude=".svn,.git"
+let g:EasyGrepOpenWindowOnMatch=0
 
 let tern#is_show_argument_hints_enabled = 1
 let g:tern_show_arguments_hints="on_move"
 let g:tern_map_keys=1
 
+let g:netrw_keepdir= 0
+
 let g:session_autosave = 'yes' 
 let g:session_autoload = 'yes' 
-
-let g:indent_guides_enable_on_vim_startup=0
 
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 0
@@ -288,10 +272,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:notes_directories = ['~/Dropbox/Shared\ Notes', '~/Documents/Notes']
 let g:notes_suffix = '.txt'
 
-let g:indent_guides_auto_colors = 1
-let g:indent_guides_exclude_filetypes = ['help', 'netrw','startify']
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
 
 let g:syntastic_always_populate_loc_list=0
 let g:syntastic_javascript_checkers = ["jshint"]
@@ -353,22 +333,16 @@ let b:javascript_fold = 1
 
 let g:fuf_modesDisable = []
 
-let g:startify_session_detection = 1
-let g:startify_change_to_vcs_root = 1
 let g:startify_restore_position = 1
-let g:startify_custom_indices = ['f', 'g', 'h']
 let g:startify_list_order = ['sessions', 'files', 'dir', 'bookmarks']
 let g:startify_session_detection = 1
-let g:startify_session_autoload = 0
+let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_change_to_vcs_root = 1
-
-let NERDTreeHijackNetrw = 1
+let g:startify_session_dir = '~/.vim/sessions'
 
 let g:yankstack_map_keys = 0
-
-let g:EasyGrepOpenWindowOnMatch=0
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:EasyMotion_use_smartsign_us = 1 
@@ -430,6 +404,18 @@ let vimclojure#WantNailgun = 1
 let vimclojure#HighlightBuiltins = 1
 let vimclojure#ParenRainbow = 1
 
+let toplevel          = {}
+let toplevel.vimshell = 0
+let toplevel.rootlist = ['hg', 'bzr']
+let toplevel.cdlist   = [
+      \ ['.git',     'finddir' ],
+      \ ['_darcs',   'finddir' ],
+      \ ['.svn',     'finddir' ],
+      \ ['_FOSSIL_', 'findfile'],
+      \ ]
+
+" let g:indentLine_fileType = ['*.js']
+
 " todo.vim default highlight groups, feel free to override as wanted
 hi link TodoTitle Title
 hi link TodoTitleMark Normal
@@ -485,27 +471,17 @@ set backspace=indent,eol,start
 set cursorline
 set novb
 set nohlsearch
-set exrc            " enable per-directory .vimrc files
-set secure          " disable unsafe commands in local .vimrc files
+set exrc            
+set secure         
 set autowrite
 set autoread
 set relativenumber
-
-
-" autocmd BufEnter *.js UpdateTags
-" autocmd BufEnter *.js setl tags=tags
-" au FileType javascript let g:javascript_conceal=1
-" au FileType javascript setl concealcursor="" conceallevel=2 
-
-autocmd VimEnter * RainbowParenthesesToggle
-autocmd Syntax * RainbowParenthesesLoadRound
-autocmd Syntax * RainbowParenthesesLoadSquare
-autocmd Syntax * RainbowParenthesesLoadBraces
+set sessionoptions=blank,curdir,folds,help,tabpages,winpos
 
 autocmd BufNewFile,BufRead todo set ft=todo
 
-"Colors
-colorscheme gruvbox 
-set bg=dark 
-
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
+
+augroup toplevel
+  autocmd BufEnter * silent Cd!
+augroup END
