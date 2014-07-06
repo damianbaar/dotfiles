@@ -11,14 +11,13 @@ Bundle 'w0ng/vim-hybrid'
 Bundle 'tomasr/molokai'
 Bundle 'goatslacker/mango.vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
+" Bundle 'airblade/vim-gitgutter'
 Bundle 'edkolev/promptline.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bling/vim-airline'
 Bundle "sjl/gundo.vim"
 Bundle 'kshenoy/vim-signature'
 Bundle 'maxbrunsfeld/vim-yankstack'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'othree/html5.vim'
 Bundle 'scrooloose/syntastic'
@@ -29,7 +28,7 @@ Bundle 'Shougo/neosnippet'
 Bundle "garbas/vim-snipmate"
 Bundle "m1foley/snipmate-snippets"
 Bundle 'tomtom/tcomment_vim'
-Bundle 'marijnh/tern_for_vim'
+" Bundle 'marijnh/tern_for_vim'
 Bundle 'godlygeek/tabular'
 Bundle 'moll/vim-node'
 Bundle 'tpope/vim-surround'
@@ -64,10 +63,11 @@ Bundle 'sjl/clam.vim'
 Bundle 'vim-scripts/bufkill.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'regedarek/ZoomWin'
-Bundle 'vim-scripts/repmo.vim'
-Bundle 'dockyard/vim-easydir'
+" Bundle 'vim-scripts/repmo.vim'
+" Bundle 'dockyard/vim-easydir'
 Bundle 'mhinz/vim-toplevel'
 Bundle 'xolox/vim-session'
+"Bundle 'scrooloose/nerdcommenter'
 
 filetype plugin indent on
 
@@ -76,6 +76,7 @@ let g:repmo_revkey = "<bar>"
 
 set bg=dark 
 colorscheme molokai
+let g:molokai_original = 1
 
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
@@ -85,7 +86,7 @@ endif
 
 if has("gui_running")
   if has("gui_macvim")
-    set guifont=Anonymous\ Pro\ Minus:h14
+    set guifont=Terminus\ (TTF):h14
     set macmeta
   elseif has("gui_win32")
     set guifont=Consolas:h10:cANSI
@@ -137,7 +138,7 @@ nmap <C-l> <C-w>l
 nmap <Leader>rr :source $MYVIMRC <CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 
-nnoremap <c-p> :ClearCtrlPCache<cr>\|:CtrlP<cr>
+nnoremap <Space>a :ClearCtrlPCache<cr>\|:CtrlPCurWD<cr>
 nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>
 nnoremap <tab> :CtrlPBuffer<CR>
 nnoremap <silent> <leader>ll  : CtrlPLine<CR>
@@ -168,8 +169,8 @@ nnoremap <Leader>g/ :Ggrep<Space>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
-nmap <leader>gt :call GitGutterToggle()<CR>
-nmap <leader>gh :call GitGutterLineHighlightsToggle()<CR>
+nmap <leader>gt :GitGutterToggle<CR>
+nmap <leader>gh :GitGutterLineHighlightsToggle<CR>
 
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
@@ -177,6 +178,8 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 nmap - $
 
 nmap <c-tab> :OpenSession<cr>
+
+map <c-/> <Plug>TComment-<c-_><c-_>
 
 " change html element 
 function! s:ChangeElement()
@@ -203,8 +206,12 @@ map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
 imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
 vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
-nmap <Leader>f <Plug>(easymotion-f)
-vmap <Leader>f <Plug>(easymotion-f)
+nmap s <Plug>(easymotion-s)
+vmap s <Plug>(easymotion-s)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
@@ -218,6 +225,7 @@ nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
 map <silent><c-f> :NERDTreeToggle<CR>
+map <silent><Space>f :NERDTreeFind<CR>
 
 "Plugins configuration
 let g:goyo_width = 100
@@ -242,7 +250,7 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 let g:EasyGrepFilesToExclude=".svn,.git"
-let g:EasyGrepOpenWindowOnMatch=0
+let g:EasyGrepOpenWindowOnMatch=1
 
 let tern#is_show_argument_hints_enabled = 1
 let g:tern_show_arguments_hints="on_move"
@@ -282,7 +290,7 @@ let g:syntastic_warning_symbol='▸'
 let g:syntastic_style_error_symbol='▸'
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = '⮀'
+" let g:airline#extensions#tabline#left_sep = '⮀'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 if !exists('g:airline_symbols')
@@ -293,14 +301,14 @@ let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_left_sep   = '⮀'
-let g:airline_left_sep   = '⮀'
-let g:airline_right_sep    = '⮂'
-let g:airline_right_sep    = '⮂'
-let g:airline_left_sep          = '⮀'
-let g:airline_left_alt_sep      = '⮁'
-let g:airline_right_sep         = '⮂'
-let g:airline_right_alt_sep     = '⮃'
+" let g:airline_left_sep   = '⮀'
+" let g:airline_left_sep   = '⮀'
+" let g:airline_right_sep    = '⮂'
+" let g:airline_right_sep    = '⮂'
+let g:airline_left_sep          = ' '
+let g:airline_left_alt_sep      = ' '
+let g:airline_right_sep         = ' '
+let g:airline_right_alt_sep     = ' '
 let g:airline_branch_prefix     = '⭠'
 let g:airline_readonly_symbol   = '⭤'
 let g:airline_linecolumn_prefix = '⭡'
@@ -335,9 +343,9 @@ let g:fuf_modesDisable = []
 
 let g:startify_restore_position = 1
 let g:startify_list_order = ['sessions', 'files', 'dir', 'bookmarks']
-let g:startify_session_detection = 1
-let g:startify_session_autoload = 1
-let g:startify_session_persistence = 1
+"let g:startify_session_detection = 1
+"let g:startify_session_autoload = 1
+"let g:startify_session_persistence = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_dir = '~/.vim/sessions'
@@ -414,6 +422,10 @@ let toplevel.cdlist   = [
       \ ['_FOSSIL_', 'findfile'],
       \ ]
 
+let delimitMate_smart_quotes = 0
+let delimitMate_autoclose = 0
+let loaded_delimitMate = 0
+
 " let g:indentLine_fileType = ['*.js']
 
 " todo.vim default highlight groups, feel free to override as wanted
@@ -476,12 +488,11 @@ set secure
 set autowrite
 set autoread
 set relativenumber
-set sessionoptions=blank,curdir,folds,help,tabpages,winpos
+set linespace=3
 
 autocmd BufNewFile,BufRead todo set ft=todo
 
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
 
-augroup toplevel
-  autocmd BufEnter * silent Cd!
-augroup END
+autocmd BufEnter * silent Cd!
+autocmd BufEnter * silent IndentLinesReset 
