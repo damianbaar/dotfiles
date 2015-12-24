@@ -1,89 +1,141 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+"NeoBundle Scripts-----------------------------
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+endif
 
-Plugin 'gmarik/vundle'
-" Plugin 'morhetz/gruvbox'
-" Plugin 'zeis/vim-kolor'
-" Plugin 'w0ng/vim-hybrid'
-Plugin 'tomasr/molokai'
-" Plugin 'goatslacker/mango.vim'
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'airblade/vim-gitgutter'
-" Plugin 'edkolev/promptline.vim'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'bling/vim-airline'
-Plugin 'sjl/gundo.vim'
-Plugin 'kshenoy/vim-signature'
-Plugin 'maxbrunsfeld/vim-yankstack'
+" Required:
+call neobundle#begin(expand('~/.vim/bundle'))
 
-"WEB
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'hail2u/vim-css3-syntax.git'
-Plugin 'skammer/vim-css-color.git'
-Plugin 'groenewege/vim-less'
-Plugin 'othree/html5.vim'
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" NeoBundle 'goatslacker/mango.vim'
+" NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'airblade/vim-gitgutter'
+" NeoBundle 'edkolev/promptline.vim'
+" NeoBundle 'morhetz/gruvbox'
+" NeoBundle 'zeis/vim-kolor'
+" NeoBundle 'w0ng/vim-hybrid'
+" NeoBundle 'tristen/vim-sparkup'
+" NeoBundle 'mustache/vim-mustache-handlebars'
+" NeoBundle 'gregsexton/gitv'
+" NeoBundle 'vim-scripts/repmo.vim'
+" NeoBundle 'dockyard/vim-easydir'
+" NeoBundle 'mhinz/vim-toplevel'
+" NeoBundle 'reinh/vim-makegreen'
+" NeoBundle 'danro/rename.vim'
+" NeoBundle 'mileszs/ack.vim'
+" NeoBundle 'benekastah/neomake'
+" NeoBundle 'xolox/vim-easytags'
+" NeoBundle 'airblade/vim-gitgutter'
+" NeoBundle 'tpope/vim-fireplace'
+" NeoBundle 'vim-scripts/VimClojure'
+" NeoBundle 'airblade/vim-rooter'
+" NeoBundle 'yssl/AutoCWD.vim'
+"
+NeoBundle 'gmarik/vundle'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'kshenoy/vim-signature'
+NeoBundle 'maxbrunsfeld/vim-yankstack'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'moll/vim-node'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'mkitt/tabline.vim'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'mhinz/vim-startify'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'vim-scripts/matchit.zip'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-session'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tyru/restart.vim'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'ryanoasis/vim-devicons'
+NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+NeoBundle 'mhinz/vim-signify'
+"
+" " FileTypes
+NeoBundle 'vim-ruby/vim-ruby',                 {'autoload' : {'filetypes' : ['ruby', 'erb']}}
+NeoBundle 'tpope/vim-haml',                    {'autoload' : {'filetypes' : ['haml']}}
+NeoBundle 'derekwyatt/vim-scala',              {'autoload' : {'filetypes' : ['scala']}}
+NeoBundle 'elixir-lang/vim-elixir',            {'autoload' : {'filetypes' : ['elixir']}}
+NeoBundle 'gabrielelana/vim-markdown',         {'autoload' : {'filetypes' : ['markdown']}}
+NeoBundle 'stephpy/vim-yaml',                  {'autoload' : {'filetypes' : ['yaml']}}
+NeoBundle 'Matt-Deacalion/vim-systemd-syntax', {'autoload' : {'filetypes' : ['systemd']}}
+NeoBundle 'zah/nimrod.vim',                    {'autoload' : {'filetypes' : ['nim']}}
+NeoBundle 'wstrinz/shen.vim',                  {'autoload' : {'filetypes' : ['shen']}}
+NeoBundle 'ekalinin/Dockerfile.vim',           {'autoload' : {'filetypes' : ['Dockerfile']}}
+NeoBundle 'rust-lang/rust.vim',                {'autoload' : {'filetypes' : ['rust']}}
+NeoBundle 'rodjek/vim-puppet',                 {'autoload' : {'filetypes' : ['puppet']}}
+
+" Editing
+NeoBundle 'nelstrom/vim-visual-star-search'
+NeoBundle 'dkprice/vim-easygrep'
+NeoBundle 'terryma/vim-multiple-cursors'
+
+" Rainbow ()
+NeoBundle 'kien/rainbow_parentheses.vim'
 
 "Dev helper - linters
-Plugin 'scrooloose/syntastic'
-Plugin 'mtth/scratch.vim'
+NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'mtth/scratch.vim'
 
-Plugin 'tomtom/tcomment_vim'
-Plugin 'godlygeek/tabular'
-Plugin 'moll/vim-node'
-Plugin 'tpope/vim-surround'
-Plugin 'mkitt/tabline.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'elzr/vim-json'
-" Plugin 'tristen/vim-sparkup'
-" Plugin 'mustache/vim-mustache-handlebars'
-" Plugin 'gregsexton/gitv'
-Plugin 'mhinz/vim-startify'
-Plugin 'Raimondi/delimitMate'
-Plugin 'vim-scripts/matchit.zip'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-repeat'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'lilydjwg/colorizer'
-Plugin 'dkprice/vim-easygrep'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'xolox/vim-misc'
-" Plugin 'vim-scripts/repmo.vim'
-" Plugin 'dockyard/vim-easydir'
-" Plugin 'mhinz/vim-toplevel'
-Plugin 'xolox/vim-session'
-" Plugin 'reinh/vim-makegreen'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tyru/restart.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-markdown'
-" Plugin 'danro/rename.vim'
-" Plugin 'mileszs/ack.vim'
-" Plugin 'elmcast/elm-vim'
-Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'ryanoasis/vim-devicons'
-" Plugin 'benekastah/neomake'
-Plugin 'mxw/vim-jsx'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mhinz/vim-signify'
-" Plugin 'xolox/vim-easytags'
-" Plugin 'airblade/vim-gitgutter'
-Plugin 'marijnh/tern_for_vim'
-" Plugin 'tpope/vim-fireplace'
-" Plugin 'vim-scripts/VimClojure'
-" Plugin 'airblade/vim-rooter'
-" Plugin 'yssl/AutoCWD.vim'
-"
-call vundle#end()
+"WEB
+NeoBundle 'lambdatoast/elm.vim'          , {'autoload' : {'filetypes' : ['elm']}}
+NeoBundle 'jelera/vim-javascript-syntax' , {'autoload' : {'filetypes' : ['javascript']}}
+NeoBundle 'pangloss/vim-javascript'      , {'autoload' : {'filetypes' : ['javascript']}}
+NeoBundle 'marijnh/tern_for_vim'         , {'autoload' : {'filetypes' : ['javascript']}}
+NeoBundle 'mxw/vim-jsx'                  , {'autoload' : {'filetypes' : ['javascript', 'jsx']}}
+NeoBundle 'hail2u/vim-css3-syntax.git'   , {'autoload' : {'filetypes' : ['css']}}
+NeoBundle 'skammer/vim-css-color.git'    , {'autoload' : {'filetypes' : ['css']}}
+NeoBundle 'groenewege/vim-less'          , {'autoload' : {'filetypes' : ['less']}}
+NeoBundle 'othree/html5.vim'             , {'autoload' : {'filetypes' : ['html']}}
+
+" Clojure
+NeoBundle 'guns/vim-clojure-static'       , {'autoload' : {'filetypes' : ['clojure']}}
+NeoBundle 'guns/vim-clojure-highlight'    , {'autoload' : {'filetypes' : ['clojure']}}
+NeoBundle 'tpope/vim-fireplace'           , {'autoload' : {'filetypes' : ['clojure']}}
+NeoBundle 'tpope/vim-dispatch'            , {'autoload' : {'filetypes' : ['clojure']}}
+NeoBundle 'typedclojure/vim-typedclojure' , {'autoload' : {'filetypes' : ['clojure']}}
+NeoBundle 'vim-scripts/paredit.vim'       , {'autoload' : {'filetypes' : ['clojure']}}
+
+" Haskell
+NeoBundle 'wlangstroth/vim-haskell' , {'autoload' : {'filetypes' : ['haskell']}}
+NeoBundle 'bitc/vim-hdevtools'      , {'autoload' : {'filetypes' : ['haskell']}}
+NeoBundle 'eagletmt/ghcmod-vim'     , {'autoload' : {'filetypes' : ['haskell']}}
+
+" Required:
+call neobundle#end()
+
+" Required:
 filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
 
 let g:indentLine_noConcealCursor=""
 let g:vim_json_syntax_conceal = 0
@@ -96,13 +148,12 @@ endif
 let loaded_netrw=0
 let loaded_netrwPlugin=0
 
-
 let g:repmo_key = ";"
 let g:repmo_revkey = "<bar>"
 
 set bg=dark 
 colorscheme molokai
-" let g:molokai_original = 1
+let g:molokai_original = 1
 
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
@@ -181,9 +232,10 @@ nnoremap <silent> <leader>cc : CtrlPChange<CR>
 nnoremap <silent> <leader>tt : CtrlPTag<CR>
 
 nnoremap cse :call <SID>ChangeElement()<cr>
+nnoremap <leader>oo :TagbarToggle<cr>
 map <leader>bd :bdelete<cr>
 
-nnoremap <Leader>gg :Git<Space>
+" nnoremap <Leader>gg :Git<Space>
 " nnoremap <Leader>gw :Gwrite<CR>
 " nnoremap <Leader>gr :Gread<CR>
 " nnoremap <Leader>gs :Gstatus<CR>
@@ -195,17 +247,11 @@ nnoremap <Leader>gg :Git<Space>
 " nnoremap <Leader>gm :Gmove<Space>
 " nnoremap <Leader>g/ :Ggrep<Space>
 
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-
 nmap <leader>gt :GitGutterToggle<CR>
 nmap <leader>gh :GitGutterLineHighlightsToggle<CR>
 
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
-
-nmap - $
-
 
 map <c-/> <Plug>TComment-<c-_><c-_>
 
@@ -229,10 +275,6 @@ endif
 let tag = substitute(tag, '>*$', '', '')
 exe "normal cst<" . tag . attributes . ">"
 endfunction
-
-map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>
-imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a
-vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv
 
 nmap s <Plug>(easymotion-s)
 vmap s <Plug>(easymotion-s)
@@ -292,15 +334,8 @@ let g:ycm_semantic_triggers =  {
   \   'erlang' : [':'],
   \ }
 
-" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<c-space>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
-"  let g:UltiSnipsExpandTrigger="<c-e>"
-"  let g:UltiSnipsListSnippets="<c-l>"
-" " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-"" Ultisnips
-" let g:UltiSnipsExpandTrigger="<c-space>"
-" let g:UltiSnipsListSnippets="<c-s-tab>"
 
 let g:EasyGrepFilesToExclude=".svn,.git,bundle.js,README.md,output.js"
 let g:EasyGrepOpenWindowOnMatch=1
@@ -326,18 +361,10 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-" Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-" let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-" "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 let g:syntastic_always_populate_loc_list=0
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_enable_signs = 1
-" let g:syntastic_javascript_jslint_conf = " --white --plusplus --nomen --newcap --evil"
 let g:syntastic_error_symbol='▸'
 let g:syntastic_warning_symbol='▸'
 let g:syntastic_style_error_symbol='▸'
@@ -364,50 +391,6 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#syntastic#enabled=1
 
-" let g:airline#extensions#tabline#enabled = 2
-" let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = '|'
-" let g:airline#extensions#tabline#right_sep = ' '
-" let g:airline#extensions#tabline#right_alt_sep = '|'
-" let g:airline_left_sep = ' '
-" let g:airline_left_alt_sep = '|'
-" let g:airline_right_sep = ' '
-" let g:airline_right_alt_sep = '|'
-" let g:airline_theme= 'molokai'
-" let g:airline_symbols.linenr= '⭡'
-" " let g:airline_branch_prefix     = '⭠'
-" " let g:airline_symbols.branch = '⭠'
-" let g:airline_readonly_symbol   = '⭤'
-" " let g:airline_linecolumn_prefix = '⭡'
-" " let g:airline_symbols_paste = 'ρ'
-" let g:airline_symbols_paste = 'Þ'
-" let g:airline_symbols_whitespace = 'Ξ'
-
-" let g:airline#extensions#tabline#left_sep = '⮀'
-" let g:airline#extensions#tabline#left_alt_sep = '|'
-
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_left_sep   = '⮀'
-" let g:airline_left_sep   = '⮀'
-" let g:airline_right_sep    = '⮂'
-" let g:airline_right_sep    = '⮂'
-" let g:airline_left_sep          = ' '
-" let g:airline_left_alt_sep      = ' '
-" let g:airline_right_sep         = ' '
-" let g:airline_right_alt_sep     = ' '
-"
-" let g:airline_enable_branch    = 1
-" let g:airline_enable_syntastic = 1
-" let g:airline_powerline_fonts  = 0
-"
-" let g:airline_detect_modified=1
-" let g:airline_detect_paste=1
-" let g:airline_inactive_collapse=1
-" let g:airline#extensions#syntastic#enabled = 1
-" let g:airline#extensions#bufferline#enabled = 1
-" let g:airline#extensions#hunks#enabled = 1
-" let g:airline#extensions#whitespace#enabled = 1
 
 let javascript_enable_domhtmlcss = 1
 let b:javascript_fold = 1
@@ -439,10 +422,10 @@ let g:ctrlp_use_caching = 0
 let g:ctrlp_switch_buffer = 'Et'
 let g:ctrlp_open_new_file = 'r'
 
-let g:ctrlp_status_func = {
-      \   'main': 'CtrlPMainStatusLine',
-      \   'prog': 'CtrlPProgStatusLine'
-      \ }
+" let g:ctrlp_status_func = {
+"       \   'main': 'CtrlPMainStatusLine',
+"       \   'prog': 'CtrlPProgStatusLine'
+"       \ }
 
 " function! CtrlPMainStatusLine(...)
 "   let item = '%#Character# '.a:5.' %*'
@@ -500,17 +483,6 @@ let g:tagbar_type_haskell = {
       \ 'type'   : 't'
   \ }
 \ }
-" let g:easytags_dynamic_files = 1
-" " let g:easytags_cmd = '/usr/local/bin/ctags'
-" let g:easytags_languages = {
-" \   'javascript': {
-" \     'cmd': 'jsctags',
-" \       'args': [],
-" \       'fileoutput_opt': '-f',
-" \       'stdout_opt': '-f-',
-" \       'recurse_flag': '-R'
-" \   }
-" \}
 
 " let g:gitgutter_realtime = 0
 " let g:gitgutter_eager = 0
@@ -521,8 +493,6 @@ let delimitMate_autoclose = 0
 let loaded_delimitMate = 0
 
 nmap <leader>os :OpenSession<cr>
-
-" let g:indentLine_fileType = ['*.js']
 
 " todo.vim default highlight groups, feel free to override as wanted
 hi link TodoTitle Title
@@ -588,29 +558,15 @@ set relativenumber
 set linespace=3
 set conceallevel=0
 "
-" autocmd BufNewFile,BufRead todo set ft=todo
+autocmd BufNewFile,BufRead todo set ft=todo
 "
-" " autocmd User Node
-" "   \ if &filetype == "javascript" |
-" "   \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
-" "   \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
-" "   \ endif
-" highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
+highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
 "
 " " autocmd BufEnter * silent Cd!
 autocmd BufEnter * silent IndentLinesReset 
 "
-" "go go go
-" " au Filetype go nnoremap <leader>gr :GoRun %<CR>
-" " au Filetype go nnoremap <leader>gd :GoInstall<CR>
-" " au Filetype go nnoremap <leader>gu :GoImports<CR>
-"
 " " syntax enable
 " " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" " colorscheme OceanicNext
-" " set background=dark
-" " let g:airline_theme='oceanicnext'
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
 "
 " Relative numbering
 function! NumberToggle()
@@ -623,20 +579,11 @@ function! NumberToggle()
 endfunc
 
 " Toggle between normal and relative numbering.
-nnoremap <leader>tg :call NumberToggle()<cr>
+nnoremap <leader>tn :call NumberToggle()<cr>
 " " autocmd! BufWritePost * Neomake
 " " set regexpengine=1
 " " syntax enable
 "
-" " let g:javascript_conceal_function   = "ƒ"
-" " let g:javascript_conceal_null       = "ø"
-" " let g:javascript_conceal_this       = "@"
-" " let g:javascript_conceal_return     = ">>"
-" " let g:javascript_conceal_undefined  = "¿"
-" " let g:javascript_conceal_NaN        = "ℕ"
-" " let g:javascript_conceal_prototype  = "¶"
-" " let g:javascript_conceal_static     = "•"
-" " let g:javascript_conceal_super      = "Ω"
 hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
