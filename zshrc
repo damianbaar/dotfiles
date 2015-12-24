@@ -1,11 +1,28 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-CLOJURESCRIPT_HOME=/usr/local/lib/clojurescript/
+CLOJURESCRIPT_HOME=/usr/local/lib/clojurescript
 DOTFILES=$HOME/Dropbox/dotfiles
 
 PATH=$CLOJURESCRIPT_HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 PATH=/usr/local/lib/node_modules/:$PATH
 PATH=/usr/local/lib/clojurescript/bin:$PATH
+PATH=/opt/local/bin:$PATH
+PATH=/usr/local/go/bin:$PATH
+PATH=/usr/local/go/bin:$PATH
+
+export CLOJURESCRIPT_HOME=/Users/damianbaar/Documents/Workspaces/clojurescript/runtime/clojurescript/
+export PATH=$PATH:$CLOJURESCRIPT_HOME/bin:$CLOJURESCRIPT_HOME/script
+
+export NODE_PATH=/usr/local/lib/node_modules
+export GOPATH=$HOME/Documents/Workspaces/go
+export GOBIN=$HOME/Documents/Workspaces/go/bin
+
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+
+PATH=$GOPATH:$PATH
+PATH=$GOBIN:$PATH
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -42,7 +59,7 @@ ZSH_THEME="ys"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment following line if you want to  shown in the command execution time stamp 
+# Uncomment following line if you want to  shown in the command execution time stamp
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
@@ -55,21 +72,23 @@ plugins=(git)
 
 # bindkey -v
 # bindkey -M viins ‘jj’ vi-cmd-mode
-bindkey ‘^R’ history-incremental-search-backward
+# bindkey ‘^R’ history-incremental-search-backward
 
 source $ZSH/oh-my-zsh.sh
+source ~/.nvm/nvm.sh
 
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
-alias vim='mvim'
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin":$PATH
+alias vim='nvim'
 alias vimt='mvim --remote-tab-silent'
-alias vi="vim --remote-tab-silent"
+alias vi="nvim --remote-tab-silent"
+alias node="node --harmony"
 alias projects='cd ~/Documents/Workspaces/HTML:JS:Node/'
 alias dots="cd ~/Dropbox/dotfiles"
 alias gs="git status"
 alias undo-commit="git reset --hard HEAD^"
-alias glog="git log --pretty=oneline" 
+alias glog="git log --pretty=oneline"
 alias get-hash-last-commit="git log --format=%H | head -1"
 alias get-hash-first-commit="git log --format=%H | tail -1"
 
@@ -91,3 +110,36 @@ export EDITOR=vim
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
 
+[ `uname -s` != "Darwin" ] && return
+
+function tab () {
+    local cmd=""
+    local cdto="$PWD"
+    local args="$@"
+
+    if [ -d "$1" ]; then
+        cdto=`cd "$1"; pwd`
+        args="${@:2}"
+    fi
+
+    if [ -n "$args" ]; then
+        cmd="; $args"
+    fi
+
+    osascript &>/dev/null <<EOF
+        tell application "iTerm"
+            tell current terminal
+                launch session "Default Session"
+                tell the last session
+                    write text "cd \"$cdto\"$cmd"
+                end tell
+            end tell
+        end tell
+EOF
+}
+
+
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
