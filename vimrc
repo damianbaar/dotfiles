@@ -18,7 +18,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " NeoBundle 'goatslacker/mango.vim'
 " NeoBundle 'tpope/vim-fugitive'
 " NeoBundle 'airblade/vim-gitgutter'
-" NeoBundle 'edkolev/promptline.vim'
+": NeoBundle 'edkolev/promptline.vim'
 " NeoBundle 'morhetz/gruvbox'
 " NeoBundle 'zeis/vim-kolor'
 " NeoBundle 'w0ng/vim-hybrid'
@@ -38,11 +38,17 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " NeoBundle 'vim-scripts/VimClojure'
 " NeoBundle 'airblade/vim-rooter'
 " NeoBundle 'yssl/AutoCWD.vim'
+NeoBundle 'vim-scripts/bash-support.vim'
 "
 NeoBundle 'gmarik/vundle'
-NeoBundle 'tomasr/molokai'
+
+" colorschemes
+" NeoBundle 'tomasr/molokai'
+NeoBundle 'kristijanhusak/vim-hybrid-material'
+
 NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'maxbrunsfeld/vim-yankstack'
@@ -52,6 +58,7 @@ NeoBundle 'moll/vim-node'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mkitt/tabline.vim'
 NeoBundle 'Yggdroot/indentLine'
+" NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'mhinz/vim-startify'
 NeoBundle 'Raimondi/delimitMate'
@@ -73,6 +80,15 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'mhinz/vim-signify'
+NeoBundle 'neilagabriel/vim-geeknote'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'make -f make_mingw32.mak',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'unix' : 'make -f make_unix.mak',
+\    },
+\ }
 "
 " " FileTypes
 NeoBundle 'vim-ruby/vim-ruby',                 {'autoload' : {'filetypes' : ['ruby', 'erb']}}
@@ -106,11 +122,13 @@ NeoBundle 'lambdatoast/elm.vim'          , {'autoload' : {'filetypes' : ['elm']}
 NeoBundle 'jelera/vim-javascript-syntax' , {'autoload' : {'filetypes' : ['javascript']}}
 NeoBundle 'pangloss/vim-javascript'      , {'autoload' : {'filetypes' : ['javascript']}}
 NeoBundle 'marijnh/tern_for_vim'         , {'autoload' : {'filetypes' : ['javascript']}}
-NeoBundle 'mxw/vim-jsx'                  , {'autoload' : {'filetypes' : ['javascript', 'jsx']}}
+NeoBundle 'mxw/vim-jsx'                  , {'autoload' : {'filetypes' : ['javascript'    , 'jsx']}}
 NeoBundle 'hail2u/vim-css3-syntax.git'   , {'autoload' : {'filetypes' : ['css']}}
 NeoBundle 'skammer/vim-css-color.git'    , {'autoload' : {'filetypes' : ['css']}}
 NeoBundle 'groenewege/vim-less'          , {'autoload' : {'filetypes' : ['less']}}
 NeoBundle 'othree/html5.vim'             , {'autoload' : {'filetypes' : ['html']}}
+NeoBundle 'raichoo/purescript-vim'       , {'autoload' : {'filetypes' : ['purescript'    , 'pure']}}
+NeoBundle 'leafgarland/typescript-vim'               , {'autoload' : {'filetypes' : ['ts']}}
 
 " Clojure
 NeoBundle 'guns/vim-clojure-static'       , {'autoload' : {'filetypes' : ['clojure']}}
@@ -121,9 +139,20 @@ NeoBundle 'typedclojure/vim-typedclojure' , {'autoload' : {'filetypes' : ['cloju
 NeoBundle 'vim-scripts/paredit.vim'       , {'autoload' : {'filetypes' : ['clojure']}}
 
 " Haskell
-NeoBundle 'wlangstroth/vim-haskell' , {'autoload' : {'filetypes' : ['haskell']}}
-NeoBundle 'bitc/vim-hdevtools'      , {'autoload' : {'filetypes' : ['haskell']}}
-NeoBundle 'eagletmt/ghcmod-vim'     , {'autoload' : {'filetypes' : ['haskell']}}
+" NeoBundle 'wlangstroth/vim-haskell'   , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
+" NeoBundle 'bitc/vim-hdevtools'      , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
+" NeoBundle 'eagletmt/ghcmod-vim'     , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
+NeoBundle 'eagletmt/neco-ghc'         , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
+" NeoBundle 'kana/vim-filetype-haskell' , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
+NeoBundle 'alx741/vim-hindent'        , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
+NeoBundle 'neovimhaskell/haskell-vim' , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
+" NeoBundle 'nbouscal/vim-stylish-haskell' , {'autoload' : {'filetypes' : ['haskell'    , 'hs']}}
+" NeoBundle 'itchyny/vim-haskell-indent'  , {'autoload' : {'filetypes' : ['haskell'    , 'hs']}}
+" NeoBundle 'eagletmt/neco-ghc'          , {'autoload' : {'filetypes' : ['haskell']}}
+"
+NeoBundle 'jpalardy/vim-slime'
+" NeoBundle 'christoomey/vim-tmux-navigator'
+" NeoBundle 'jgdavey/vim-turbux'
 
 " Required:
 call neobundle#end()
@@ -136,8 +165,12 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
 
-let g:indentLine_noConcealCursor=""
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
 let g:vim_json_syntax_conceal = 0
 let g:jsx_ext_required = 0
 
@@ -150,10 +183,6 @@ let loaded_netrwPlugin=0
 
 let g:repmo_key = ";"
 let g:repmo_revkey = "<bar>"
-
-set bg=dark 
-colorscheme molokai
-let g:molokai_original = 1
 
 if has ('x') && has ('gui')
   set clipboard=unnamedplus
@@ -194,6 +223,13 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+if exists('$TMUX') == 0
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
+endif
+
 map <leader>c "+y
 map <leader>v "+p
 
@@ -219,7 +255,7 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 nmap <Leader>rs :source $MYVIMRC <CR>
-nmap <Leader>re :SaveSession! <CR> :RestartVim<CR>
+" nmap <Leader>re :SaveSession! <CR> :RestartVim<CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 
 nnoremap <Space>a :ClearCtrlPCache<cr>\|:CtrlPCurWD<cr>
@@ -233,6 +269,19 @@ nnoremap <silent> <leader>tt : CtrlPTag<CR>
 
 nnoremap cse :call <SID>ChangeElement()<cr>
 nnoremap <leader>oo :TagbarToggle<cr>
+
+" nnoremap <leader>te :below 10sp term://$SHELL<cr>i
+nnoremap <leader>te :below 10sp term://tmux<cr>i
+tnoremap <Leader>e <C-\><C-n><C-w><C-w>
+tnoremap <C-h> <C-w>h
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-l> <C-w>l
+tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
+
+" nmap <-> #
+
+" Buffer
 map <leader>bd :bdelete<cr>
 
 " nnoremap <Leader>gg :Git<Space>
@@ -294,15 +343,15 @@ vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-map <silent><c-c> :NERDTreeFind<CR>
+" map <silent><c-c> :NERDTreeFind<CR>
 " map <silent><c-f> :Explorer<CR>
 " map <silent> <c-f> :NERDTreeToggle<CR>
 " map <silent> <c-f> :NERDTree %<CR>
-map <silent> <c-f> :call ToggleEssayMode()<CR>
+map <silent> <c-f> :call FindNerdTree()<CR>
 
 let s:enabled = 0
 
-function! ToggleEssayMode()
+function! FindNerdTree()
   if s:enabled
     :NERDTreeToggle
     let s:enabled = 0
@@ -332,10 +381,58 @@ let g:ycm_semantic_triggers =  {
   \   'cs,java,javascript,d,vim,ruby,python,perl6,scala,vb,elixir,go' : ['.'],
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
+  \   'haskell': ['.']
   \ }
 
-let g:UltiSnipsExpandTrigger = "<c-space>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:haskellmode_completion_ghc = 0
+let g:necoghc_enable_detailed_browse = 1
+let g:necoghc_debug = 1
+
+let g:GeeknoteFormat="markdown"
+noremap <leader-nn> :Geeknote<cr>
+
+" let g:UltiSnipsExpandTrigger = "<c-tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+
+" make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>', '<space>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+"
+" " better key bindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" function! g:UltiSnips_Complete()
+"     call UltiSnips#ExpandSnippet()
+"     if g:ulti_expand_res == 0
+"         if pumvisible()
+"             return "\<C-n>"
+"         else
+"             call UltiSnips#JumpForwards()
+"             if g:ulti_jump_forwards_res == 0
+"                return "\<TAB>"
+"             endif
+"         endif
+"     endif
+"     return ""
+" endfunction
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-enter>"
+let g:UltiSnipsJumpForwardTrigger="<c-]>"
+let g:UltiSnipsJumpBackwardTrigger="<c-[>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsListSnippets="<c-e>"
+" this mapping Enter key to <C-y> to chose the current highlight item 
+" and close the selection list, same as other IDEs.
+" CONFLICT with some plugins like tpope/Endwise
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 let g:EasyGrepFilesToExclude=".svn,.git,bundle.js,README.md,output.js"
 let g:EasyGrepOpenWindowOnMatch=1
@@ -350,6 +447,9 @@ let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 0
 let delimitMate_jump_expansion = 1
 
+let g:haskellmode_completion_ghc = 0
+let g:necoghc_enable_detailed_browse = 1
+
 " Enable omni completion.
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -357,10 +457,12 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType hs,haskell setlocal omnifunc=necoghc#omnifunc
 " let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 " autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 
 let g:syntastic_always_populate_loc_list=0
 let g:syntastic_javascript_checkers = ["eslint"]
@@ -386,10 +488,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:smartusline_string_to_highlight = '(%n) %f '
 set laststatus=2 " Seperate lines for state and mode
-let g:airline_powerline_fonts=1 " Powerline simbols. Hermit font support it
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#syntastic#enabled=1
+
 
 
 let javascript_enable_domhtmlcss = 1
@@ -484,6 +583,13 @@ let g:tagbar_type_haskell = {
   \ }
 \ }
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Slime
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <Leader>tv <Plug>SetTmuxVars
+let g:slime_target = "tmux"
+
 " let g:gitgutter_realtime = 0
 " let g:gitgutter_eager = 0
 " let g:gitgutter_enabled = 0
@@ -511,10 +617,11 @@ let g:TodoExplicitCommentsEnabled = 1
 "
 "Vim flags
 syntax on
-set encoding=utf8
+syntax enable
+" set encoding=utf8
 set fileencoding=utf8
 set fillchars+=stl:\ ,stlnc:\
-set t_Co=256
+" set t_Co=256
 set nu
 set splitbelow
 set splitright
@@ -545,7 +652,7 @@ set foldlevelstart=99
 set foldnestmax=3
 set showcmd
 set wildmenu
-set wildmode=full
+set wildmode=longest:full,full
 set backspace=indent,eol,start
 set cursorline
 set novb
@@ -557,13 +664,14 @@ set autoread
 set relativenumber
 set linespace=3
 set conceallevel=0
+set background=dark
 "
 autocmd BufNewFile,BufRead todo set ft=todo
 "
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
 "
 " " autocmd BufEnter * silent Cd!
-autocmd BufEnter * silent IndentLinesReset 
+" autocmd BufEnter * silent IndentLinesReset 
 "
 " " syntax enable
 " " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -584,6 +692,18 @@ nnoremap <leader>tn :call NumberToggle()<cr>
 " " set regexpengine=1
 " " syntax enable
 "
-hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
-hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
-hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+" hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
+" hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
+" hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+" let g:molokai_original = 1
+let g:indentLine_enabled = 1
+" let g:indentLine_noConcealCursor=""
+" let g:indentLine_char = '|'
+let g:enable_bold_font = 1
+let g:indentLine_color_term = 239
+" colorscheme molokai
+colorscheme hybrid_material
+let g:airline_theme = "hybrid"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'

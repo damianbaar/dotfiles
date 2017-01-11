@@ -8,7 +8,7 @@ PATH=/usr/local/lib/node_modules/:$PATH
 PATH=/usr/local/lib/clojurescript/bin:$PATH
 PATH=/opt/local/bin:$PATH
 PATH=/usr/local/go/bin:$PATH
-PATH=$HOME/.cabal/bin:$PATH
+PATH=/usr/local/go/bin:$PATH
 
 export CLOJURESCRIPT_HOME=/Users/damianbaar/Documents/Workspaces/clojurescript/runtime/clojurescript/
 export PATH=$PATH:$CLOJURESCRIPT_HOME/bin:$CLOJURESCRIPT_HOME/script
@@ -18,23 +18,15 @@ export GOPATH=$HOME/Documents/Workspaces/go
 export GOBIN=$HOME/Documents/Workspaces/go/bin
 
 export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 PATH=$GOPATH:$PATH
 PATH=$GOBIN:$PATH
-
-if [ -e /Users/damianbaar/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/damianbaar/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-NIX_LINK=$HOME/.nix-profile
-export PATH=$NIX_LINK/bin:$NIX_LINK/sbin:$PATH
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="ys"
-# ZSH_THEME="honukai"
-ZSH_THEME="xxf"
+ZSH_THEME="ys"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -74,7 +66,7 @@ ZSH_THEME="xxf"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew grunt npm cabal git-flow lein taskwarrior)
+plugins=(git)
 # plugins=(vi-mode)
 
 # bindkey -v
@@ -91,8 +83,7 @@ alias vim='nvim'
 alias vimt='mvim --remote-tab-silent'
 alias vi="nvim --remote-tab-silent"
 alias node="node --harmony"
-alias projects='cd ~/Documents/Workspaces/'
-alias workspaces='cd ~/Documents/Workspaces/'
+alias projects='cd ~/Documents/Workspaces/HTML:JS:Node/'
 alias dots="cd ~/Dropbox/dotfiles"
 alias gs="git status"
 alias undo-commit="git reset --hard HEAD^"

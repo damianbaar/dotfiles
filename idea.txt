@@ -1,0 +1,18 @@
+Virtualized Reactive Components
+0. streams as a first class citizen
+1. documentFragment / DOMParser at the end vdom-virtualize -> virtual-dom
+2. innerHtml / appenChild / full options from documentFragment (ifs/for etc)
+3. each feature expose DOM (evaluated), events, and one common mutable stream for 
+data
+4. as we are appending functionallity or disabling some, we can go with flow a
+-> b -> c -> ... ->n, assuming that b / c could be disabled (not attached to
+main stream)
+5. each stream will have access to previous streams, this is A -> B => B will
+have access to A, A -> B -> C, C will have access to A/B - to be able to merge
+two independent streams into one and provide some side effects.
+6. cutting points based upon after and before methods,
+component.use('feature').before('feature_name_A').after('feature_name_B').commit()
+
+Core
+Will be merging all stream and run DOM appenders so all will be as living
+organism.

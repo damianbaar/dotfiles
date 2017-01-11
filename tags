@@ -1,0 +1,166 @@
+!_TAG_FILE_FORMAT	2	/extended format/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Anders Janmyr	/anders@janmyr.com/
+!_TAG_PROGRAM_NAME	javascript-ctags	//
+!_TAG_PROGRAM_URL	http://github.com/andersjanmyr/javascript-ctags	/GitHub repository/
+!_TAG_PROGRAM_VERSION	0.1.1	//
+-	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap - \$$/;"	m	language:Vim
+/	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map  \/ <Plug>(easymotion-sn)$/;"	m	language:Vim
+/	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^omap \/ <Plug>(easymotion-tn)$/;"	m	language:Vim
+<A-j>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^inoremap <A-j> <Esc>:m .+1<CR>==gi$/;"	m	language:Vim
+<A-j>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <A-j> :m .+1<CR>==$/;"	m	language:Vim
+<A-j>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vnoremap <A-j> :m '>+1<CR>gv=gv$/;"	m	language:Vim
+<A-k>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^inoremap <A-k> <Esc>:m .-2<CR>==gi$/;"	m	language:Vim
+<A-k>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <A-k> :m .-2<CR>==$/;"	m	language:Vim
+<A-k>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vnoremap <A-k> :m '<-2<CR>gv=gv$/;"	m	language:Vim
+<C-h>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <C-h> <C-w>h$/;"	m	language:Vim
+<C-j>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <C-j> <C-w>j$/;"	m	language:Vim
+<C-k>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <C-k> <C-w>k$/;"	m	language:Vim
+<C-l>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <C-l> <C-w>l$/;"	m	language:Vim
+<C-left>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map <C-left> <ESC>:bp<CR>$/;"	m	language:Vim
+<C-right>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map <C-right> <ESC>:bn<CR>$/;"	m	language:Vim
+<F5>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^imap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>a$/;"	m	language:Vim
+<F5>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map    <silent>   <F5>   :call        gruvbox#bg_toggle()<CR>$/;"	m	language:Vim
+<F5>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vmap   <silent>   <F5>   <ESC>:call   gruvbox#bg_toggle()<CR>gv$/;"	m	language:Vim
+<Leader>a,	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <Leader>a, :Tabularize \/,<CR>$/;"	m	language:Vim
+<Leader>a,	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vmap <Leader>a, :Tabularize \/,<CR>$/;"	m	language:Vim
+<Leader>a:	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <Leader>a: :Tabularize \/:<CR>$/;"	m	language:Vim
+<Leader>a:	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vmap <Leader>a: :Tabularize \/:<CR>$/;"	m	language:Vim
+<Leader>a::	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <Leader>a:: :Tabularize \/:\\zs<CR>$/;"	m	language:Vim
+<Leader>a::	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vmap <Leader>a:: :Tabularize \/:\\zs<CR>$/;"	m	language:Vim
+<Leader>a<Bar>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <Leader>a<Bar> :Tabularize \/<Bar><CR>$/;"	m	language:Vim
+<Leader>a<Bar>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vmap <Leader>a<Bar> :Tabularize \/<Bar><CR>$/;"	m	language:Vim
+<Leader>a=	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <Leader>a= :Tabularize \/=<CR>$/;"	m	language:Vim
+<Leader>a=	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vmap <Leader>a= :Tabularize \/=<CR>$/;"	m	language:Vim
+<Leader>gg	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <Leader>gg :Git<Space>$/;"	m	language:Vim
+<Leader>re	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <Leader>re :SaveSession! <CR> :RestartVim<CR>$/;"	m	language:Vim
+<Leader>rs	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <Leader>rs :source $MYVIMRC <CR>$/;"	m	language:Vim
+<Space>a	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <Space>a :ClearCtrlPCache<cr>\\|:CtrlPCurWD<cr>$/;"	m	language:Vim
+<a-i>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <a-i> 40<c-w><$/;"	m	language:Vim
+<a-o>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <a-o> 40<c-w>>$/;"	m	language:Vim
+<c-/>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map <c-\/> <Plug>TComment-<c-_><c-_>$/;"	m	language:Vim
+<c-c>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map <silent><c-c> :NERDTreeFind<CR>$/;"	m	language:Vim
+<c-f>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map <silent> <c-f> :call ToggleEssayMode()<CR>$/;"	m	language:Vim
+<down>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^inoremap <down> <nop>$/;"	m	language:Vim
+<down>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <down> <nop>$/;"	m	language:Vim
+<leader><leader>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <leader><leader> <C-^>$/;"	m	language:Vim
+<leader>P	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <leader>P <Plug>yankstack_substitute_newer_paste$/;"	m	language:Vim
+<leader>bd	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map <leader>bd :bdelete<cr>$/;"	m	language:Vim
+<leader>c	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map <leader>c "+y$/;"	m	language:Vim
+<leader>cc	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <silent> <leader>cc : CtrlPChange<CR>$/;"	m	language:Vim
+<leader>ff	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>$/;"	m	language:Vim
+<leader>gh	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <leader>gh :GitGutterLineHighlightsToggle<CR>$/;"	m	language:Vim
+<leader>gt	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <leader>gt :GitGutterToggle<CR>$/;"	m	language:Vim
+<leader>ll	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <silent> <leader>ll  : CtrlPLine<CR>$/;"	m	language:Vim
+<leader>mm	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <silent> <leader>mm : CtrlPMRUFiles<CR>$/;"	m	language:Vim
+<leader>os	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <leader>os :OpenSession<cr>$/;"	m	language:Vim
+<leader>p	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <leader>p <Plug>yankstack_substitute_older_paste$/;"	m	language:Vim
+<leader>qq	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <silent> <leader>qq  : CtrlPQuickfix<CR>$/;"	m	language:Vim
+<leader>tg	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <leader>tg :call NumberToggle()<cr>$/;"	m	language:Vim
+<leader>tt	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <silent> <leader>tt : CtrlPTag<CR>$/;"	m	language:Vim
+<leader>u	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap <silent> <leader>u :GundoToggle<CR>$/;"	m	language:Vim
+<leader>v	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map <leader>v "+p$/;"	m	language:Vim
+<left>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^inoremap <left> <nop>$/;"	m	language:Vim
+<left>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <left> <nop>$/;"	m	language:Vim
+<right>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^inoremap <right> <nop>$/;"	m	language:Vim
+<right>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <right> <nop>$/;"	m	language:Vim
+<tab>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <tab> :CtrlPBuffer<CR>$/;"	m	language:Vim
+<up>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^inoremap <up> <nop>$/;"	m	language:Vim
+<up>	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap <up> <nop>$/;"	m	language:Vim
+ChangeElement	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^function! s:ChangeElement()$/;"	f	language:Vim
+N	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map  N <Plug>(easymotion-prev)$/;"	m	language:Vim
+NERDTreeQuitOnOpen	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let NERDTreeQuitOnOpen=1$/;"	v	language:Vim
+NumberToggle	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^function! NumberToggle()$/;"	f	language:Vim
+ToggleEssayMode	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^function! ToggleEssayMode()$/;"	f	language:Vim
+[h	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap [h <Plug>GitGutterPrevHunk$/;"	m	language:Vim
+]h	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap ]h <Plug>GitGutterNextHunk$/;"	m	language:Vim
+b:javascript_fold	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let b:javascript_fold = 1$/;"	v	language:Vim
+cse	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap cse :call <SID>ChangeElement()<cr>$/;"	m	language:Vim
+delimitMate_autoclose	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let delimitMate_autoclose = 0$/;"	v	language:Vim
+delimitMate_expand_cr	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let delimitMate_expand_cr = 2$/;"	v	language:Vim
+delimitMate_expand_space	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let delimitMate_expand_space = 0$/;"	v	language:Vim
+delimitMate_jump_expansion	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let delimitMate_jump_expansion = 1$/;"	v	language:Vim
+delimitMate_smart_quotes	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let delimitMate_smart_quotes = 0$/;"	v	language:Vim
+function_name	/Users/damianbaar/Documents/Workspaces/HTML:JS:Node/handlebars-grunt/server/server.js	5/\<function_name\>/;"	f	lineno:6
+g:EasyGrepFilesToExclude	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:EasyGrepFilesToExclude=".svn,.git,bundle.js,README.md,output.js"$/;"	v	language:Vim
+g:EasyGrepIgnoreCase	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:EasyGrepIgnoreCase=1$/;"	v	language:Vim
+g:EasyGrepMode	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:EasyGrepMode=2$/;"	v	language:Vim
+g:EasyGrepOpenWindowOnMatch	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:EasyGrepOpenWindowOnMatch=1$/;"	v	language:Vim
+g:EasyMotion_smartcase	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:EasyMotion_smartcase = 1$/;"	v	language:Vim
+g:EasyMotion_startofline	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion$/;"	v	language:Vim
+g:EasyMotion_use_smartsign_us	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:EasyMotion_use_smartsign_us = 1 $/;"	v	language:Vim
+g:EasyMotion_use_upper	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:EasyMotion_use_upper = 1$/;"	v	language:Vim
+g:TodoExplicitCommentsEnabled	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:TodoExplicitCommentsEnabled = 1$/;"	v	language:Vim
+g:UltiSnipsExpandTrigger	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:UltiSnipsExpandTrigger = "<c-space>"$/;"	v	language:Vim
+g:UltiSnipsJumpForwardTrigger	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:UltiSnipsJumpForwardTrigger = "<tab>"$/;"	v	language:Vim
+g:ackprg	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^  let g:ackprg = 'ag --vimgrep'$/;"	v	language:Vim
+g:airline#extensions#tabline#enabled	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline#extensions#tabline#enabled = 1$/;"	v	language:Vim
+g:airline#extensions#tabline#enabled	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline#extensions#tabline#enabled = 2$/;"	v	language:Vim
+g:airline#extensions#tabline#fnamemod	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline#extensions#tabline#fnamemod = ':t'$/;"	v	language:Vim
+g:airline#extensions#tabline#left_alt_sep	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline#extensions#tabline#left_alt_sep = '|'$/;"	v	language:Vim
+g:airline#extensions#tabline#left_sep	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline#extensions#tabline#left_sep = ' '$/;"	v	language:Vim
+g:airline#extensions#tabline#right_alt_sep	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline#extensions#tabline#right_alt_sep = '|'$/;"	v	language:Vim
+g:airline#extensions#tabline#right_sep	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline#extensions#tabline#right_sep = ' '$/;"	v	language:Vim
+g:airline_left_alt_sep	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_left_alt_sep = '|'$/;"	v	language:Vim
+g:airline_left_sep	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_left_sep = ' '$/;"	v	language:Vim
+g:airline_linecolumn_prefix	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_linecolumn_prefix = '⭡'$/;"	v	language:Vim
+g:airline_readonly_symbol	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_readonly_symbol   = '⭤'$/;"	v	language:Vim
+g:airline_right_alt_sep	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_right_alt_sep = '|'$/;"	v	language:Vim
+g:airline_right_sep	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_right_sep = ' '$/;"	v	language:Vim
+g:airline_symbols_paste	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_symbols_paste = 'Þ'$/;"	v	language:Vim
+g:airline_symbols_paste	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_symbols_paste = 'ρ'$/;"	v	language:Vim
+g:airline_symbols_whitespace	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_symbols_whitespace = 'Ξ'$/;"	v	language:Vim
+g:airline_theme	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:airline_theme= 'molokai'$/;"	v	language:Vim
+g:ctrlp_open_new_file	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ctrlp_open_new_file = 'r'$/;"	v	language:Vim
+g:ctrlp_reuse_window	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ctrlp_reuse_window = 'netrw\\|help\\|quickfix'$/;"	v	language:Vim
+g:ctrlp_status_func	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ctrlp_status_func = {$/;"	v	language:Vim
+g:ctrlp_switch_buffer	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ctrlp_switch_buffer = 'Et'$/;"	v	language:Vim
+g:ctrlp_use_caching	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ctrlp_use_caching = 0$/;"	v	language:Vim
+g:ctrlp_user_command	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard'] " Use git but also show untracked files$/;"	v	language:Vim
+g:ctrlp_working_path_mode	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ctrlp_working_path_mode = 'ra'$/;"	v	language:Vim
+g:fuf_modesDisable	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:fuf_modesDisable = []$/;"	v	language:Vim
+g:jsx_ext_required	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:jsx_ext_required = 0$/;"	v	language:Vim
+g:netrw_altv	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:netrw_altv = 1$/;"	v	language:Vim
+g:netrw_banner	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:netrw_banner = 0$/;"	v	language:Vim
+g:netrw_browse_split	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:netrw_browse_split = 4$/;"	v	language:Vim
+g:netrw_liststyle	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:netrw_liststyle = 1$/;"	v	language:Vim
+g:netrw_sort_sequence	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:netrw_sort_sequence = '[\\\/]$,*'$/;"	v	language:Vim
+g:netrw_winsize	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:netrw_winsize = -28$/;"	v	language:Vim
+g:repmo_key	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:repmo_key = ";"$/;"	v	language:Vim
+g:repmo_revkey	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:repmo_revkey = "<bar>"$/;"	v	language:Vim
+g:rooter_silent_chdir	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:rooter_silent_chdir = 1$/;"	v	language:Vim
+g:session_autoload	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:session_autoload = 'no' $/;"	v	language:Vim
+g:session_autosave	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:session_autosave = 'yes' $/;"	v	language:Vim
+g:startify_change_to_vcs_root	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:startify_change_to_vcs_root = 1$/;"	v	language:Vim
+g:startify_list_order	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:startify_list_order = ['sessions', 'files', 'dir', 'bookmarks']$/;"	v	language:Vim
+g:startify_restore_position	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:startify_restore_position = 1$/;"	v	language:Vim
+g:startify_session_autoload	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:startify_session_autoload = 1$/;"	v	language:Vim
+g:startify_session_delete_buffers	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:startify_session_delete_buffers = 1$/;"	v	language:Vim
+g:startify_session_dir	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:startify_session_dir = '~\/.vim\/sessions'$/;"	v	language:Vim
+g:syntastic_always_populate_loc_list	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_always_populate_loc_list = 1$/;"	v	language:Vim
+g:syntastic_always_populate_loc_list	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_always_populate_loc_list=0$/;"	v	language:Vim
+g:syntastic_auto_loc_list	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_auto_loc_list = 1$/;"	v	language:Vim
+g:syntastic_check_on_open	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_check_on_open = 1$/;"	v	language:Vim
+g:syntastic_check_on_wq	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_check_on_wq = 0$/;"	v	language:Vim
+g:syntastic_enable_signs	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_enable_signs = 1$/;"	v	language:Vim
+g:syntastic_error_symbol	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_error_symbol='▸'$/;"	v	language:Vim
+g:syntastic_javascript_checkers	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_javascript_checkers = ["eslint"]$/;"	v	language:Vim
+g:syntastic_style_error_symbol	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_style_error_symbol='▸'$/;"	v	language:Vim
+g:syntastic_warning_symbol	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:syntastic_warning_symbol='▸'$/;"	v	language:Vim
+g:tagbar_type_javascript	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:tagbar_type_javascript = {$/;"	v	language:Vim
+g:yankstack_map_keys	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:yankstack_map_keys = 0$/;"	v	language:Vim
+g:ycm_path_to_python_interpreter	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ycm_path_to_python_interpreter = '\/usr\/bin\/python'$/;"	v	language:Vim
+g:ycm_semantic_triggers	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let g:ycm_semantic_triggers =  {$/;"	v	language:Vim
+j	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap j gj$/;"	m	language:Vim
+javascript_enable_domhtmlcss	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let javascript_enable_domhtmlcss = 1$/;"	v	language:Vim
+jj	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^imap jj <Esc>$/;"	m	language:Vim
+k	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nnoremap k gk$/;"	m	language:Vim
+loaded_delimitMate	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let loaded_delimitMate = 0$/;"	v	language:Vim
+loaded_netrw	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let loaded_netrw=0$/;"	v	language:Vim
+loaded_netrwPlugin	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let loaded_netrwPlugin=0$/;"	v	language:Vim
+mapleader	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let mapleader=","$/;"	v	language:Vim
+n	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^map  n <Plug>(easymotion-next)$/;"	m	language:Vim
+s	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^nmap s <Plug>(easymotion-s)$/;"	m	language:Vim
+s	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^vmap s <Plug>(easymotion-s)$/;"	m	language:Vim
+s:enabled	/Users/damianbaar/Dropbox/dotfiles/vimrc	/^let s:enabled = 0$/;"	v	language:Vim
+test	/Users/damianbaar/Documents/Workspaces/HTML:JS:Node/handlebars-grunt/server/server.js	11/\<test\>/;"	f	lineno:12
