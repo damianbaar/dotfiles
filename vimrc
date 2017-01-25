@@ -38,6 +38,8 @@ Plug 'tyru/restart.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-markdown'
 Plug 'ervandew/supertab'
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
 " Plug 'SirVer/ultisnips'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -87,7 +89,6 @@ Plug 'jelera/vim-javascript-syntax' , {'for': ['javascript']}
 Plug 'pangloss/vim-javascript'      , {'for': ['javascript']}
 Plug 'ternjs/tern_for_vim' , { 'do': 'npm install', 'for': ['js','javascript'] }
 Plug 'jason0x43/vim-js-indent', { 'for': ['js','javascript'] }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['js','javascript'] }
 Plug 'Quramy/vim-js-pretty-template', { 'for': ['js','javascript', 'ts','typescript'] }
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
@@ -98,12 +99,15 @@ Plug 'mxw/vim-jsx',                  { 'for' : ['javascript'    , 'jsx']}
 Plug 'groenewege/vim-less',          { 'for' : ['less']}
 Plug 'othree/html5.vim',             { 'for' : ['html']}
 " NeoBundle 'raichoo/purescript-vim'       , {'autoload' : {'filetypes' : ['purescript'    , 'pure']}}
-Plug 'leafgarland/typescript-vim' , {'for': ['typescript' , 'ts']}
+
+" Plug 'leafgarland/typescript-vim' , {'for': ['typescript' , 'ts']}
+
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript' , 'ts'] }
 Plug 'Quramy/tsuquyomi'           , {'for': ['typescript' , 'ts']}
-Plug 'Quramy/vim-dtsm', { 'for': ['ts','typescript'] }
+" Plug 'Quramy/vim-dtsm', { 'for': ['ts','typescript'] }
 Plug 'mhartington/vim-angular2-snippets', { 'for': ['ts','typescript'] }
 Plug 'mhartington/nvim-typescript', { 'for': ['ts','typescript'] }
-Plug 'mhartington/vim-typings', { 'for': ['ts','typescript'] }
+" Plug 'mhartington/vim-typings', { 'for': ['ts','typescript'] }
 "
 " " Clojure
 " NeoBundle 'guns/vim-clojure-static'       , {'autoload' : {'filetypes' : ['clojure']}}
@@ -192,13 +196,14 @@ let loaded_netrwPlugin=0
 let g:repmo_key = ";"
 let g:repmo_revkey = "<bar>"
 
-let g:webdevicons_enable_nerdtree = 0
-let g:webdevicons_conceal_nerdtree_brackets = 0
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'ƛ'
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*ts.*\.ts$'] = 'ƛ'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['typescript'] = 'ƛ'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ts'] = 'ƛ'
 let g:WebDevIconsOS = 'Darwin'
 
 if executable('ag')
@@ -440,6 +445,12 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 " autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript JsPreTmpl html
+autocmd FileType typescript JsPreTmpl html
+autocmd FileType typescript JsPreTmpl xml
+autocmd FileType typescript JsPreTmpl markdown
+" autocmd FileType typescript syn clear foldBraces " For leafgarland/typescript-vim users only. Please see #1 for details.
+autocmd FileType coffee JsPreTmpl xml
 
 let g:tsuquyomi_disable_quickfix = 1
 let g:tsuquyomi_single_quote_import= 1
@@ -450,6 +461,10 @@ let g:syntastic_ennable_signs = 1
 let g:syntastic_error_symbol='▸'
 let g:syntastic_warning_symbol='▸'
 let g:syntastic_style_error_symbol='▸'
+let g:syntastic_html_tidy_ignore_errors = ['attribute name', 'is not recognized!', 'discarding unexpected', 'proprietary attribute']
+
+let g:AutoPairsFlyMode = 0
+" let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 autocmd FileType typescript nmap <buffer> <Leader>ts : <C-u>echo tsuquyomi#hint()<CR>
 
@@ -457,11 +472,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" let g:neomake_javascript_eslint_maker = {
-"     \ 'args': ['--verbose'],
-"     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-"     \ }
-" let g:neomake_javascript_enabled_makers = ["eslint"]
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -654,7 +664,8 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 "             \ deoplete#mappings#close_popup() : "<C-g>u<Cr>"
 "
 " " Ctrl-Space: summon FULL (synced) autocompletion
-" inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
+inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
+" imap <C-Space> <C-X><C-O>
 "
 " " Escape: exit autocompletion, go to Normal mode
 " inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"

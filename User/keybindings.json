@@ -1,0 +1,24 @@
+// Place your key bindings in this file to overwrite the defaults
+[{
+        "key": "cmd+k z",
+        "command": "workbench.action.toggleZenMode"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "cmd+f",
+        "command": "workbench.files.action.focusOpenEditorsView",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
+    }
+]

@@ -1,0 +1,50 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "vim.leader": ",",
+    "vim.useSystemClipboard": false,
+    "vim.easymotion": true,
+    "vim.hlsearch": false,
+    "window.zoomLevel": 0,
+    "vim.otherModesKeyBindingsNonRecursive": [{
+            "before": ["[", "b"],
+            "after": ["g", "g"],
+            "commands": [{
+                "command": "workbench.action.previousEditor",
+                "args": []
+            }]
+        },
+        {
+            "before": ["]", "b"],
+            "after": ["g", "g"],
+            "commands": [{
+                "command": "workbench.action.nextEditor",
+                "args": []
+            }]
+        },
+        {
+            "before": ["<leader>", "b"],
+            "after": [],
+            "commands": [{
+                    "command": "workbench.action.files.save",
+                    "args": []
+                },
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["<leader><leader>s"],
+            "after": ["C-s"]
+        }
+    ],
+    "gitProjectManager.baseProjectsFolders": [
+        "~/Documents/Workspaces"
+    ],
+    "editor.tabSize": 2,
+    "vim.scroll": 10,
+    "newFile.showFullPath": false,
+    "newFile.relativeTo": "project",
+    "newFile.defaultBaseFileName": "unnamed"
+}
