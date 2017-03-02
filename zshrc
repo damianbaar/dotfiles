@@ -74,7 +74,10 @@ ZSH_THEME="xxf"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew grunt npm cabal git-flow lein taskwarrior)
+plugins=(git brew grunt npm cabal git-flow lein taskwarrior zsh-completions)
+# autoload -U compinit && compinit
+
+
 # plugins=(vi-mode)
 
 # bindkey -v
@@ -237,3 +240,14 @@ fi
 
 ###-end-ng-completion###
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi

@@ -1,144 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=~/.config/nvim/plugged/ultisnips/
-set rtp+=~/.config/nvim/plugged/deoplete.nvim/
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'danro/rename.vim'
-Plug 'mileszs/ack.vim'
-Plug 'xolox/vim-easytags'
-Plug 'flazz/vim-colorschemes'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'sjl/gundo.vim'
-Plug 'kshenoy/vim-signature'
-Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'tomtom/tcomment_vim'
-Plug 'godlygeek/tabular'
-Plug 'moll/vim-node'
-Plug 'tpope/vim-surround'
-Plug 'mkitt/tabline.vim'
-Plug 'Yggdroot/indentLine'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'elzr/vim-json'
-Plug 'mhinz/vim-startify'
-Plug 'Raimondi/delimitMate'
-Plug 'vim-scripts/matchit.zip'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-repeat'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'lilydjwg/colorizer'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-Plug 'scrooloose/nerdtree'
-Plug 'tyru/restart.vim'
-Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-markdown'
-Plug 'ervandew/supertab'
-Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
-" Plug 'SirVer/ultisnips'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'honza/vim-snippets'
-Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
-" " Editing
-Plug 'nelstrom/vim-visual-star-search'
-Plug 'dkprice/vim-easygrep'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-" REPL / TMUX
-Plug 'jpalardy/vim-slime'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'jgdavey/vim-turbux'
-
-"
-" " FileTypes
-" NeoBundle 'vim-ruby/vim-ruby',                 {'autoload' : {'filetypes' : ['ruby', 'erb']}}
-" NeoBundle 'tpope/vim-haml',                    {'autoload' : {'filetypes' : ['haml']}}
-" NeoBundle 'derekwyatt/vim-scala',              {'autoload' : {'filetypes' : ['scala']}}
-" NeoBundle 'elixir-lang/vim-elixir',            {'autoload' : {'filetypes' : ['elixir']}}
-" NeoBundle 'gabrielelana/vim-markdown',         {'autoload' : {'filetypes' : ['markdown']}}
-" NeoBundle 'stephpy/vim-yaml',                  {'autoload' : {'filetypes' : ['yaml']}}
-" NeoBundle 'Matt-Deacalion/vim-systemd-syntax', {'autoload' : {'filetypes' : ['systemd']}}
-" NeoBundle 'zah/nimrod.vim',                    {'autoload' : {'filetypes' : ['nim']}}
-" NeoBundle 'wstrinz/shen.vim',                  {'autoload' : {'filetypes' : ['shen']}}
-" NeoBundle 'ekalinin/Dockerfile.vim',           {'autoload' : {'filetypes' : ['Dockerfile']}}
-" NeoBundle 'rust-lang/rust.vim',                {'autoload' : {'filetypes' : ['rust']}}
-" NeoBundle 'rodjek/vim-puppet',                 {'autoload' : {'filetypes' : ['puppet']}}
-"
-"
-" " Rainbow ()
-Plug 'kien/rainbow_parentheses.vim'
-"
-" "Dev helper - linters
-Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/syntastic'
-
-"
-" "WEB
-" NeoBundle 'lambdatoast/elm.vim'          , {'autoload' : {'filetypes' : ['elm']}}
-Plug 'jelera/vim-javascript-syntax' , {'for': ['javascript']}
-Plug 'pangloss/vim-javascript'      , {'for': ['javascript']}
-Plug 'ternjs/tern_for_vim' , { 'do': 'npm install', 'for': ['js','javascript'] }
-Plug 'jason0x43/vim-js-indent', { 'for': ['js','javascript'] }
-Plug 'Quramy/vim-js-pretty-template', { 'for': ['js','javascript', 'ts','typescript'] }
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'grvcoelho/vim-javascript-snippets'
-Plug 'mxw/vim-jsx',                  { 'for' : ['javascript'    , 'jsx']}
-" Plug 'hail2u/vim-css3-syntax.git',   { 'for' : ['css']}
-" Plug 'skammer/vim-css-color.git',  { 'for' : ['css']}
-Plug 'groenewege/vim-less',          { 'for' : ['less']}
-Plug 'othree/html5.vim',             { 'for' : ['html']}
-" NeoBundle 'raichoo/purescript-vim'       , {'autoload' : {'filetypes' : ['purescript'    , 'pure']}}
-
-" Plug 'leafgarland/typescript-vim' , {'for': ['typescript' , 'ts']}
-
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript' , 'ts'] }
-Plug 'Quramy/tsuquyomi'           , {'for': ['typescript' , 'ts']}
-" Plug 'Quramy/vim-dtsm', { 'for': ['ts','typescript'] }
-Plug 'mhartington/vim-angular2-snippets', { 'for': ['ts','typescript'] }
-Plug 'mhartington/nvim-typescript', { 'for': ['ts','typescript'] }
-" Plug 'mhartington/vim-typings', { 'for': ['ts','typescript'] }
-"
-" " Clojure
-" NeoBundle 'guns/vim-clojure-static'       , {'autoload' : {'filetypes' : ['clojure']}}
-" NeoBundle 'guns/vim-clojure-highlight'    , {'autoload' : {'filetypes' : ['clojure']}}
-" NeoBundle 'tpope/vim-fireplace'           , {'autoload' : {'filetypes' : ['clojure']}}
-" NeoBundle 'tpope/vim-dispatch'            , {'autoload' : {'filetypes' : ['clojure']}}
-" NeoBundle 'typedclojure/vim-typedclojure' , {'autoload' : {'filetypes' : ['clojure']}}
-" NeoBundle 'vim-scripts/paredit.vim'       , {'autoload' : {'filetypes' : ['clojure']}}
-"
-" " Haskell
-" " NeoBundle 'wlangstroth/vim-haskell'   , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
-" NeoBundle 'neovimhaskell/haskell-vim' , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
-" " NeoBundle 'bitc/vim-hdevtools'      , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
-" " NeoBundle 'eagletmt/ghcmod-vim'     , {'autoload' : {'filetypes' : ['haskell' , 'hs']}}
-" Plug 'alx741/vim-hindent'     , {'for': ['hs', 'haskell']}
-" Plug 'nbouscal/vim-stylish-haskell' , {'for': ['hs', 'haskell']}
-Plug 'neovimhaskell/haskell-vim' , {'for': ['hs', 'haskell']}
-Plug 'itchyny/vim-haskell-indent'  , {'for': ['hs', 'haskell']}
-Plug 'eagletmt/neco-ghc'          , {'for': ['hs', 'haskell']}
-
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-"End NeoBundle Scripts-------------------------
-call plug#end()
-
-" Required:
-filetype plugin indent on
-syntax enable
-syntax on
-
 let g:deoplete#enable_at_startup = 1
 
 set encoding=utf8
@@ -189,6 +51,128 @@ set linespace=3
 set conceallevel=0
 set background=dark
 
+set rtp+=~/.config/nvim/plugged/ultisnips/
+set rtp+=~/.config/nvim/plugged/deoplete.nvim/
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'danro/rename.vim'
+Plug 'mileszs/ack.vim'
+Plug 'xolox/vim-easytags'
+Plug 'flazz/vim-colorschemes'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sjl/gundo.vim'
+Plug 'kshenoy/vim-signature'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'tomtom/tcomment_vim'
+Plug 'godlygeek/tabular'
+" Plug 'moll/vim-node'
+Plug 'tpope/vim-surround'
+Plug 'mkitt/tabline.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'elzr/vim-json'
+Plug 'mhinz/vim-startify'
+Plug 'Raimondi/delimitMate'
+" Plug 'vim-scripts/matchit.zip'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'DeaR/ctrlp-location-list'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-markdown'
+Plug 'ervandew/supertab'
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-repeat'
+" Plug 'bronson/vim-closebuffer'
+" Plug 'SirVer/ultisnips'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
+Plug 'ryanoasis/vim-devicons'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" " Editing
+" Plug 'bronson/vim-visual-star-search'
+
+" nnoremap <leader>* :call ag#Ag('grep', '--literal ' . shellescape(expand("<cword>")))<CR>
+" vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('grep', '--literal ' . shellescape(@/))<CR>
+
+Plug 'dkprice/vim-easygrep'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" REPL / TMUX
+Plug 'jpalardy/vim-slime'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'jgdavey/vim-turbux'
+
+"
+" " FileTypes
+" NeoBundle 'stephpy/vim-yaml',                  {'autoload' : {'filetypes' : ['yaml']}}
+" NeoBundle 'ekalinin/Dockerfile.vim',           {'autoload' : {'filetypes' : ['Dockerfile']}}
+" NeoBundle 'gabrielelana/vim-markdown',         {'autoload' : {'filetypes' : ['markdown']}}
+" NeoBundle 'vim-ruby/vim-ruby',                 {'autoload' : {'filetypes' : ['ruby', 'erb']}}
+" NeoBundle 'rodjek/vim-puppet',                 {'autoload' : {'filetypes' : ['puppet']}}
+"
+"
+" "Dev helper - linters
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/syntastic'
+
+"
+" "WEB
+Plug 'ternjs/tern_for_vim'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
+Plug 'jelera/vim-javascript-syntax' , {'for': ['javascript', 'js']}
+Plug 'pangloss/vim-javascript'      , {'for': ['javascript', 'js']}
+Plug 'jason0x43/vim-js-indent', { 'for': ['js','javascript'] }
+Plug 'Quramy/vim-js-pretty-template', { 'for': ['js','javascript', 'ts','typescript'] }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'grvcoelho/vim-javascript-snippets'
+Plug 'mxw/vim-jsx',                  { 'for' : ['javascript'    , 'jsx']}
+Plug 'groenewege/vim-less',          { 'for' : ['less']}
+Plug 'othree/html5.vim',             { 'for' : ['html']}
+Plug 'raichoo/purescript-vim',        {'for' : ['purescript', 'pure']}
+Plug 'frigoeu/psc-ide-vim',        {'for' : ['purescript', 'pure']}
+
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript' , 'ts'] }
+Plug 'Quramy/tsuquyomi'           , {'for': ['typescript' , 'ts']}
+Plug 'mhartington/vim-angular2-snippets', { 'for': ['ts','typescript'] }
+Plug 'mhartington/nvim-typescript', { 'for': ['ts','typescript'] }
+"
+" " Haskell
+Plug 'neovimhaskell/haskell-vim' , {'for': ['hs', 'haskell']}
+Plug 'itchyny/vim-haskell-indent'  , {'for': ['hs', 'haskell']}
+Plug 'eagletmt/neco-ghc'          , {'for': ['hs', 'haskell']}
+
+Plug 'tpope/vim-unimpaired'
+" TODO: can yo and yO set `[ and `] so gV will select the area that was just pasted?
+" control-arrows to move lines up and down
+nmap <C-Up> [e
+nmap <C-Down> ]e
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+Plug 'rking/ag.vim'
+set grepprg=ag\ --nogroup\ --nocolor
+let g:agprg="ag --column --hidden"    " --hidden lets ag search hidden files but ignore ~/.agignore
+
+call plug#end()
+
+" Required:
+filetype plugin indent on
+syntax enable
+syntax on
+
 let g:vim_json_syntax_conceal = 0
 let g:jsx_ext_required = 0
 let loaded_netrw=0
@@ -196,8 +180,10 @@ let loaded_netrwPlugin=0
 let g:repmo_key = ";"
 let g:repmo_revkey = "<bar>"
 
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:webdevicons_enable_nerdtree = 0
+let webdevicons_conceal_nerdtree_brackets = 0
+let g:webdevicons_enable_nerdtree = 0
+
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'ƛ'
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*ts.*\.ts$'] = 'ƛ'
@@ -208,6 +194,13 @@ let g:WebDevIconsOS = 'Darwin'
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
+  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+  let g:ctrlp_use_caching = 0
+
+  if !exists(":Ag")
+    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+    nnoremap \ :Ag<SPACE>
+  endif
 endif
 
 
@@ -231,7 +224,7 @@ let mapleader=","
 
 nnoremap j gj
 nnoremap k gk
-nnoremap <leader><leader> <C-^>
+" nnoremap <leader><leader> <C-^>
 
 "
 nnoremap <A-j> :m .+1<CR>==
@@ -276,21 +269,142 @@ nmap <Leader>rs :source $MYVIMRC <CR>
 nmap <Leader>re :SaveSession! <CR> :RestartVim<CR>
 nmap <silent> <leader>u :GundoToggle<CR>
 
-nnoremap <Space>a :ClearCtrlPCache<cr>\|:CtrlPCurWD<cr>
 nnoremap <silent> <leader>ff  : CtrlPCurFile<CR>
 nnoremap <tab> :CtrlPBuffer<CR>
 nnoremap <silent> <leader>ll  : CtrlPLine<CR>
 nnoremap <silent> <leader>qq  : CtrlPQuickfix<CR>
+nnoremap <silent> <leader>ee  : CtrlPLocList<CR>
 nnoremap <silent> <leader>mm : CtrlPMRUFiles<CR>
 nnoremap <silent> <leader>cc : CtrlPChange<CR>
 nnoremap <silent> <leader>tt : CtrlPTag<CR>
 
-nnoremap cse :call <SID>ChangeElement()<cr>
 nnoremap <leader>oo :TagbarToggle<cr>
+
+let g:term_buf = 0
+function! Term_toggle()
+  1wincmd w
+  if g:term_buf == bufnr("")
+    setlocal bufhidden=hide
+    close
+  else
+    rightbelow new
+    12winc -
+    try
+      exec "buffer ".g:term_buf
+    catch
+      call termopen("tmux", {"detach": 0})
+      let g:term_buf = bufnr("")
+    endtry
+    set laststatus=0
+    startinsert!
+  endif
+endfunction
+
+" aug QFClose
+"   au!
+"   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "terminal"|q|endif
+"   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+"   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "location"|q|endif
+" aug END
+"
+autocmd TermOpen * set bufhidden=hide
+
+" s:NextNormalWindow() {{{2
+function! s:NextNormalWindow() abort
+    for i in range(1, winnr('$'))
+        let buf = winbufnr(i)
+
+        " skip unlisted buffers
+        if !buflisted(buf)
+            continue
+        endif
+
+        " skip temporary buffers with buftype set
+        if getbufvar(buf, '&buftype') != ''
+            continue
+        endif
+
+        " skip the preview window
+        if getwinvar(i, '&previewwindow')
+            continue
+        endif
+
+        " skip current window
+        if i == winnr()
+            continue
+        endif
+
+        return i
+    endfor
+
+    return -1
+endfunction
+
+" s:QuitIfOnlyWindow() {{{2
+function! s:QuitIfOnlyWindow() abort
+    let l:buftype = getbufvar(winbufnr(winnr()), "&buftype")
+    if l:buftype != "quickfix" && l:buftype != "help"
+        return
+    endif
+
+    " Check if there is more than one window
+    if s:NextNormalWindow() == -1
+        " Check if there is more than one tab page
+        if tabpagenr('$') == 1
+            " Before quitting Vim, delete the special buffer so that
+            " the '0 mark is correctly set to the previous buffer.
+            " Also disable autocmd on this command to avoid unnecessary
+            " autocmd nesting.
+            if winnr('$') == 1
+                if has('autocmd')
+                    noautocmd bdelete
+                endif
+            endif
+            quit
+        else
+            " Note: workaround for the fact that in new tab the buftype is set
+            " too late (and sticks during this WinEntry autocmd to the old -
+            " potentially quickfix/help buftype - that would automatically
+            " close the new tab and open the buffer in copen window instead
+            " New tabpage has previous window set to 0
+            if tabpagewinnr(tabpagenr(), '#') != 0
+                let l:last_window = 0
+                if winnr('$') == 1
+                    let l:last_window = 1
+                endif
+                close
+                if l:last_window == 1
+                    " Note: workaround for the same bug, but w.r.t. Airline
+                    " plugin (it needs to refresh buftype and status line after
+                    " last special window autocmd close on a tab page
+                    if exists(':AirlineRefresh')
+                        execute "AirlineRefresh"
+                    endif
+                endif
+            endif
+        endif
+    endif
+endfunction
+
+" autoclose last open location/quickfix/help windows on a tab
+if has('autocmd')
+    aug AutoCloseAllQF
+        au!
+        autocmd WinEnter * nested call s:QuitIfOnlyWindow()
+    aug END
+endif
+
+" au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+tnoremap <Esc> <C-\><C-n>
+
+" au BufEnter * if &buftype == 'terminal' | :bdelete | endif
 
 " nnoremap <leader>te :below 10sp term://$SHELL<cr>i
 nnoremap <leader>te :below 10sp term://tmux<cr>i
+" nnoremap <leader>te :call Term_toggle()<cr>
+" map <C-e> :call Term_toggle()<cr>
 tnoremap <Leader>e <C-\><C-n><C-w><C-w>
+" tnoremap <Leader>te exit<cr><cr>
 tnoremap <C-h> <C-w>h
 tnoremap <C-j> <C-w>j
 tnoremap <C-k> <C-w>k
@@ -301,6 +415,7 @@ tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
 
 " Buffer
 map <leader>bd :bdelete<cr>
+" map <leader>bd <Plug>CloseBuffer
 
 " nnoremap <Leader>gg :Git<Space>
 " nnoremap <Leader>gw :Gwrite<CR>
@@ -371,8 +486,17 @@ let g:haskellmode_completion_ghc = 0
 let g:necoghc_enable_detailed_browse = 1
 let g:necoghc_debug = 1
 
-let g:GeeknoteFormat="markdown"
-noremap <leader-nn> :Geeknote<cr>
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 
 " let g:UltiSnipsExpandTrigger = "<c-tab>"
 " let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -449,19 +573,37 @@ autocmd FileType javascript JsPreTmpl html
 autocmd FileType typescript JsPreTmpl html
 autocmd FileType typescript JsPreTmpl xml
 autocmd FileType typescript JsPreTmpl markdown
+" autocmd FileType typescript setlocal completeopt+=preview
 " autocmd FileType typescript syn clear foldBraces " For leafgarland/typescript-vim users only. Please see #1 for details.
 autocmd FileType coffee JsPreTmpl xml
 
-let g:tsuquyomi_disable_quickfix = 1
+" let g:tsuquyomi_disable_quickfix = 1
 let g:tsuquyomi_single_quote_import= 1
-let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
-let g:syntastic_always_populate_loc_list=0
+let g:tsuquyomi_disable_quickfix = 1
+let g:tsuquyomi_shortest_import_path = 1
+let g:tsuquyomi_completion_preview=1
+
+" let g:syntastic_typescript_checkers = ['tslint','tsuquyomi'] " You shouldn't use 'tsc' checker.
+" let g:syntastic_typescript_tsc_fname = ''
+" let g:syntastic_typescript_checkers = ['tsc'] " You shouldn't use 'tsc' checker.
+" let g:syntastic_typescript_tsc_args = "-t ES5 -m commonjs --experimentalDecorators --emitDecoratorMetadata --sourceMap true --moduleResolution node"
+" let g:syntastic_always_populate_loc_list=0
 let g:syntastic_javascript_checkers = ["eslint"]
-let g:syntastic_ennable_signs = 1
+" let g:syntastic_typescript_checkers = ["tslint",'tsc']
+let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol='▸'
 let g:syntastic_warning_symbol='▸'
 let g:syntastic_style_error_symbol='▸'
 let g:syntastic_html_tidy_ignore_errors = ['attribute name', 'is not recognized!', 'discarding unexpected', 'proprietary attribute']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi'] 
+
 
 let g:AutoPairsFlyMode = 0
 " let g:AutoPairsShortcutBackInsert = '<M-b>'
@@ -478,6 +620,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+function! SyntasticCheckHook(errors)
+    if !empty(a:errors)
+        let g:syntastic_loc_list_height = 1 "min([len(a:errors), 10])
+    endif
+endfunction
+
 let g:smartusline_string_to_highlight = '(%n) %f '
 set laststatus=2 " Seperate lines for state and mode
 
@@ -493,7 +641,7 @@ let g:startify_list_order = ['sessions', 'files', 'dir', 'bookmarks']
 "let g:startify_session_detection = 1
 let g:startify_session_autoload = 1
 "let g:startify_session_persistence = 1
-let g:startify_session_delete_buffers = 1
+let g:startify_session_delete_buffers = 0
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_dir = '~/.vim/sessions'
 
@@ -505,16 +653,31 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_upper = 1
 
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+nnoremap - g$
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard'] " Use git but also show untracked files
+
+if executable('ag')
+  let g:ctrlp_user_command = ['.git', 'ag -Q -l --nocolor --hidden -g "" %s']
+  let g:ctrlp_use_caching = 0
+endif
+
+
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
+                        \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_use_caching = 0
 let g:ctrlp_switch_buffer = 'Et'
+let g:ctrlp_open_new_file = 'r'
 
 let g:airline_powerline_fonts = 1
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
 
-let g:ctrlp_open_new_file = 'r'
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 
 " let g:ctrlp_status_func = {
 "       \   'main': 'CtrlPMainStatusLine',
@@ -546,6 +709,21 @@ let g:ctrlp_open_new_file = 'r'
 let g:tagbar_type_javascript = {
   \ 'ctagsbin' : '/usr/local/bin/jsctags'
 \ }
+
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+  \ }
+
 let g:tagbar_type_haskell = {
   \ 'ctagsbin'  : 'hasktags',
   \ 'ctagsargs' : '-x -c -o-',
@@ -601,7 +779,7 @@ autocmd BufNewFile,BufRead todo set ft=todo
 highlight StartifyFile guifg=#83a598 guibg=NONE gui=NONE
 "
 " " autocmd BufEnter * silent Cd!
-" autocmd BufEnter * silent IndentLinesReset
+" autocmd BufEntet silent IndentLinesReset
 "
 " " syntax enable
 " " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -623,11 +801,11 @@ let g:enable_bold_font = 1
 let g:indentLine_color_term = 239
 colorscheme luna-term
 "
-" let g:deoplete#omni#functions = {}
-" let g:deoplete#omni#functions.javascript = [
-"   \ 'tern#Complete',
-"   \ 'jspc#omni'
-" \]
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.javascript = [
+  \ 'tern#Complete',
+  \ 'jspc#omni'
+\]
 "
 " let g:deoplete#omni#functions.typescript = [
 "   \ 'tern#Complete',
@@ -669,6 +847,15 @@ inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 "
 " " Escape: exit autocompletion, go to Normal mode
 " inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
+"
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ deoplete#mappings#manual_complete()
+  function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction"}}}
 
 " SuperTab like snippets behavior.
 " imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -693,8 +880,8 @@ let g:echodoc_enable_at_startup	= 1
 
 " let g:deoplete#sources = {}
 " let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
-" let g:tern#command = ['tern']
-" let g:tern#arguments = ['--persistent']
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
 
 function! Multiple_cursors_before()
     let b:deoplete_disable_auto_complete=2
@@ -713,9 +900,9 @@ function! Multiple_cursors_before()
 autocmd WinEnter * call Preview_func()
 
 " For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
 
 
 let g:loaded_python_provider = 1
